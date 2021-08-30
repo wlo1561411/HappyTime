@@ -1,0 +1,468 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4924A0AEDC177B55FFE47F26 /* Pods_HappyTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 430FC2BB46F4655A02A69B1B /* Pods_HappyTime.framework */; };
+		FF95F76F26CE3423005CE9D5 /* KeychainUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF95F76E26CE3423005CE9D5 /* KeychainUtility.swift */; };
+		FF95F77226CE3B72005CE9D5 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF95F77126CE3B72005CE9D5 /* MainViewModel.swift */; };
+		FF95F77426CE5003005CE9D5 /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF95F77326CE5003005CE9D5 /* WebService.swift */; };
+		FFBB956626D48E8C0071ABD1 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBB956526D48E8C0071ABD1 /* Extension.swift */; };
+		FFD9E75726CDEF3200362C24 /* HappyTimeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD9E75626CDEF3200362C24 /* HappyTimeApp.swift */; };
+		FFD9E75B26CDEF3300362C24 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FFD9E75A26CDEF3300362C24 /* Assets.xcassets */; };
+		FFD9E75E26CDEF3300362C24 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FFD9E75D26CDEF3300362C24 /* Preview Assets.xcassets */; };
+		FFD9E76626CDEF6100362C24 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD9E76526CDEF6100362C24 /* MainView.swift */; };
+		FFD9E76826CDF3FF00362C24 /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD9E76726CDF3FF00362C24 /* ButtonView.swift */; };
+		FFD9E76A26CDF4B800362C24 /* TextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD9E76926CDF4B800362C24 /* TextFieldView.swift */; };
+		FFFF0BFE26D4DF560043ECE0 /* ClockResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFFF0BFD26D4DF560043ECE0 /* ClockResponse.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		430FC2BB46F4655A02A69B1B /* Pods_HappyTime.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HappyTime.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C99518441F02D049608D9FBF /* Pods-HappyTime.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HappyTime.debug.xcconfig"; path = "Target Support Files/Pods-HappyTime/Pods-HappyTime.debug.xcconfig"; sourceTree = "<group>"; };
+		F8823F04EBA048D2E1E12D82 /* Pods-HappyTime.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HappyTime.release.xcconfig"; path = "Target Support Files/Pods-HappyTime/Pods-HappyTime.release.xcconfig"; sourceTree = "<group>"; };
+		FF95F76E26CE3423005CE9D5 /* KeychainUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainUtility.swift; sourceTree = "<group>"; };
+		FF95F77026CE3791005CE9D5 /* HappyTimeRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HappyTimeRelease.entitlements; sourceTree = "<group>"; };
+		FF95F77126CE3B72005CE9D5 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		FF95F77326CE5003005CE9D5 /* WebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebService.swift; sourceTree = "<group>"; };
+		FFBB956526D48E8C0071ABD1 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		FFD9E75326CDEF3200362C24 /* HappyTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HappyTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FFD9E75626CDEF3200362C24 /* HappyTimeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HappyTimeApp.swift; sourceTree = "<group>"; };
+		FFD9E75A26CDEF3300362C24 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		FFD9E75D26CDEF3300362C24 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		FFD9E75F26CDEF3300362C24 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FFD9E76526CDEF6100362C24 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		FFD9E76726CDF3FF00362C24 /* ButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
+		FFD9E76926CDF4B800362C24 /* TextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldView.swift; sourceTree = "<group>"; };
+		FFFF0BFD26D4DF560043ECE0 /* ClockResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockResponse.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		FFD9E75026CDEF3200362C24 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4924A0AEDC177B55FFE47F26 /* Pods_HappyTime.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		5C01B481582B0193B65561A9 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C99518441F02D049608D9FBF /* Pods-HappyTime.debug.xcconfig */,
+				F8823F04EBA048D2E1E12D82 /* Pods-HappyTime.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		D834EB6695D4534533451367 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				430FC2BB46F4655A02A69B1B /* Pods_HappyTime.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FFBB956726D49E960071ABD1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FFBB956826D49EA30071ABD1 /* Main */,
+				FFD9E76726CDF3FF00362C24 /* ButtonView.swift */,
+				FFD9E76926CDF4B800362C24 /* TextFieldView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		FFBB956826D49EA30071ABD1 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				FFD9E76526CDEF6100362C24 /* MainView.swift */,
+				FF95F77126CE3B72005CE9D5 /* MainViewModel.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		FFBB956926D49EBB0071ABD1 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				FF95F77326CE5003005CE9D5 /* WebService.swift */,
+				FF95F76E26CE3423005CE9D5 /* KeychainUtility.swift */,
+				FFBB956526D48E8C0071ABD1 /* Extension.swift */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
+		FFD9E74A26CDEF3200362C24 = {
+			isa = PBXGroup;
+			children = (
+				FFD9E75526CDEF3200362C24 /* HappyTime */,
+				FFD9E75426CDEF3200362C24 /* Products */,
+				5C01B481582B0193B65561A9 /* Pods */,
+				D834EB6695D4534533451367 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		FFD9E75426CDEF3200362C24 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FFD9E75326CDEF3200362C24 /* HappyTime.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FFD9E75526CDEF3200362C24 /* HappyTime */ = {
+			isa = PBXGroup;
+			children = (
+				FF95F77026CE3791005CE9D5 /* HappyTimeRelease.entitlements */,
+				FFD9E75626CDEF3200362C24 /* HappyTimeApp.swift */,
+				FFFF0BFC26D4DF410043ECE0 /* Model */,
+				FFBB956726D49E960071ABD1 /* View */,
+				FFBB956926D49EBB0071ABD1 /* Utility */,
+				FFD9E75A26CDEF3300362C24 /* Assets.xcassets */,
+				FFD9E75F26CDEF3300362C24 /* Info.plist */,
+				FFD9E75C26CDEF3300362C24 /* Preview Content */,
+			);
+			path = HappyTime;
+			sourceTree = "<group>";
+		};
+		FFD9E75C26CDEF3300362C24 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				FFD9E75D26CDEF3300362C24 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		FFFF0BFC26D4DF410043ECE0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				FFFF0BFD26D4DF560043ECE0 /* ClockResponse.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		FFD9E75226CDEF3200362C24 /* HappyTime */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FFD9E76226CDEF3300362C24 /* Build configuration list for PBXNativeTarget "HappyTime" */;
+			buildPhases = (
+				6130814BA06C3221099D03FF /* [CP] Check Pods Manifest.lock */,
+				FFD9E74F26CDEF3200362C24 /* Sources */,
+				FFD9E75026CDEF3200362C24 /* Frameworks */,
+				FFD9E75126CDEF3200362C24 /* Resources */,
+				E636DBAEE71286F4721937D4 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HappyTime;
+			productName = HappyTime;
+			productReference = FFD9E75326CDEF3200362C24 /* HappyTime.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		FFD9E74B26CDEF3200362C24 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1250;
+				LastUpgradeCheck = 1250;
+				TargetAttributes = {
+					FFD9E75226CDEF3200362C24 = {
+						CreatedOnToolsVersion = 12.5.1;
+					};
+				};
+			};
+			buildConfigurationList = FFD9E74E26CDEF3200362C24 /* Build configuration list for PBXProject "HappyTime" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = FFD9E74A26CDEF3200362C24;
+			productRefGroup = FFD9E75426CDEF3200362C24 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				FFD9E75226CDEF3200362C24 /* HappyTime */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		FFD9E75126CDEF3200362C24 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FFD9E75E26CDEF3300362C24 /* Preview Assets.xcassets in Resources */,
+				FFD9E75B26CDEF3300362C24 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		6130814BA06C3221099D03FF /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-HappyTime-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E636DBAEE71286F4721937D4 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HappyTime/Pods-HappyTime-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HappyTime/Pods-HappyTime-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HappyTime/Pods-HappyTime-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		FFD9E74F26CDEF3200362C24 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FFD9E76A26CDF4B800362C24 /* TextFieldView.swift in Sources */,
+				FFD9E75726CDEF3200362C24 /* HappyTimeApp.swift in Sources */,
+				FF95F77426CE5003005CE9D5 /* WebService.swift in Sources */,
+				FF95F76F26CE3423005CE9D5 /* KeychainUtility.swift in Sources */,
+				FFD9E76826CDF3FF00362C24 /* ButtonView.swift in Sources */,
+				FFD9E76626CDEF6100362C24 /* MainView.swift in Sources */,
+				FF95F77226CE3B72005CE9D5 /* MainViewModel.swift in Sources */,
+				FFFF0BFE26D4DF560043ECE0 /* ClockResponse.swift in Sources */,
+				FFBB956626D48E8C0071ABD1 /* Extension.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		FFD9E76026CDEF3300362C24 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		FFD9E76126CDEF3300362C24 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		FFD9E76326CDEF3300362C24 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C99518441F02D049608D9FBF /* Pods-HappyTime.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 3;
+				DEVELOPMENT_ASSET_PATHS = "\"HappyTime/Preview Content\"";
+				DEVELOPMENT_TEAM = NPGZC3NCFH;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = HappyTime/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.finn.HappyTime;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		FFD9E76426CDEF3300362C24 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F8823F04EBA048D2E1E12D82 /* Pods-HappyTime.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = HappyTime/HappyTimeRelease.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 3;
+				DEVELOPMENT_ASSET_PATHS = "\"HappyTime/Preview Content\"";
+				DEVELOPMENT_TEAM = NPGZC3NCFH;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = HappyTime/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.finn.HappyTime;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		FFD9E74E26CDEF3200362C24 /* Build configuration list for PBXProject "HappyTime" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FFD9E76026CDEF3300362C24 /* Debug */,
+				FFD9E76126CDEF3300362C24 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FFD9E76226CDEF3300362C24 /* Build configuration list for PBXNativeTarget "HappyTime" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FFD9E76326CDEF3300362C24 /* Debug */,
+				FFD9E76426CDEF3300362C24 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = FFD9E74B26CDEF3200362C24 /* Project object */;
+}
