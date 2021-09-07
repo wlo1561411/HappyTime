@@ -11,93 +11,10 @@ import Combine
 
 class MainViewModel: ObservableObject {
     
-    enum AlertType {
-        enum RemindType {
-            case delete
-            case clock(type: ClockType)
-            
-            var title: String {
-                return "提醒您！"
-            }
-            
-            var message: String {
-                switch self {
-                case .delete:
-                    return "你確定要刪除已儲存的帳號密碼嗎？"
-                case .clock(let type):
-                    return "你確定要\(type.chinese)嗎？"
-                }
-            }
-        }
+    typealias WebError = WebService.WebServiceError
+    typealias ApiType = WebService.ApiType
+    typealias PunchModel = PunchView.Model
         
-        enum ApiType {
-            case login(success: Bool?)
-            case clock(type: ClockType, success: Bool?, message: String?)
-            
-            var title: String {
-                switch self {
-                case .login(let success):
-                    if let success = success {
-                        return "登入\(success ? "成功" : "失敗")"
-                    }
-                    else {
-                        return "咦！"
-                    }
-
-
-                case .clock(let type, let success, _):
-                    if let success = success {
-                        return "\(type.chinese)\(success ? "成功" : "失敗")"
-                    }
-                    else {
-                        return "咦！"
-                    }
-                }
-            }
-            
-            var message: String? {
-                switch self {
-                case .login(let success):
-                    if let success = success {
-                        return success ? nil : "請稍後再次嘗試或重新登入。"
-                    }
-                    else {
-                        return "請檢查輸入欄位。"
-                    }
-
-                case .clock(_, let success, let message):
-                    if success != nil {
-                        return message
-                    }
-                    else {
-                        return "請稍後再次嘗試或重新登入。"
-                    }
-                }
-            }
-        }
-        
-        case remind(remindType: RemindType)
-        case response(apiType: ApiType)
-        
-        var title: String {
-            switch self {
-            case .remind(let remindType):
-                return remindType.title
-            case .response(let apiType):
-                return apiType.title
-            }
-        }
-        
-        var message: String? {
-            switch self {
-            case .remind(let remindType):
-                return remindType.message
-            case .response(let apiType):
-                return apiType.message
-            }
-        }
-    }
-    
     private let codeKey = "code_key"
     private let accountKey = "account_key"
     private let passwordKey = "password_key"
@@ -107,143 +24,142 @@ class MainViewModel: ObservableObject {
     
     private let minlongitude = 121.564843
     private let maxlongitude = 121.565335
-        
+    
     private var cancellables = Set<AnyCancellable>()
     
     private var token: String?
     
     private var isSavedAccount = false
-        
+    
     @Published var code = ""
     @Published var account = ""
     @Published var password = ""
     
-    @Published var isPopAlert = false
+    @Published var punchModel: PunchModel?
     
-    var alertType: AlertType = .remind(remindType: .delete)
+    @Published var isPopAlert = false
+    @Published var isLoading = false
+    
+    var alertType: AlertType = .remind(type: .delete)
 }
 
-// MARK: - API
+// MARK: - Alert Type
 
-private extension MainViewModel {
-
-    func login() {
-        if !isCompleteInput() {
-            configAlert(
-                alertType: .response(apiType: .login(success: nil))
-            )
-            return
+extension MainViewModel {
+    
+    enum AlertType {
+        enum RemindType {
+            case delete
+            case clock(type: ClockType)
+            
+            var elements: (title: String, message: String) {
+                switch self {
+                case .delete:
+                    return ("提醒您！", "你確定要刪除已儲存的帳號密碼嗎？")
+                case .clock(let type):
+                    return ("提醒您！", "你確定要\(type.chinese)嗎？")
+                }
+            }
         }
         
-        WebService
-            .shareInstance
-            .login(code: code,
-                   account: account,
-                   password: password) { [weak self] success, token in
-
-                if success {
-                    self?.token = token
-                    if !(self?.isSavedAccount ?? false) {
-                        self?.saveUserInfo()
-                    }
+        case remind(type: RemindType)
+        case response(api: ApiType, error: WebError?, message: String?)
+        
+        var elements: (title: String, message: String?) {
+            switch self {
+            case .remind(let type):
+                return type.elements
+            case .response(let api, let error, let message):
+                if let error = error {
+                    return (api.title + "失敗", error.message)
                 }
-
-                DispatchQueue.main.async {
-                    self?.configAlert(
-                        alertType: .response(apiType: .login(success: success))
-                    )
+                else {
+                    return (api.title + "成功", message)
                 }
             }
-    }
-    
-    func clock(_ type: ClockType) {
-        let coordinate = generateCoordinate()
-
-        WebService
-            .shareInstance
-            .clock(type,
-                   token: token,
-                   latitude: coordinate.latitude,
-                   longitude: coordinate.longitude) { [weak self] success, message in
-                
-                DispatchQueue.main.async {
-                    self?.configAlert(
-                        alertType: .response(apiType: .clock(type: type, success: success, message: message))
-                    )
-                }
-            }
+        }
     }
 }
 
 // MARK: - Combine API
 
 private extension MainViewModel {
-    
-    func loginByCombine() {
-        guard isCompleteInput() else {
-            configAlert(alertType: .response(apiType: .login(success: nil)))
-            return
-        }
+
+    func loginAndGetAttendance() {
         
-        WebService
+        let login = WebService
             .shareInstance
-            .login(code: code, account: account, password: password)?
-//            .replaceError(with: nil)
-            .sink(receiveCompletion: { [weak self] completion in
-                switch completion {
-                case .finished: break
-                case .failure(_) :
-                    self?.configAlert(
-                        alertType: .response(apiType: .login(success: false))
-                    )
-                }
-            },
-            receiveValue: { [weak self] token in
+            .login(code: code, account: account, password: password)
+            .receive(on: DispatchQueue.main)
+            .handleEvents(receiveSubscription: { [weak self] _ in
+                self?.isLoading = true
+            }
+            ,receiveOutput: { [weak self] token in
                 guard let self = self else { return }
                 
-                if let token = token {
-                    self.token = token
-
-                    WebService
-                        .shareInstance
-                        .getAttendance()?
-                        .sink(receiveCompletion: { _ in}, receiveValue: { string in
-                            print(string)
-                        })
-                        .store(in: &self.cancellables)
-                    
-                    if !self.isSavedAccount {
-                        self.saveUserInfo()
-                    }
-                }
+                self.token = token
                 
-                self.configAlert(
-                    alertType: .response(apiType: .login(success: self.token != nil))
-                )
+                if !self.isSavedAccount { self.saveUserInfo() }
+                
+                self.configAlert(alertType: .response(api: .login, error: nil, message: nil))
+            }
+            ,receiveCompletion: { [weak self] completion in
+                self?.isLoading = false
+                
+                switch completion {
+                case .finished: break
+                case .failure(let error):
+                    self?.configAlert(alertType: .response(api: .login, error: error, message: nil))
+                }
             })
+            .eraseToAnyPublisher()
+        
+        
+        let getAttendance = WebService
+            .shareInstance
+            .getAttendance()
+            .receive(on: DispatchQueue.main)
+            .handleEvents(receiveOutput: { [weak self] attendance in
+                guard let punches = attendance.punch?.allPunches, punches.count > 0 else { return }
+                self?.punchModel = .init(title: "出勤紀錄", punches: punches)
+            }
+            ,receiveCompletion: { [weak self] completion in
+                switch completion {
+                case .finished: break
+                case .failure(_):
+                    self?.punchModel = nil
+                }
+            })
+            .eraseToAnyPublisher()
+        
+        login
+            .flatMap { _ in getAttendance }
+            .sink(receiveCompletion: { _ in }
+            ,receiveValue: { _ in })
             .store(in: &cancellables)
     }
     
-    func clockByCombine(_ type: ClockType) {
+    func clock(_ type: ClockType) {
         let coordinate = generateCoordinate()
-
+        
         WebService
             .shareInstance
-            .clock(type, token: token ?? "", latitude: coordinate.latitude, longitude: coordinate.longitude)?
+            .clock(type, token: token ?? "", latitude: coordinate.latitude, longitude: coordinate.longitude)
+            .receive(on: DispatchQueue.main)
+            .handleEvents(receiveSubscription: { [weak self] _ in
+                self?.isLoading = true
+            })
             .sink(receiveCompletion: { [weak self] completion in
-                guard let self = self else { return }
+                self?.isLoading = false
+                
                 switch completion {
                 case .finished: break
-                case .failure(_) :
-                    self.configAlert(
-                        alertType: .response(apiType: .clock(type: type, success: nil, message: nil))
-                    )
+                case .failure(let error) :
+                    self?.configAlert(alertType: .response(api: .clock(type: type), error: error, message: nil))
                 }
-            },
-            receiveValue: { [weak self] response in
-                self?.configAlert(
-                    alertType: .response(apiType: .clock(type: type, success: response.isSuccess, message: response.message))
-                )
+            }
+            ,receiveValue: { [weak self] response in
+                self?.configAlert(alertType: .response(api: .clock(type: type), error: nil, message: response.message))
             })
             .store(in: &cancellables)
     }
@@ -278,15 +194,14 @@ extension MainViewModel {
     
     func loginAction() {
         token = nil
+        punchModel = nil
         
-//        login()
-        loginByCombine()
+        loginAndGetAttendance()
     }
     
     func clockAction(_ type: ClockType) {
         
-//        clock()
-        clockByCombine(type)
+        clock(type)
     }
     
     func remindAction() {
@@ -300,7 +215,7 @@ extension MainViewModel {
             }
             
         ///  Should not happen
-        case .response(_):
+        case .response(_, _ , _):
             break
         }
     }
@@ -330,17 +245,17 @@ extension MainViewModel {
     }
     
     func prepareForClock(_ type: ClockType) {
-        configAlert(alertType: .remind(remindType: .clock(type: type)))
+        configAlert(alertType: .remind(type: .clock(type: type)))
     }
     
     func prepareForDelete() {
-        configAlert(alertType: .remind(remindType: .delete))
+        configAlert(alertType: .remind(type: .delete))
     }
     
     func isCompleteInput() -> Bool {
         return !code.isEmpty && !account.isEmpty && !password.isEmpty
     }
-
+    
     func generateCoordinate() -> (latitude: Double, longitude: Double)  {
         let latitude = Double.random(in: minLatitude...maxLatitude).decimal(6)
         let longitude = Double.random(in: minlongitude...maxlongitude).decimal(6)

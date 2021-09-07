@@ -11,7 +11,13 @@
 		FF95F76F26CE3423005CE9D5 /* KeychainUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF95F76E26CE3423005CE9D5 /* KeychainUtility.swift */; };
 		FF95F77226CE3B72005CE9D5 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF95F77126CE3B72005CE9D5 /* MainViewModel.swift */; };
 		FF95F77426CE5003005CE9D5 /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF95F77326CE5003005CE9D5 /* WebService.swift */; };
+		FFA6620626E21069004F061E /* AttendanceResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA6620526E21069004F061E /* AttendanceResponse.swift */; };
 		FFBB956626D48E8C0071ABD1 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBB956526D48E8C0071ABD1 /* Extension.swift */; };
+		FFBF77FB26E73C8600E8F653 /* PunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBF77FA26E73C8600E8F653 /* PunchView.swift */; };
+		FFBF77FD26E7433F00E8F653 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBF77FC26E7433F00E8F653 /* LoadingView.swift */; };
+		FFBF77FF26E7471300E8F653 /* ArcsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBF77FE26E7471300E8F653 /* ArcsView.swift */; };
+		FFBF780126E74C7300E8F653 /* BarsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBF780026E74C7300E8F653 /* BarsView.swift */; };
+		FFBF780426E74F1C00E8F653 /* BlinkingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBF780326E74F1C00E8F653 /* BlinkingView.swift */; };
 		FFD9E75726CDEF3200362C24 /* HappyTimeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD9E75626CDEF3200362C24 /* HappyTimeApp.swift */; };
 		FFD9E75B26CDEF3300362C24 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FFD9E75A26CDEF3300362C24 /* Assets.xcassets */; };
 		FFD9E75E26CDEF3300362C24 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FFD9E75D26CDEF3300362C24 /* Preview Assets.xcassets */; };
@@ -29,7 +35,13 @@
 		FF95F77026CE3791005CE9D5 /* HappyTimeRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HappyTimeRelease.entitlements; sourceTree = "<group>"; };
 		FF95F77126CE3B72005CE9D5 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		FF95F77326CE5003005CE9D5 /* WebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebService.swift; sourceTree = "<group>"; };
+		FFA6620526E21069004F061E /* AttendanceResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendanceResponse.swift; sourceTree = "<group>"; };
 		FFBB956526D48E8C0071ABD1 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		FFBF77FA26E73C8600E8F653 /* PunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PunchView.swift; sourceTree = "<group>"; };
+		FFBF77FC26E7433F00E8F653 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		FFBF77FE26E7471300E8F653 /* ArcsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArcsView.swift; sourceTree = "<group>"; };
+		FFBF780026E74C7300E8F653 /* BarsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarsView.swift; sourceTree = "<group>"; };
+		FFBF780326E74F1C00E8F653 /* BlinkingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlinkingView.swift; sourceTree = "<group>"; };
 		FFD9E75326CDEF3200362C24 /* HappyTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HappyTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFD9E75626CDEF3200362C24 /* HappyTimeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HappyTimeApp.swift; sourceTree = "<group>"; };
 		FFD9E75A26CDEF3300362C24 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -75,7 +87,10 @@
 			children = (
 				FFBB956826D49EA30071ABD1 /* Main */,
 				FFD9E76726CDF3FF00362C24 /* ButtonView.swift */,
+				FFBF77FA26E73C8600E8F653 /* PunchView.swift */,
 				FFD9E76926CDF4B800362C24 /* TextFieldView.swift */,
+				FFBF77FC26E7433F00E8F653 /* LoadingView.swift */,
+				FFBF780226E74EEF00E8F653 /* Loading Animation */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -97,6 +112,16 @@
 				FFBB956526D48E8C0071ABD1 /* Extension.swift */,
 			);
 			path = Utility;
+			sourceTree = "<group>";
+		};
+		FFBF780226E74EEF00E8F653 /* Loading Animation */ = {
+			isa = PBXGroup;
+			children = (
+				FFBF77FE26E7471300E8F653 /* ArcsView.swift */,
+				FFBF780026E74C7300E8F653 /* BarsView.swift */,
+				FFBF780326E74F1C00E8F653 /* BlinkingView.swift */,
+			);
+			path = "Loading Animation";
 			sourceTree = "<group>";
 		};
 		FFD9E74A26CDEF3200362C24 = {
@@ -144,6 +169,7 @@
 			isa = PBXGroup;
 			children = (
 				FFFF0BFD26D4DF560043ECE0 /* ClockResponse.swift */,
+				FFA6620526E21069004F061E /* AttendanceResponse.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -262,14 +288,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				FFD9E76A26CDF4B800362C24 /* TextFieldView.swift in Sources */,
+				FFA6620626E21069004F061E /* AttendanceResponse.swift in Sources */,
+				FFBF77FF26E7471300E8F653 /* ArcsView.swift in Sources */,
 				FFD9E75726CDEF3200362C24 /* HappyTimeApp.swift in Sources */,
+				FFBF780126E74C7300E8F653 /* BarsView.swift in Sources */,
 				FF95F77426CE5003005CE9D5 /* WebService.swift in Sources */,
 				FF95F76F26CE3423005CE9D5 /* KeychainUtility.swift in Sources */,
+				FFBF77FD26E7433F00E8F653 /* LoadingView.swift in Sources */,
 				FFD9E76826CDF3FF00362C24 /* ButtonView.swift in Sources */,
 				FFD9E76626CDEF6100362C24 /* MainView.swift in Sources */,
 				FF95F77226CE3B72005CE9D5 /* MainViewModel.swift in Sources */,
 				FFFF0BFE26D4DF560043ECE0 /* ClockResponse.swift in Sources */,
 				FFBB956626D48E8C0071ABD1 /* Extension.swift in Sources */,
+				FFBF780426E74F1C00E8F653 /* BlinkingView.swift in Sources */,
+				FFBF77FB26E73C8600E8F653 /* PunchView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -399,7 +431,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"HappyTime/Preview Content\"";
 				DEVELOPMENT_TEAM = NPGZC3NCFH;
 				ENABLE_PREVIEWS = YES;
@@ -409,6 +441,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.finn.HappyTime;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -424,7 +457,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = HappyTime/HappyTimeRelease.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"HappyTime/Preview Content\"";
 				DEVELOPMENT_TEAM = NPGZC3NCFH;
 				ENABLE_PREVIEWS = YES;
@@ -434,6 +467,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.finn.HappyTime;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

@@ -13,61 +13,51 @@ struct MainView: View {
         
     var body: some View {
         NavigationView {
-            /// Use GemtryReader for keep postion when editing
+            /// Use GemtryReader for keep view postion when editing
             GeometryReader { _ in
-                VStack(spacing: 30) {
+                ScrollView(showsIndicators: false) {
                     VStack(spacing: 30) {
-                        TextFieldView(inputText: $viewModel.code, placeHolder: "Code", isSecure: true)
+                        VStack(spacing: 30) {
+                            TextFieldView(inputText: $viewModel.code, placeHolder: "Code", isSecure: true)
+                            
+                            TextFieldView(inputText: $viewModel.account, placeHolder: "Account", isSecure: true)
+                            
+                            TextFieldView(inputText: $viewModel.password, placeHolder: "Password", isSecure: true)
+                        }
                         
-                        TextFieldView(inputText: $viewModel.account, placeHolder: "Account", isSecure: true)
-                        
-                        TextFieldView(inputText: $viewModel.password, placeHolder: "Password", isSecure: true)
-                    }
-                                        
-                    ButtonView(title: "Login") {
-                        viewModel.loginAction()
-                        endTextEditing()
-                    }
-                    
-                    HStack {
-                        ButtonView(title: ClockType.In.rawValue) {
-                            viewModel.prepareForClock(.In)
+                        ButtonView(title: "Login") {
+                            viewModel.loginAction()
                             endTextEditing()
                         }
                         
-                        ButtonView(title: ClockType.Out.rawValue) {
-                            viewModel.prepareForClock(.Out)
-                            endTextEditing()
+                        HStack {
+                            ButtonView(title: ClockType.In.rawValue) {
+                                viewModel.prepareForClock(.In)
+                                endTextEditing()
+                            }
+                            
+                            ButtonView(title: ClockType.Out.rawValue) {
+                                viewModel.prepareForClock(.Out)
+                                endTextEditing()
+                            }
                         }
-                    }
-                    
-                    VStack(alignment: .center) {
-                        Text("出勤紀錄")
-                        Divider()
-                            .background(Color.white)
                         
-                        VStack(alignment: .leading, spacing: 10) {
-                            Text("出勤紀錄")
-                            Text("出勤紀錄")
+                        if let model = viewModel.punchModel {
+                            PunchView(model: model)
                         }
-                        .padding(.vertical, 5)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                    }
-                    .padding()
-                    .background(
-                        Color.accentColor
-                            .cornerRadius(10)
-                    )
-                    
-                    ButtonView(title: "Delete") {
-                        viewModel.prepareForDelete()
+                        
+                        ButtonView(title: "Delete") {
+                            viewModel.prepareForDelete()
+                        }
+                        .padding(.bottom, 20)
                     }
                 }
             }
-            .padding()
+            .padding(.top, 30)
             .ignoresSafeArea(.keyboard, edges: .bottom)
             .navigationBarTitle("Happy Time", displayMode: .large)
         }
+        .overlay(viewModel.isLoading ? LoadingView() : nil)
         .onAppear {
             viewModel.queryUserInfo()
         }
@@ -80,11 +70,13 @@ struct MainView: View {
     }
     
     func buildAlert() -> Alert {
+        let elements = viewModel.alertType.elements
+        
         switch viewModel.alertType {
         case .remind:
             return Alert(
-                title: Text(viewModel.alertType.title),
-                message: viewModel.alertType.message == nil ? nil : Text(viewModel.alertType.message ?? ""),
+                title: Text(elements.title),
+                message: elements.message == nil ? nil : Text(elements.message ?? ""),
                 primaryButton:
                     .default(
                         Text("OK"),
@@ -99,8 +91,8 @@ struct MainView: View {
             )
         case .response:
             return Alert(
-                title: Text(viewModel.alertType.title),
-                message: viewModel.alertType.message == nil ? nil : Text(viewModel.alertType.message ?? ""),
+                title: Text(elements.title),
+                message: elements.message == nil ? nil : Text(elements.message ?? ""),
                 dismissButton:.default(
                     Text("OK")
                 )
