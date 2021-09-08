@@ -24,6 +24,8 @@
 		FFD9E76626CDEF6100362C24 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD9E76526CDEF6100362C24 /* MainView.swift */; };
 		FFD9E76826CDF3FF00362C24 /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD9E76726CDF3FF00362C24 /* ButtonView.swift */; };
 		FFD9E76A26CDF4B800362C24 /* TextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD9E76926CDF4B800362C24 /* TextFieldView.swift */; };
+		FFF7452F26E848AF00F22224 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF7452E26E848AF00F22224 /* TestView.swift */; };
+		FFF7453126E84EB100F22224 /* SiriButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF7453026E84EB100F22224 /* SiriButton.swift */; };
 		FFFF0BFE26D4DF560043ECE0 /* ClockResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFFF0BFD26D4DF560043ECE0 /* ClockResponse.swift */; };
 /* End PBXBuildFile section */
 
@@ -50,6 +52,9 @@
 		FFD9E76526CDEF6100362C24 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		FFD9E76726CDF3FF00362C24 /* ButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
 		FFD9E76926CDF4B800362C24 /* TextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldView.swift; sourceTree = "<group>"; };
+		FFF7452D26E847B000F22224 /* HappyTime.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HappyTime.entitlements; sourceTree = "<group>"; };
+		FFF7452E26E848AF00F22224 /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
+		FFF7453026E84EB100F22224 /* SiriButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiriButton.swift; sourceTree = "<group>"; };
 		FFFF0BFD26D4DF560043ECE0 /* ClockResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -91,6 +96,7 @@
 				FFD9E76926CDF4B800362C24 /* TextFieldView.swift */,
 				FFBF77FC26E7433F00E8F653 /* LoadingView.swift */,
 				FFBF780226E74EEF00E8F653 /* Loading Animation */,
+				FFF7453026E84EB100F22224 /* SiriButton.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -145,8 +151,10 @@
 		FFD9E75526CDEF3200362C24 /* HappyTime */ = {
 			isa = PBXGroup;
 			children = (
+				FFF7452D26E847B000F22224 /* HappyTime.entitlements */,
 				FF95F77026CE3791005CE9D5 /* HappyTimeRelease.entitlements */,
 				FFD9E75626CDEF3200362C24 /* HappyTimeApp.swift */,
+				FFF7452E26E848AF00F22224 /* TestView.swift */,
 				FFFF0BFC26D4DF410043ECE0 /* Model */,
 				FFBB956726D49E960071ABD1 /* View */,
 				FFBB956926D49EBB0071ABD1 /* Utility */,
@@ -291,12 +299,14 @@
 				FFA6620626E21069004F061E /* AttendanceResponse.swift in Sources */,
 				FFBF77FF26E7471300E8F653 /* ArcsView.swift in Sources */,
 				FFD9E75726CDEF3200362C24 /* HappyTimeApp.swift in Sources */,
+				FFF7452F26E848AF00F22224 /* TestView.swift in Sources */,
 				FFBF780126E74C7300E8F653 /* BarsView.swift in Sources */,
 				FF95F77426CE5003005CE9D5 /* WebService.swift in Sources */,
 				FF95F76F26CE3423005CE9D5 /* KeychainUtility.swift in Sources */,
 				FFBF77FD26E7433F00E8F653 /* LoadingView.swift in Sources */,
 				FFD9E76826CDF3FF00362C24 /* ButtonView.swift in Sources */,
 				FFD9E76626CDEF6100362C24 /* MainView.swift in Sources */,
+				FFF7453126E84EB100F22224 /* SiriButton.swift in Sources */,
 				FF95F77226CE3B72005CE9D5 /* MainViewModel.swift in Sources */,
 				FFFF0BFE26D4DF560043ECE0 /* ClockResponse.swift in Sources */,
 				FFBB956626D48E8C0071ABD1 /* Extension.swift in Sources */,
@@ -430,20 +440,23 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_ENTITLEMENTS = HappyTime/HappyTime.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"HappyTime/Preview Content\"";
-				DEVELOPMENT_TEAM = NPGZC3NCFH;
+				DEVELOPMENT_TEAM = R53F2EG3TT;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = HappyTime/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 2.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.finn.HappyTime;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Fun.HappyTime;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "HappyTime Development";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -456,20 +469,22 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = HappyTime/HappyTimeRelease.entitlements;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"HappyTime/Preview Content\"";
-				DEVELOPMENT_TEAM = NPGZC3NCFH;
+				DEVELOPMENT_TEAM = R53F2EG3TT;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = HappyTime/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 2.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.finn.HappyTime;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Fun.HappyTime;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "HappyTime Development";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

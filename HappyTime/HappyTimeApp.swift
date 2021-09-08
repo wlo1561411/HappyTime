@@ -13,7 +13,8 @@ struct HappyTimeApp: App {
     
     var body: some Scene {
         WindowGroup {
-            MainView()
+//            MainView()
+            TestView()
         }
         .onChange(of: scenePhase) { newScenePhase in
             switch newScenePhase {

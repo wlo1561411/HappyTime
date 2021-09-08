@@ -57,6 +57,7 @@ struct MainView: View {
             .ignoresSafeArea(.keyboard, edges: .bottom)
             .navigationBarTitle("Happy Time", displayMode: .large)
         }
+        .navigationViewStyle(StackNavigationViewStyle())
         .overlay(viewModel.isLoading ? LoadingView() : nil)
         .onAppear {
             viewModel.queryUserInfo()
