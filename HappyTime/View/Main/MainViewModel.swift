@@ -14,7 +14,7 @@ class MainViewModel: ObservableObject {
     typealias WebError = WebService.WebServiceError
     typealias ApiType = WebService.ApiType
     typealias PunchModel = PunchView.Model
-        
+    
     private let codeKey = "code_key"
     private let accountKey = "account_key"
     private let passwordKey = "password_key"
@@ -84,7 +84,7 @@ extension MainViewModel {
 // MARK: - Combine API
 
 private extension MainViewModel {
-
+    
     func loginAndGetAttendance() {
         
         let login = WebService
@@ -114,6 +114,37 @@ private extension MainViewModel {
             })
             .eraseToAnyPublisher()
         
+        getAttendance(upsteam: login)
+    }
+    
+    func clock(_ type: ClockType) {
+        let coordinate = generateCoordinate()
+        
+        let clock = WebService
+            .shareInstance
+            .clock(type, token: token ?? "", latitude: coordinate.latitude, longitude: coordinate.longitude)
+            .receive(on: DispatchQueue.main)
+            .handleEvents(receiveSubscription: { [weak self] _ in
+                self?.isLoading = true
+            }
+            ,receiveOutput: { [weak self] response in
+                self?.configAlert(alertType: .response(api: .clock(type: type), error: nil, message: response.message))
+            }
+            ,receiveCompletion: { [weak self] completion in
+                self?.isLoading = false
+                
+                switch completion {
+                case .finished: break
+                case .failure(let error) :
+                    self?.configAlert(alertType: .response(api: .clock(type: type), error: error, message: nil))
+                }
+            })
+            .eraseToAnyPublisher()
+        
+        getAttendance(upsteam: clock)
+    }
+    
+    func getAttendance<T>(upsteam: AnyPublisher<T, WebError>) {
         
         let getAttendance = WebService
             .shareInstance
@@ -132,35 +163,10 @@ private extension MainViewModel {
             })
             .eraseToAnyPublisher()
         
-        login
+        upsteam
             .flatMap { _ in getAttendance }
             .sink(receiveCompletion: { _ in }
-            ,receiveValue: { _ in })
-            .store(in: &cancellables)
-    }
-    
-    func clock(_ type: ClockType) {
-        let coordinate = generateCoordinate()
-        
-        WebService
-            .shareInstance
-            .clock(type, token: token ?? "", latitude: coordinate.latitude, longitude: coordinate.longitude)
-            .receive(on: DispatchQueue.main)
-            .handleEvents(receiveSubscription: { [weak self] _ in
-                self?.isLoading = true
-            })
-            .sink(receiveCompletion: { [weak self] completion in
-                self?.isLoading = false
-                
-                switch completion {
-                case .finished: break
-                case .failure(let error) :
-                    self?.configAlert(alertType: .response(api: .clock(type: type), error: error, message: nil))
-                }
-            }
-            ,receiveValue: { [weak self] response in
-                self?.configAlert(alertType: .response(api: .clock(type: type), error: nil, message: response.message))
-            })
+                  ,receiveValue: { _ in })
             .store(in: &cancellables)
     }
 }

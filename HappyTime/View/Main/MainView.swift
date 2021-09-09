@@ -51,9 +51,9 @@ struct MainView: View {
                         }
                         .padding(.bottom, 20)
                     }
+                    .padding(.top, 30)
                 }
             }
-            .padding(.top, 30)
             .ignoresSafeArea(.keyboard, edges: .bottom)
             .navigationBarTitle("Happy Time", displayMode: .large)
         }
