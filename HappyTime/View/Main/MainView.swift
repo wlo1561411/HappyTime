@@ -10,53 +10,67 @@ import SwiftUI
 struct MainView: View {
     
     @StateObject fileprivate var viewModel = MainViewModel()
-        
+    
     var body: some View {
         NavigationView {
-            /// Use GemtryReader for keep view postion when editing
-            GeometryReader { _ in
-                ScrollView(showsIndicators: false) {
-                    VStack(spacing: 30) {
-                        VStack(spacing: 30) {
-                            TextFieldView(inputText: $viewModel.code, placeHolder: "Code", isSecure: true)
-                            
-                            TextFieldView(inputText: $viewModel.account, placeHolder: "Account", isSecure: true)
-                            
-                            TextFieldView(inputText: $viewModel.password, placeHolder: "Password", isSecure: true)
-                        }
+            ScrollView(showsIndicators: false) {
+                VStack(spacing: 40) {
+                    VStack(spacing: 15) {
+                        TextFieldView(
+                            inputText: $viewModel.code,
+                            title: "Code",
+                            placeHolder: "Enter code",
+                            isSecure: true
+                        )
                         
-                        ButtonView(title: "Login") {
-                            viewModel.loginAction()
+                        TextFieldView(
+                            inputText: $viewModel.account,
+                            title: "Account",
+                            placeHolder: "Enter account",
+                            isSecure: true
+                        )
+                        
+                        TextFieldView(
+                            inputText: $viewModel.password,
+                            title: "Password",
+                            placeHolder: "Enter password",
+                            isSecure: true
+                        )
+                    }
+                    
+                    ButtonView(title: "Login") {
+                        viewModel.loginAction()
+                        endTextEditing()
+                    }
+                    
+                    HStack {
+                        ButtonView(title: ClockType.In.rawValue) {
+                            viewModel.prepareForClock(.In)
                             endTextEditing()
                         }
                         
-                        HStack {
-                            ButtonView(title: ClockType.In.rawValue) {
-                                viewModel.prepareForClock(.In)
-                                endTextEditing()
-                            }
-                            
-                            ButtonView(title: ClockType.Out.rawValue) {
-                                viewModel.prepareForClock(.Out)
-                                endTextEditing()
-                            }
+                        ButtonView(title: ClockType.Out.rawValue) {
+                            viewModel.prepareForClock(.Out)
+                            endTextEditing()
                         }
-                        
-                        if let model = viewModel.punchModel {
-                            PunchView(model: model)
-                        }
-                        
-                        ButtonView(title: "Delete") {
-                            viewModel.prepareForDelete()
-                        }
-                        .padding(.bottom, 20)
                     }
-                    .padding(.top, 30)
+                    
+                    if let model = viewModel.punchModel {
+                        PunchView(model: model)
+                    }
+                    
+                    ButtonView(title: "Delete") {
+                        viewModel.prepareForDelete()
+                    }
+                    .padding(.bottom, 100)
                 }
+                .padding(.top, 30)
             }
-            .ignoresSafeArea(.keyboard, edges: .bottom)
+            .padding(.horizontal, 10)
             .navigationBarTitle("Happy Time", displayMode: .large)
+            .ignoresSafeArea(.container, edges: .bottom)
         }
+        .navigationViewStyle(StackNavigationViewStyle())
         .overlay(viewModel.isLoading ? LoadingView() : nil)
         .onAppear {
             viewModel.queryUserInfo()

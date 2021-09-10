@@ -23,8 +23,27 @@ extension Double {
 }
 
 extension View {
+    
+    func frameFromGeometryReader(_ closure: @escaping (CGRect) -> Void) -> some View {
+        overlay(
+            GeometryReader { reader in
+                Color
+                    .clear
+                    .onAppear {
+                        DispatchQueue.main.async {
+                            closure(reader.frame(in: .global))
+                        }
+                    }
+            }
+        )
+    }
+    
     func endTextEditing() {
-        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder),
-                                        to: nil, from: nil, for: nil)
+        UIApplication
+            .shared
+            .sendAction(
+                #selector(UIResponder.resignFirstResponder),
+                to: nil, from: nil, for: nil
+            )
     }
 }

@@ -71,7 +71,7 @@ extension MainViewModel {
                 return type.elements
             case .response(let api, let error, let message):
                 if let error = error {
-                    return (api.title + "失敗", error.message)
+                    return (api.title + "失敗", message ?? error.message)
                 }
                 else {
                     return (api.title + "成功", message)
@@ -128,7 +128,8 @@ private extension MainViewModel {
                 self?.isLoading = true
             }
             ,receiveOutput: { [weak self] response in
-                self?.configAlert(alertType: .response(api: .clock(type: type), error: nil, message: response.message))
+                let error = response.isSuccess ? nil : WebError.invalidValue
+                self?.configAlert(alertType: .response(api: .clock(type: type), error: error, message: response.message))
             }
             ,receiveCompletion: { [weak self] completion in
                 self?.isLoading = false
