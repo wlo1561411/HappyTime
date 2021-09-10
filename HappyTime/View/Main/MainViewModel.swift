@@ -85,7 +85,7 @@ extension MainViewModel {
 
 private extension MainViewModel {
     
-    func loginAndGetAttendance() {
+    func login() {
         
         let login = WebService
             .shareInstance
@@ -203,7 +203,7 @@ extension MainViewModel {
         token = nil
         punchModel = nil
         
-        loginAndGetAttendance()
+        login()
     }
     
     func clockAction(_ type: ClockType) {
@@ -222,7 +222,7 @@ extension MainViewModel {
             }
             
         ///  Should not happen
-        case .response(_, _ , _):
+        case .response(_, _, _):
             break
         }
     }

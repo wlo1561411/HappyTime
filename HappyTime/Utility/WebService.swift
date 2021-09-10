@@ -104,7 +104,7 @@ extension WebService {
             "lat": latitude,
             "lng": longitude
         ])
-        .print("Login API")
+        .print("Clock API")
         .tryMap { [weak self] dictionary -> URLRequest in
             guard let self = self else { throw WebServiceError.invalidURL(error: URLError(.badURL)) }
             return self.buildFormDataRequest(
@@ -165,27 +165,6 @@ private extension WebService {
         else {
             throw WebServiceError.httpResponseFail(response: httpResponse)
         }
-    }
-    
-    func createAttendancePublisher(for request: URLRequest) -> URLSession.DataTaskPublisher? {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "YYYY-MM-dd"
-        
-        let dateString = dateFormatter.string(from: Date())
-        
-        let config = URLSession.shared.configuration
-        
-        guard let start = createCookie(name: "Search_42_date_start", value: dateString),
-              let end = createCookie(name: "Search_42_date_end", value: dateString)
-        else {
-            return nil
-        }
-        
-        config.httpCookieStorage?.setCookie(start)
-        config.httpCookieStorage?.setCookie(end)
-        
-        return URLSession(configuration: config)
-            .dataTaskPublisher(for: request)
     }
     
     func createCookie(name: String, value: String) -> HTTPCookie? {
