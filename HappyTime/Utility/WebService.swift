@@ -150,6 +150,12 @@ extension WebService {
         .mapError { $0 as? WebServiceError ?? WebServiceError.requestFail(error: $0) }
         .eraseToAnyPublisher()
     }
+    
+    func removeAllCookies() {
+        HTTPCookieStorage.shared.cookies?.forEach{
+            HTTPCookieStorage.shared.deleteCookie($0)
+        }
+    }
 }
 
 // MARK: - Other
@@ -282,8 +288,8 @@ private extension WebService {
     
     func getTodayString() -> String {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "YYYY-MM-dd"
-        
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+
         return dateFormatter.string(from: Date())
     }
 }

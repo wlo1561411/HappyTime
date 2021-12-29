@@ -192,6 +192,7 @@ private extension MainViewModel {
         code = ""
         account = ""
         password = ""
+        token = nil
     }
 }
 
@@ -200,6 +201,8 @@ private extension MainViewModel {
 extension MainViewModel {
     
     func loginAction() {
+        WebService.shareInstance.removeAllCookies()
+        
         token = nil
         punchModel = nil
         
