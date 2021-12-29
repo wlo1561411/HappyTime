@@ -68,6 +68,17 @@ struct MainView: View {
             }
             .padding(.horizontal, 10)
             .navigationBarTitle("Happy Time", displayMode: .large)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    NavigationLink {
+                        AttendanceWebView()
+                    } label: {
+                        Text("Web")
+                            .foregroundColor(.white)
+                    }
+                    .opacity(viewModel.isLogin ? 1 : 0)
+                }
+            }
             .ignoresSafeArea(.container, edges: .bottom)
         }
         .navigationViewStyle(StackNavigationViewStyle())

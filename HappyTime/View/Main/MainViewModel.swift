@@ -27,7 +27,11 @@ class MainViewModel: ObservableObject {
     
     private var cancellables = Set<AnyCancellable>()
     
-    private var token: String?
+    private var token: String? {
+        didSet {
+            isLogin = token != nil
+        }
+    }
     
     private var isSavedAccount = false
     
@@ -39,6 +43,7 @@ class MainViewModel: ObservableObject {
     
     @Published var isPopAlert = false
     @Published var isLoading = false
+    @Published var isLogin = false
     
     var alertType: AlertType = .remind(type: .delete)
 }

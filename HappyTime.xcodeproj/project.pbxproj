@@ -18,6 +18,8 @@
 		FFBF77FF26E7471300E8F653 /* ArcsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBF77FE26E7471300E8F653 /* ArcsView.swift */; };
 		FFBF780126E74C7300E8F653 /* BarsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBF780026E74C7300E8F653 /* BarsView.swift */; };
 		FFBF780426E74F1C00E8F653 /* BlinkingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBF780326E74F1C00E8F653 /* BlinkingView.swift */; };
+		FFD4D710277C31D6009AF0A8 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD4D70F277C31D6009AF0A8 /* WebView.swift */; };
+		FFD4D713277C36A9009AF0A8 /* AttendanceWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD4D712277C36A9009AF0A8 /* AttendanceWebView.swift */; };
 		FFD9E75726CDEF3200362C24 /* HappyTimeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD9E75626CDEF3200362C24 /* HappyTimeApp.swift */; };
 		FFD9E75B26CDEF3300362C24 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FFD9E75A26CDEF3300362C24 /* Assets.xcassets */; };
 		FFD9E75E26CDEF3300362C24 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FFD9E75D26CDEF3300362C24 /* Preview Assets.xcassets */; };
@@ -42,6 +44,8 @@
 		FFBF77FE26E7471300E8F653 /* ArcsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArcsView.swift; sourceTree = "<group>"; };
 		FFBF780026E74C7300E8F653 /* BarsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarsView.swift; sourceTree = "<group>"; };
 		FFBF780326E74F1C00E8F653 /* BlinkingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlinkingView.swift; sourceTree = "<group>"; };
+		FFD4D70F277C31D6009AF0A8 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
+		FFD4D712277C36A9009AF0A8 /* AttendanceWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendanceWebView.swift; sourceTree = "<group>"; };
 		FFD9E75326CDEF3200362C24 /* HappyTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HappyTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFD9E75626CDEF3200362C24 /* HappyTimeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HappyTimeApp.swift; sourceTree = "<group>"; };
 		FFD9E75A26CDEF3300362C24 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -85,11 +89,13 @@
 		FFBB956726D49E960071ABD1 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				FFD4D711277C35AB009AF0A8 /* Attendance Web */,
 				FFBB956826D49EA30071ABD1 /* Main */,
 				FFD9E76726CDF3FF00362C24 /* ButtonView.swift */,
 				FFBF77FA26E73C8600E8F653 /* PunchView.swift */,
 				FFD9E76926CDF4B800362C24 /* TextFieldView.swift */,
 				FFBF77FC26E7433F00E8F653 /* LoadingView.swift */,
+				FFD4D70F277C31D6009AF0A8 /* WebView.swift */,
 				FFBF780226E74EEF00E8F653 /* Loading Animation */,
 			);
 			path = View;
@@ -122,6 +128,14 @@
 				FFBF780326E74F1C00E8F653 /* BlinkingView.swift */,
 			);
 			path = "Loading Animation";
+			sourceTree = "<group>";
+		};
+		FFD4D711277C35AB009AF0A8 /* Attendance Web */ = {
+			isa = PBXGroup;
+			children = (
+				FFD4D712277C36A9009AF0A8 /* AttendanceWebView.swift */,
+			);
+			path = "Attendance Web";
 			sourceTree = "<group>";
 		};
 		FFD9E74A26CDEF3200362C24 = {
@@ -288,11 +302,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				FFD9E76A26CDF4B800362C24 /* TextFieldView.swift in Sources */,
+				FFD4D710277C31D6009AF0A8 /* WebView.swift in Sources */,
 				FFA6620626E21069004F061E /* AttendanceResponse.swift in Sources */,
 				FFBF77FF26E7471300E8F653 /* ArcsView.swift in Sources */,
 				FFD9E75726CDEF3200362C24 /* HappyTimeApp.swift in Sources */,
 				FFBF780126E74C7300E8F653 /* BarsView.swift in Sources */,
 				FF95F77426CE5003005CE9D5 /* WebService.swift in Sources */,
+				FFD4D713277C36A9009AF0A8 /* AttendanceWebView.swift in Sources */,
 				FF95F76F26CE3423005CE9D5 /* KeychainUtility.swift in Sources */,
 				FFBF77FD26E7433F00E8F653 /* LoadingView.swift in Sources */,
 				FFD9E76826CDF3FF00362C24 /* ButtonView.swift in Sources */,
