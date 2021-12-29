@@ -11,15 +11,18 @@ import SwiftUI
 struct HappyTimeApp: App {
     @Environment(\.scenePhase) var scenePhase
     
+    init() {
+        setupAppearance()
+    }
+    
     var body: some Scene {
         WindowGroup {
             MainView()
+                .accentColor(Color(UIColor(named: "AccentColor") ?? .darkGray))
         }
         .onChange(of: scenePhase) { newScenePhase in
             switch newScenePhase {
-            case .active:
-                setupAppearance()
-            case .inactive, .background: break
+            case .active, .inactive, .background: break
             @unknown default:
                 print("Oh oops")
             }
@@ -38,7 +41,8 @@ struct HappyTimeApp: App {
         coloredAppearance.backgroundColor = backgroundColor
         coloredAppearance.titleTextAttributes = [.foregroundColor: titleColor ?? .white]
         coloredAppearance.largeTitleTextAttributes = [.foregroundColor: titleColor ?? .white]
-
+        coloredAppearance.shadowColor = .clear
+        
         UINavigationBar.appearance().standardAppearance = coloredAppearance
         UINavigationBar.appearance().compactAppearance = coloredAppearance
         UINavigationBar.appearance().scrollEdgeAppearance = coloredAppearance
