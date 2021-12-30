@@ -12,6 +12,7 @@
 		FF95F77226CE3B72005CE9D5 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF95F77126CE3B72005CE9D5 /* MainViewModel.swift */; };
 		FF95F77426CE5003005CE9D5 /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF95F77326CE5003005CE9D5 /* WebService.swift */; };
 		FFA6620626E21069004F061E /* AttendanceResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA6620526E21069004F061E /* AttendanceResponse.swift */; };
+		FFAB1A45277D6B73007C5A5D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAB1A44277D6B73007C5A5D /* AppDelegate.swift */; };
 		FFBB956626D48E8C0071ABD1 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBB956526D48E8C0071ABD1 /* Extension.swift */; };
 		FFBF77FB26E73C8600E8F653 /* PunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBF77FA26E73C8600E8F653 /* PunchView.swift */; };
 		FFBF77FD26E7433F00E8F653 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBF77FC26E7433F00E8F653 /* LoadingView.swift */; };
@@ -20,6 +21,7 @@
 		FFBF780426E74F1C00E8F653 /* BlinkingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBF780326E74F1C00E8F653 /* BlinkingView.swift */; };
 		FFD4D710277C31D6009AF0A8 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD4D70F277C31D6009AF0A8 /* WebView.swift */; };
 		FFD4D713277C36A9009AF0A8 /* AttendanceWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD4D712277C36A9009AF0A8 /* AttendanceWebView.swift */; };
+		FFD4D715277C706C009AF0A8 /* NotificationIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = FFD4D714277C706C009AF0A8 /* NotificationIcon.png */; };
 		FFD9E75726CDEF3200362C24 /* HappyTimeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD9E75626CDEF3200362C24 /* HappyTimeApp.swift */; };
 		FFD9E75B26CDEF3300362C24 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FFD9E75A26CDEF3300362C24 /* Assets.xcassets */; };
 		FFD9E75E26CDEF3300362C24 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FFD9E75D26CDEF3300362C24 /* Preview Assets.xcassets */; };
@@ -38,6 +40,7 @@
 		FF95F77126CE3B72005CE9D5 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		FF95F77326CE5003005CE9D5 /* WebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebService.swift; sourceTree = "<group>"; };
 		FFA6620526E21069004F061E /* AttendanceResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendanceResponse.swift; sourceTree = "<group>"; };
+		FFAB1A44277D6B73007C5A5D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FFBB956526D48E8C0071ABD1 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		FFBF77FA26E73C8600E8F653 /* PunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PunchView.swift; sourceTree = "<group>"; };
 		FFBF77FC26E7433F00E8F653 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
@@ -46,6 +49,7 @@
 		FFBF780326E74F1C00E8F653 /* BlinkingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlinkingView.swift; sourceTree = "<group>"; };
 		FFD4D70F277C31D6009AF0A8 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		FFD4D712277C36A9009AF0A8 /* AttendanceWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendanceWebView.swift; sourceTree = "<group>"; };
+		FFD4D714277C706C009AF0A8 /* NotificationIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NotificationIcon.png; sourceTree = "<group>"; };
 		FFD9E75326CDEF3200362C24 /* HappyTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HappyTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFD9E75626CDEF3200362C24 /* HappyTimeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HappyTimeApp.swift; sourceTree = "<group>"; };
 		FFD9E75A26CDEF3300362C24 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -159,8 +163,10 @@
 		FFD9E75526CDEF3200362C24 /* HappyTime */ = {
 			isa = PBXGroup;
 			children = (
+				FFD4D714277C706C009AF0A8 /* NotificationIcon.png */,
 				FF95F77026CE3791005CE9D5 /* HappyTimeRelease.entitlements */,
 				FFD9E75626CDEF3200362C24 /* HappyTimeApp.swift */,
+				FFAB1A44277D6B73007C5A5D /* AppDelegate.swift */,
 				FFFF0BFC26D4DF410043ECE0 /* Model */,
 				FFBB956726D49E960071ABD1 /* View */,
 				FFBB956926D49EBB0071ABD1 /* Utility */,
@@ -248,6 +254,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FFD9E75E26CDEF3300362C24 /* Preview Assets.xcassets in Resources */,
+				FFD4D715277C706C009AF0A8 /* NotificationIcon.png in Resources */,
 				FFD9E75B26CDEF3300362C24 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -313,6 +320,7 @@
 				FFBF77FD26E7433F00E8F653 /* LoadingView.swift in Sources */,
 				FFD9E76826CDF3FF00362C24 /* ButtonView.swift in Sources */,
 				FFD9E76626CDEF6100362C24 /* MainView.swift in Sources */,
+				FFAB1A45277D6B73007C5A5D /* AppDelegate.swift in Sources */,
 				FF95F77226CE3B72005CE9D5 /* MainViewModel.swift in Sources */,
 				FFFF0BFE26D4DF560043ECE0 /* ClockResponse.swift in Sources */,
 				FFBB956626D48E8C0071ABD1 /* Extension.swift in Sources */,

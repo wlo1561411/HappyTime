@@ -84,7 +84,7 @@ struct MainView: View {
         .navigationViewStyle(StackNavigationViewStyle())
         .overlay(viewModel.isLoading ? LoadingView() : nil)
         .onAppear {
-            viewModel.queryUserInfo()
+            viewModel.queryUserInfo() 
         }
         .onTapGesture {
             endTextEditing()

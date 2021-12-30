@@ -9,11 +9,9 @@ import SwiftUI
 
 @main
 struct HappyTimeApp: App {
-    @Environment(\.scenePhase) var scenePhase
     
-    init() {
-        setupAppearance()
-    }
+    @Environment(\.scenePhase) var scenePhase
+    @UIApplicationDelegateAdaptor private var appDelegate: AppDelegate
     
     var body: some Scene {
         WindowGroup {
@@ -27,25 +25,5 @@ struct HappyTimeApp: App {
                 print("Oh oops")
             }
         }
-    }
-    
-    func setupAppearance() {
-        updateNavigationBar(backgroundColor: UIColor(named: "AccentColor"), titleColor: .white)
-        
-        UIView.appearance(whenContainedInInstancesOf: [UIAlertController.self]).tintColor = UIColor.white
-    }
-    
-    private func updateNavigationBar(backgroundColor: UIColor?, titleColor: UIColor?) {
-        let coloredAppearance = UINavigationBarAppearance()
-        coloredAppearance.configureWithTransparentBackground()
-        coloredAppearance.backgroundColor = backgroundColor
-        coloredAppearance.titleTextAttributes = [.foregroundColor: titleColor ?? .white]
-        coloredAppearance.largeTitleTextAttributes = [.foregroundColor: titleColor ?? .white]
-        coloredAppearance.shadowColor = .clear
-        
-        UINavigationBar.appearance().standardAppearance = coloredAppearance
-        UINavigationBar.appearance().compactAppearance = coloredAppearance
-        UINavigationBar.appearance().scrollEdgeAppearance = coloredAppearance
-        UINavigationBar.appearance().tintColor = titleColor
     }
 }

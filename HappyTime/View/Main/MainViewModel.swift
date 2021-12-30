@@ -98,17 +98,15 @@ private extension MainViewModel {
             .receive(on: DispatchQueue.main)
             .handleEvents(receiveSubscription: { [weak self] _ in
                 self?.isLoading = true
-            }
-            ,receiveOutput: { [weak self] token in
+            }, receiveOutput: { [weak self] token in
                 guard let self = self else { return }
                 
                 self.token = token
-                
+
                 if !self.isSavedAccount { self.saveUserInfo() }
                 
                 self.configAlert(alertType: .response(api: .login, error: nil, message: nil))
-            }
-            ,receiveCompletion: { [weak self] completion in
+            }, receiveCompletion: { [weak self] completion in
                 self?.isLoading = false
                 
                 switch completion {
@@ -131,12 +129,15 @@ private extension MainViewModel {
             .receive(on: DispatchQueue.main)
             .handleEvents(receiveSubscription: { [weak self] _ in
                 self?.isLoading = true
-            }
-            ,receiveOutput: { [weak self] response in
+            }, receiveOutput: { [weak self] response in
                 let error = response.isSuccess ? nil : WebError.invalidValue
                 self?.configAlert(alertType: .response(api: .clock(type: type), error: error, message: response.message))
-            }
-            ,receiveCompletion: { [weak self] completion in
+                
+                if response.isSuccess, type == .In {
+                    self?.createNotification(with: response.datetime ?? "")
+                }
+                
+            }, receiveCompletion: { [weak self] completion in
                 self?.isLoading = false
                 
                 switch completion {
@@ -159,8 +160,7 @@ private extension MainViewModel {
             .handleEvents(receiveOutput: { [weak self] attendance in
                 guard let punches = attendance.punch?.allPunches, punches.count > 0 else { return }
                 self?.punchModel = .init(title: "出勤紀錄", punches: punches)
-            }
-            ,receiveCompletion: { [weak self] completion in
+            }, receiveCompletion: { [weak self] completion in
                 switch completion {
                 case .finished: break
                 case .failure(_):
@@ -229,7 +229,7 @@ extension MainViewModel {
                 clockAction(type)
             }
             
-        ///  Should not happen
+            ///  Should not happen
         case .response(_, _, _):
             break
         }
@@ -275,5 +275,37 @@ extension MainViewModel {
         let latitude = Double.random(in: minLatitude...maxLatitude).decimal(6)
         let longitude = Double.random(in: minlongitude...maxlongitude).decimal(6)
         return (latitude, longitude)
+    }
+    
+    func createNotification(with dateString: String) {
+        
+        UNUserNotificationCenter.current().getNotificationSettings { setting in
+            guard setting.authorizationStatus == .authorized else { return }
+
+            let format = DateFormatter()
+            format.dateFormat = "yyyy-MM-dd HH:mm:ss"
+            format.timeZone = TimeZone.current
+            
+            guard let date = format.date(from: dateString),
+                  let added = Calendar.current.date(byAdding: .init(timeZone: .current, hour: 9, minute: 1), to: date)
+            else { return }
+            
+            let content = UNMutableNotificationContent()
+            content.title = "下班了！"
+            content.body = "請記得打卡～～～"
+            content.sound = UNNotificationSound.default
+            
+            guard let imageURL: URL = Bundle.main.url(forResource: "NotificationIcon", withExtension: "png"),
+                  let attachment = try? UNNotificationAttachment(identifier: "image", url: imageURL, options: nil)
+            else { return }
+            
+            content.attachments = [attachment]
+            
+            let components = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: added)
+            let trigger = UNCalendarNotificationTrigger(dateMatching: components, repeats: false)
+            let request = UNNotificationRequest(identifier: "notification", content: content, trigger: trigger)
+            
+            UNUserNotificationCenter.current().add(request)
+        }
     }
 }
