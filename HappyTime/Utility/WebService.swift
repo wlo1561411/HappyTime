@@ -54,7 +54,7 @@ class WebService {
         }
     }
     
-    static let shareInstance = WebService()
+    static let shared = WebService()
     
     private let host = "cloud.nueip.com"
 }

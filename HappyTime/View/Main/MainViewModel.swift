@@ -93,7 +93,7 @@ private extension MainViewModel {
     func login() {
         
         let login = WebService
-            .shareInstance
+            .shared
             .login(code: code, account: account, password: password)
             .receive(on: DispatchQueue.main)
             .handleEvents(receiveSubscription: { [weak self] _ in
@@ -124,7 +124,7 @@ private extension MainViewModel {
         let coordinate = generateCoordinate()
         
         let clock = WebService
-            .shareInstance
+            .shared
             .clock(type, token: token ?? "", latitude: coordinate.latitude, longitude: coordinate.longitude)
             .receive(on: DispatchQueue.main)
             .handleEvents(receiveSubscription: { [weak self] _ in
@@ -134,7 +134,7 @@ private extension MainViewModel {
                 self?.configAlert(alertType: .response(api: .clock(type: type), error: error, message: response.message))
                 
                 if response.isSuccess, type == .In {
-                    self?.createNotification(with: response.datetime ?? "")
+                    AppManager.shared.createNotification(with: response.datetime ?? "")
                 }
                 
             }, receiveCompletion: { [weak self] completion in
@@ -154,12 +154,16 @@ private extension MainViewModel {
     func getAttendance<T>(upsteam: AnyPublisher<T, WebError>) {
         
         let getAttendance = WebService
-            .shareInstance
+            .shared
             .getAttendance()
             .receive(on: DispatchQueue.main)
             .handleEvents(receiveOutput: { [weak self] attendance in
                 guard let punches = attendance.punch?.allPunches, punches.count > 0 else { return }
                 self?.punchModel = .init(title: "出勤紀錄", punches: punches)
+                
+                if let onPunch = attendance.punch?.onPunch?.first {
+                    AppManager.shared.createNotification(with: onPunch.workTime)
+                }
             }, receiveCompletion: { [weak self] completion in
                 switch completion {
                 case .finished: break
@@ -184,15 +188,15 @@ private extension MainViewModel {
     func saveUserInfo() {
         if !isCompleteInput() { return }
         
-        KeychainUtility.shareInstance.save(code, for: codeKey)
-        KeychainUtility.shareInstance.save(account, for: accountKey)
-        KeychainUtility.shareInstance.save(password, for: passwordKey)
+        AppManager.shared.save(code, for: codeKey)
+        AppManager.shared.save(account, for: accountKey)
+        AppManager.shared.save(password, for: passwordKey)
     }
     
     func deleteUserInfo() {
-        KeychainUtility.shareInstance.delete(for: codeKey)
-        KeychainUtility.shareInstance.delete(for: accountKey)
-        KeychainUtility.shareInstance.delete(for: passwordKey)
+        AppManager.shared.delete(for: codeKey)
+        AppManager.shared.delete(for: accountKey)
+        AppManager.shared.delete(for: passwordKey)
         
         code = ""
         account = ""
@@ -206,7 +210,7 @@ private extension MainViewModel {
 extension MainViewModel {
     
     func loginAction() {
-        WebService.shareInstance.removeAllCookies()
+        WebService.shared.removeAllCookies()
         
         token = nil
         punchModel = nil
@@ -241,9 +245,9 @@ extension MainViewModel {
 extension MainViewModel {
     
     func queryUserInfo() {
-        if let code = KeychainUtility.shareInstance.query(for: codeKey),
-           let account = KeychainUtility.shareInstance.query(for: accountKey),
-           let password = KeychainUtility.shareInstance.query(for: passwordKey) {
+        if let code = AppManager.shared.query(for: codeKey),
+           let account = AppManager.shared.query(for: accountKey),
+           let password = AppManager.shared.query(for: passwordKey) {
             isSavedAccount = true
             self.code = code
             self.account = account
@@ -275,37 +279,5 @@ extension MainViewModel {
         let latitude = Double.random(in: minLatitude...maxLatitude).decimal(6)
         let longitude = Double.random(in: minlongitude...maxlongitude).decimal(6)
         return (latitude, longitude)
-    }
-    
-    func createNotification(with dateString: String) {
-        
-        UNUserNotificationCenter.current().getNotificationSettings { setting in
-            guard setting.authorizationStatus == .authorized else { return }
-
-            let format = DateFormatter()
-            format.dateFormat = "yyyy-MM-dd HH:mm:ss"
-            format.timeZone = TimeZone.current
-            
-            guard let date = format.date(from: dateString),
-                  let added = Calendar.current.date(byAdding: .init(timeZone: .current, hour: 9, minute: 1), to: date)
-            else { return }
-            
-            let content = UNMutableNotificationContent()
-            content.title = "下班了！"
-            content.body = "請記得打卡～～～"
-            content.sound = UNNotificationSound.default
-            
-            guard let imageURL: URL = Bundle.main.url(forResource: "NotificationIcon", withExtension: "png"),
-                  let attachment = try? UNNotificationAttachment(identifier: "image", url: imageURL, options: nil)
-            else { return }
-            
-            content.attachments = [attachment]
-            
-            let components = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: added)
-            let trigger = UNCalendarNotificationTrigger(dateMatching: components, repeats: false)
-            let request = UNNotificationRequest(identifier: "notification", content: content, trigger: trigger)
-            
-            UNUserNotificationCenter.current().add(request)
-        }
     }
 }

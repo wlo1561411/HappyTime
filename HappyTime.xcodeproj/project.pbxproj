@@ -8,11 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		4924A0AEDC177B55FFE47F26 /* Pods_HappyTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 430FC2BB46F4655A02A69B1B /* Pods_HappyTime.framework */; };
-		FF95F76F26CE3423005CE9D5 /* KeychainUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF95F76E26CE3423005CE9D5 /* KeychainUtility.swift */; };
 		FF95F77226CE3B72005CE9D5 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF95F77126CE3B72005CE9D5 /* MainViewModel.swift */; };
 		FF95F77426CE5003005CE9D5 /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF95F77326CE5003005CE9D5 /* WebService.swift */; };
 		FFA6620626E21069004F061E /* AttendanceResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA6620526E21069004F061E /* AttendanceResponse.swift */; };
 		FFAB1A45277D6B73007C5A5D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAB1A44277D6B73007C5A5D /* AppDelegate.swift */; };
+		FFB0DE1027829CD3006A0029 /* AppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB0DE0F27829CD3006A0029 /* AppManager.swift */; };
 		FFBB956626D48E8C0071ABD1 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBB956526D48E8C0071ABD1 /* Extension.swift */; };
 		FFBF77FB26E73C8600E8F653 /* PunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBF77FA26E73C8600E8F653 /* PunchView.swift */; };
 		FFBF77FD26E7433F00E8F653 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBF77FC26E7433F00E8F653 /* LoadingView.swift */; };
@@ -35,12 +35,12 @@
 		430FC2BB46F4655A02A69B1B /* Pods_HappyTime.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HappyTime.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C99518441F02D049608D9FBF /* Pods-HappyTime.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HappyTime.debug.xcconfig"; path = "Target Support Files/Pods-HappyTime/Pods-HappyTime.debug.xcconfig"; sourceTree = "<group>"; };
 		F8823F04EBA048D2E1E12D82 /* Pods-HappyTime.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HappyTime.release.xcconfig"; path = "Target Support Files/Pods-HappyTime/Pods-HappyTime.release.xcconfig"; sourceTree = "<group>"; };
-		FF95F76E26CE3423005CE9D5 /* KeychainUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainUtility.swift; sourceTree = "<group>"; };
 		FF95F77026CE3791005CE9D5 /* HappyTimeRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HappyTimeRelease.entitlements; sourceTree = "<group>"; };
 		FF95F77126CE3B72005CE9D5 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		FF95F77326CE5003005CE9D5 /* WebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebService.swift; sourceTree = "<group>"; };
 		FFA6620526E21069004F061E /* AttendanceResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendanceResponse.swift; sourceTree = "<group>"; };
 		FFAB1A44277D6B73007C5A5D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		FFB0DE0F27829CD3006A0029 /* AppManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppManager.swift; sourceTree = "<group>"; };
 		FFBB956526D48E8C0071ABD1 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		FFBF77FA26E73C8600E8F653 /* PunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PunchView.swift; sourceTree = "<group>"; };
 		FFBF77FC26E7433F00E8F653 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
@@ -118,8 +118,8 @@
 			isa = PBXGroup;
 			children = (
 				FF95F77326CE5003005CE9D5 /* WebService.swift */,
-				FF95F76E26CE3423005CE9D5 /* KeychainUtility.swift */,
 				FFBB956526D48E8C0071ABD1 /* Extension.swift */,
+				FFB0DE0F27829CD3006A0029 /* AppManager.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -316,12 +316,12 @@
 				FFBF780126E74C7300E8F653 /* BarsView.swift in Sources */,
 				FF95F77426CE5003005CE9D5 /* WebService.swift in Sources */,
 				FFD4D713277C36A9009AF0A8 /* AttendanceWebView.swift in Sources */,
-				FF95F76F26CE3423005CE9D5 /* KeychainUtility.swift in Sources */,
 				FFBF77FD26E7433F00E8F653 /* LoadingView.swift in Sources */,
 				FFD9E76826CDF3FF00362C24 /* ButtonView.swift in Sources */,
 				FFD9E76626CDEF6100362C24 /* MainView.swift in Sources */,
 				FFAB1A45277D6B73007C5A5D /* AppDelegate.swift in Sources */,
 				FF95F77226CE3B72005CE9D5 /* MainViewModel.swift in Sources */,
+				FFB0DE1027829CD3006A0029 /* AppManager.swift in Sources */,
 				FFFF0BFE26D4DF560043ECE0 /* ClockResponse.swift in Sources */,
 				FFBB956626D48E8C0071ABD1 /* Extension.swift in Sources */,
 				FFBF780426E74F1C00E8F653 /* BlinkingView.swift in Sources */,

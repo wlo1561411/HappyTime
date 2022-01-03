@@ -12,7 +12,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         
         setupAppearance()
-        requestNotificationAuthrorization()
+        AppManager.shared.requestNotificationAuthrorization()
         UNUserNotificationCenter.current().delegate = self
 
         return true
@@ -41,17 +41,6 @@ extension AppDelegate {
         UINavigationBar.appearance().compactAppearance = coloredAppearance
         UINavigationBar.appearance().scrollEdgeAppearance = coloredAppearance
         UINavigationBar.appearance().tintColor = titleColor
-    }
-    
-    func requestNotificationAuthrorization() {
-        UNUserNotificationCenter.current()
-            .requestAuthorization(options: [.sound, .alert]) { success, error in
-                if success {
-                    print("authorization granted")
-                } else if let error = error {
-                    print(error.localizedDescription)
-                }
-            }
     }
 }
 
