@@ -6,10 +6,20 @@
 //
 
 import UIKit
+import Combine
+import SwiftUI
 
 class AppManager {
     
     static let shared = AppManager()
+    
+    @Published var isReceivedNotification: Bool = false
+    
+    private let minLatitude = 25.080149
+    private let maxLatitude = 25.081812
+    
+    private let minlongitude = 121.564843
+    private let maxlongitude = 121.565335
 }
 
 // MARK: - Notification
@@ -25,6 +35,23 @@ extension AppManager {
                     print(error.localizedDescription)
                 }
             }
+    }
+    
+    /// When use other than default notification action (not in use now)
+    func registerNotificationCategories() {
+        
+        let center = UNUserNotificationCenter.current()
+        
+        let action = UNNotificationAction(identifier: "clockout",
+                                          title: "Clockout",
+                                          options:.foreground)
+        
+        let category = UNNotificationCategory(identifier: "notification",
+                                              actions: [action],
+                                              intentIdentifiers: [],
+                                              options: .customDismissAction)
+        
+        center.setNotificationCategories([category])
     }
     
     func createNotification(with dateString: String) {
@@ -70,6 +97,7 @@ extension AppManager {
                 content.subtitle = "請記得打卡～～～"
                 content.body = dateString
                 content.sound = .default
+                content.categoryIdentifier = "notification"
                 
                 guard let imageURL: URL = Bundle.main.url(forResource: "NotificationIcon", withExtension: "png"),
                       let attachment = try? UNNotificationAttachment(identifier: "image", url: imageURL, options: nil)
@@ -143,5 +171,25 @@ extension AppManager {
         
         let status = SecItemDelete(query as CFDictionary)
         guard status == errSecSuccess else { return print("Remove error!!") }
+    }
+}
+
+// MARK: - API
+extension AppManager {
+    
+    func clock(_ type: ClockType, token: String?) -> AnyPublisher<ClockResponse, WebService.WebServiceError> {
+        let coordinate = generateCoordinate()
+        
+        let clock = WebService
+            .shared
+            .clock(type, token: token ?? "", latitude: coordinate.latitude, longitude: coordinate.longitude)
+        
+        return clock
+    }
+    
+    private func generateCoordinate() -> (latitude: Double, longitude: Double)  {
+        let latitude = Double.random(in: minLatitude...maxLatitude).decimal(6)
+        let longitude = Double.random(in: minlongitude...maxlongitude).decimal(6)
+        return (latitude, longitude)
     }
 }

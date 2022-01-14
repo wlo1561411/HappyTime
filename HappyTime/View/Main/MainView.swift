@@ -48,10 +48,20 @@ struct MainView: View {
                             viewModel.prepareForClock(.In)
                             endTextEditing()
                         }
+                        .alert(isPresented: $viewModel.isPopAlert) {
+                            buildAlert {
+                                viewModel.remindAction()
+                            }
+                        }
                         
                         ButtonView(title: ClockType.Out.rawValue) {
                             viewModel.prepareForClock(.Out)
                             endTextEditing()
+                        }
+                        .alert(isPresented: $viewModel.isPopAlert) {
+                            buildAlert {
+                                viewModel.remindAction()
+                            }
                         }
                     }
                     
@@ -67,6 +77,9 @@ struct MainView: View {
                 .padding(.top, 30)
             }
             .padding(.horizontal, 10)
+            .onTapGesture {
+                endTextEditing()
+            }
             .navigationBarTitle("Happy Time", displayMode: .large)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -86,15 +99,20 @@ struct MainView: View {
         .onAppear {
             viewModel.queryUserInfo() 
         }
-        .onTapGesture {
-            endTextEditing()
+        .onReceive(AppManager.shared.$isReceivedNotification) { isReceived in
+            if isReceived {
+                viewModel.isReceivedNotification = true
+                viewModel.alertType = .remind(type: .clock(type: .Out))
+            }
         }
-        .alert(isPresented: $viewModel.isPopAlert) {
-            buildAlert()
+        .alert(isPresented: $viewModel.isReceivedNotification) {
+            buildAlert {
+                viewModel.performNotificationAction()
+            }
         }
     }
     
-    func buildAlert() -> Alert {
+    func buildAlert(action: (() -> Void)?) -> Alert {
         let elements = viewModel.alertType.elements
         
         switch viewModel.alertType {
@@ -106,7 +124,7 @@ struct MainView: View {
                     .default(
                         Text("OK"),
                         action: {
-                            viewModel.remindAction()
+                            action?()
                         }
                     ),
                 secondaryButton:

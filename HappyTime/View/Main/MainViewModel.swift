@@ -19,12 +19,6 @@ class MainViewModel: ObservableObject {
     private let accountKey = "account_key"
     private let passwordKey = "password_key"
     
-    private let minLatitude = 25.080149
-    private let maxLatitude = 25.081812
-    
-    private let minlongitude = 121.564843
-    private let maxlongitude = 121.565335
-    
     private var cancellables = Set<AnyCancellable>()
     
     private var token: String? {
@@ -44,6 +38,8 @@ class MainViewModel: ObservableObject {
     @Published var isPopAlert = false
     @Published var isLoading = false
     @Published var isLogin = false
+    
+    @Published var isReceivedNotification = false
     
     var alertType: AlertType = .remind(type: .delete)
 }
@@ -92,8 +88,7 @@ private extension MainViewModel {
     
     func login() {
         
-        let login = WebService
-            .shared
+        let login = WebService.shared
             .login(code: code, account: account, password: password)
             .receive(on: DispatchQueue.main)
             .handleEvents(receiveSubscription: { [weak self] _ in
@@ -117,29 +112,27 @@ private extension MainViewModel {
             })
             .eraseToAnyPublisher()
         
-        getAttendance(upsteam: login)
+        getAttendance(upstream: login)
     }
     
     func clock(_ type: ClockType) {
-        let coordinate = generateCoordinate()
         
-        let clock = WebService
-            .shared
-            .clock(type, token: token ?? "", latitude: coordinate.latitude, longitude: coordinate.longitude)
+        let clock = AppManager.shared
+            .clock(type, token: token ?? "")
             .receive(on: DispatchQueue.main)
             .handleEvents(receiveSubscription: { [weak self] _ in
                 self?.isLoading = true
             }, receiveOutput: { [weak self] response in
                 let error = response.isSuccess ? nil : WebError.invalidValue
                 self?.configAlert(alertType: .response(api: .clock(type: type), error: error, message: response.message))
-                
+
                 if response.isSuccess, type == .In {
                     AppManager.shared.createNotification(with: response.datetime ?? "")
                 }
-                
+
             }, receiveCompletion: { [weak self] completion in
                 self?.isLoading = false
-                
+
                 switch completion {
                 case .finished: break
                 case .failure(let error) :
@@ -148,10 +141,10 @@ private extension MainViewModel {
             })
             .eraseToAnyPublisher()
         
-        getAttendance(upsteam: clock)
+        getAttendance(upstream: clock)
     }
     
-    func getAttendance<T>(upsteam: AnyPublisher<T, WebError>) {
+    func getAttendance<T>(upstream: AnyPublisher<T, WebError>) {
         
         let getAttendance = WebService
             .shared
@@ -173,7 +166,7 @@ private extension MainViewModel {
             })
             .eraseToAnyPublisher()
         
-        upsteam
+        upstream
             .flatMap { _ in getAttendance }
             .sink(receiveCompletion: { _ in }
                   ,receiveValue: { _ in })
@@ -238,6 +231,32 @@ extension MainViewModel {
             break
         }
     }
+    
+    func performNotificationAction() {
+        
+        let pipeline = WebService.shared
+            .login(code: code, account: account, password: password)
+            .handleEvents(receiveSubscription:  { [weak self] _ in
+                self?.isLoading = true
+            })
+            .flatMap { token -> AnyPublisher<ClockResponse, WebService.WebServiceError> in
+
+                let publisher = AppManager.shared
+                    .clock(.Out, token: token)
+
+                return publisher
+            }
+            .handleEvents(receiveOutput: { [weak self] response in
+                let error = response.isSuccess ? nil : WebError.invalidValue
+                self?.configAlert(alertType: .response(api: .clock(type: .Out), error: error, message: response.message))
+
+            }, receiveCompletion:  { [weak self] _ in
+                self?.isLoading = false
+            })
+            .eraseToAnyPublisher()
+        
+        getAttendance(upstream: pipeline)
+    }
 }
 
 // MARK: - Other
@@ -273,11 +292,5 @@ extension MainViewModel {
     
     func isCompleteInput() -> Bool {
         return !code.isEmpty && !account.isEmpty && !password.isEmpty
-    }
-    
-    func generateCoordinate() -> (latitude: Double, longitude: Double)  {
-        let latitude = Double.random(in: minLatitude...maxLatitude).decimal(6)
-        let longitude = Double.random(in: minlongitude...maxlongitude).decimal(6)
-        return (latitude, longitude)
     }
 }
