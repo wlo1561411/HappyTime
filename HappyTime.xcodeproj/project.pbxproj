@@ -19,6 +19,7 @@
 		2B104F74279582130018C955 /* ClockResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFFF0BFD26D4DF560043ECE0 /* ClockResponse.swift */; };
 		2B104F75279582430018C955 /* AttendanceResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA6620526E21069004F061E /* AttendanceResponse.swift */; };
 		2B104F76279582AA0018C955 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBB956526D48E8C0071ABD1 /* Extension.swift */; };
+		2BD2F2F72795D113006FA94E /* Clock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD2F2F62795D113006FA94E /* Clock.swift */; };
 		9BA8E926DE32C89B84C3BDA5 /* libPods-HappyTime.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 244277550CF455DEDF562DCE /* libPods-HappyTime.a */; };
 		DE90124AD05748EECEAE708F /* libPods-HappyTimeMac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C8D8D0EC6AAFCC28D458566F /* libPods-HappyTimeMac.a */; };
 		FF95F77226CE3B72005CE9D5 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF95F77126CE3B72005CE9D5 /* MainViewModel.swift */; };
@@ -55,6 +56,7 @@
 		2B104F67279569990018C955 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2B104F69279574EB0018C955 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		2B104F6C279577B40018C955 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		2BD2F2F62795D113006FA94E /* Clock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Clock.swift; sourceTree = "<group>"; };
 		9627B7EAA14843BA1593BBFC /* Pods-HappyTimeMac.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HappyTimeMac.release.xcconfig"; path = "Target Support Files/Pods-HappyTimeMac/Pods-HappyTimeMac.release.xcconfig"; sourceTree = "<group>"; };
 		C8D8D0EC6AAFCC28D458566F /* libPods-HappyTimeMac.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HappyTimeMac.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C99518441F02D049608D9FBF /* Pods-HappyTime.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HappyTime.debug.xcconfig"; path = "Target Support Files/Pods-HappyTime/Pods-HappyTime.debug.xcconfig"; sourceTree = "<group>"; };
@@ -109,7 +111,6 @@
 		2B104F57279563250018C955 /* HappyTimeMac */ = {
 			isa = PBXGroup;
 			children = (
-				2B104F6E27957F1D0018C955 /* View */,
 				2B104F6B279577A20018C955 /* Models */,
 				2B104F66279569900018C955 /* Resource */,
 				2B104F58279563250018C955 /* HappyTimeMacApp.swift */,
@@ -142,15 +143,9 @@
 			isa = PBXGroup;
 			children = (
 				2B104F6C279577B40018C955 /* User.swift */,
+				2BD2F2F62795D113006FA94E /* Clock.swift */,
 			);
 			path = Models;
-			sourceTree = "<group>";
-		};
-		2B104F6E27957F1D0018C955 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		5C01B481582B0193B65561A9 /* Pods */ = {
@@ -469,6 +464,7 @@
 				2B104F72279581650018C955 /* WebService.swift in Sources */,
 				2B104F75279582430018C955 /* AttendanceResponse.swift in Sources */,
 				2B104F74279582130018C955 /* ClockResponse.swift in Sources */,
+				2BD2F2F72795D113006FA94E /* Clock.swift in Sources */,
 				2B104F6D279577B40018C955 /* User.swift in Sources */,
 				2B104F7127957FC60018C955 /* TextFieldView.swift in Sources */,
 				2B104F5B279563250018C955 /* MainView.swift in Sources */,

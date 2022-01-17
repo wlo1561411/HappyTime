@@ -17,26 +17,45 @@ class MainViewModel: ObservableObject {
     
     @Published var list = [User]()
     
+    @Published var log = [String]()
+    
     @Published var name: String = ""
     @Published var id: String = ""
     @Published var password: String = ""
     
     private var cancellables = Set<AnyCancellable>()
     
-    private var token: String? {
-        didSet {
-           
+    private var token: String?
+    
+    let db = Firestore.firestore()
+    
+    init() {
+        bindData()
+    }
+    
+    
+    func testClock(id: String, name: String, password: String) {
+        
+        let db = Firestore.firestore()
+        
+        db.collection("clocks").addDocument(data: ["id": id, "clock": "In"]) { error in
+            
+            if error == nil {
+                print("success")
+            }
+            else {
+                
+            }
+            
         }
+        
     }
     
     func addData(id: String, name: String, password: String) {
         
-        let db = Firestore.firestore()
-        
         db.collection("users").addDocument(data: ["id": id, "name": name, "password": password]) { error in
             
             if error == nil {
-                
                 self.getData()
             }
             else {
@@ -47,9 +66,37 @@ class MainViewModel: ObservableObject {
         
     }
     
-    func getData() {
+    func bindData() {
         
-        let db = Firestore.firestore()
+        db.collection("clocks").addSnapshotListener { snapshot, error in
+            
+            if error == nil {
+                
+                if let snapshot = snapshot {
+                    
+                    snapshot.documents.forEach { data in
+                        if !data.metadata.isFromCache {
+                            self.log.append("\(data["id"] as? String ?? "")\(data["clock"] as? String ?? "")")
+                        }
+                    }
+                   
+                   dump( snapshot.documents.map { data -> Clock? in
+                        
+                        guard !data.metadata.isFromCache else { return nil }
+                        
+                        return Clock(id: data["id"] as? String ?? "", clock: ClockType(rawValue: data["clock"] as? String ?? "") ?? .In)
+                    })
+                    
+                    
+                }
+                
+            }
+            
+        }
+        
+    }
+    
+    func getData() {
         
         db.collection("users").getDocuments { snapshot, error in
             
@@ -90,13 +137,17 @@ extension MainViewModel {
             .login(code: "YIZHAO", account: id, password: password)
             .receive(on: DispatchQueue.main)
             .handleEvents(receiveSubscription: { [weak self] _ in
-//                self?.isLoading = true
+                self?.log.append("Loging...")
             }, receiveOutput: { [weak self] token in
                 guard let self = self else { return }
-                
                 self.token = token
             }, receiveCompletion: { [weak self] completion in
-  
+                switch completion {
+                case .finished:
+                    self?.log.append("\(self?.name ?? "") login")
+                case .failure(let error):
+                    self?.log.append("Login failure, \(error.localizedDescription)")
+                }
             })
             .eraseToAnyPublisher()
         

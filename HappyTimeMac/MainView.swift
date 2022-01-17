@@ -13,6 +13,7 @@ struct MainView: View {
         case main
         case add
         case clock
+        case log
     }
     
     @ObservedObject fileprivate var viewModel = MainViewModel()
@@ -31,6 +32,9 @@ struct MainView: View {
                 }
                 Button("Clock") {
                     listType = .clock
+                }
+                Button("Log") {
+                    listType = .log
                 }
             }
             
@@ -64,7 +68,7 @@ struct MainView: View {
                     )
                     
                     Button("Add") {
-                        viewModel.addData(id: viewModel.id, name: viewModel.name, password: viewModel.password)
+                        viewModel.testClock(id: viewModel.id, name: viewModel.name, password: viewModel.password)
                     }
                     
                 }
@@ -99,10 +103,18 @@ struct MainView: View {
                         viewModel.clock(.Out)
                     }
                     
+                    Button("test log") {
+                        viewModel.log.append("test")
+                    }
+                }
+            case .log:
+                
+                List (viewModel.log, id: \.self) { item in
+                    Text(item)
                 }
             }
             
-        }.frame(minWidth: 80, minHeight: 40)
+        }.frame(minWidth: 360, minHeight: 360)
     }
     
     init() {
