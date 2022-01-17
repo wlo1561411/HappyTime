@@ -39,11 +39,18 @@ extension View {
     }
     
     func endTextEditing() {
+#if os(iOS) || os(watchOS) || os(tvOS)
         UIApplication
             .shared
             .sendAction(
                 #selector(UIResponder.resignFirstResponder),
                 to: nil, from: nil, for: nil
             )
+#elseif os(macOS)
+        
+        
+#endif
+        
+        
     }
 }

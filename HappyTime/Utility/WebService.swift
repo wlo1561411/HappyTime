@@ -124,6 +124,34 @@ extension WebService {
         .eraseToAnyPublisher()
     }
     
+    func ipClock(_ type: ClockType,
+                 token: String) -> AnyPublisher<ClockResponse, WebServiceError> {
+        
+        Just([
+            "action": "add",
+            "id": type.param,
+            "token": token
+        ])
+        .print("Clock API")
+        .tryMap { [weak self] dictionary -> URLRequest in
+            guard let self = self else { throw WebServiceError.invalidURL(error: URLError(.badURL)) }
+            return self.buildFormDataRequest(
+                url: try self.buildURL(from: .clock(type: type)),
+                from: dictionary
+            )
+        }
+        .map {
+            URLSession
+                .shared
+                .dataTaskPublisher(for: $0)
+        }
+        .flatMap{ $0.mapError { $0 as Error } }
+        .tryMap(handleOutput(_:))
+        .decode(type: ClockResponse.self, decoder: JSONDecoder())
+        .mapError { $0 as? WebServiceError ?? WebServiceError.requestFail(error: $0) }
+        .eraseToAnyPublisher()
+    }
+    
     func getAttendance() -> AnyPublisher<AttendanceResponse, WebServiceError> {
         
         Just([

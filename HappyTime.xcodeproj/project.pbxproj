@@ -7,7 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4924A0AEDC177B55FFE47F26 /* Pods_HappyTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 430FC2BB46F4655A02A69B1B /* Pods_HappyTime.framework */; };
+		2B104F59279563250018C955 /* HappyTimeMacApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B104F58279563250018C955 /* HappyTimeMacApp.swift */; };
+		2B104F5B279563250018C955 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B104F5A279563250018C955 /* MainView.swift */; };
+		2B104F5D279563260018C955 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B104F5C279563260018C955 /* Assets.xcassets */; };
+		2B104F60279563260018C955 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B104F5F279563260018C955 /* Preview Assets.xcassets */; };
+		2B104F68279569990018C955 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2B104F67279569990018C955 /* GoogleService-Info.plist */; };
+		2B104F6A279574EB0018C955 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B104F69279574EB0018C955 /* MainViewModel.swift */; };
+		2B104F6D279577B40018C955 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B104F6C279577B40018C955 /* User.swift */; };
+		2B104F7127957FC60018C955 /* TextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD9E76926CDF4B800362C24 /* TextFieldView.swift */; };
+		2B104F72279581650018C955 /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF95F77326CE5003005CE9D5 /* WebService.swift */; };
+		2B104F74279582130018C955 /* ClockResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFFF0BFD26D4DF560043ECE0 /* ClockResponse.swift */; };
+		2B104F75279582430018C955 /* AttendanceResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA6620526E21069004F061E /* AttendanceResponse.swift */; };
+		2B104F76279582AA0018C955 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBB956526D48E8C0071ABD1 /* Extension.swift */; };
+		9BA8E926DE32C89B84C3BDA5 /* libPods-HappyTime.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 244277550CF455DEDF562DCE /* libPods-HappyTime.a */; };
+		DE90124AD05748EECEAE708F /* libPods-HappyTimeMac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C8D8D0EC6AAFCC28D458566F /* libPods-HappyTimeMac.a */; };
 		FF95F77226CE3B72005CE9D5 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF95F77126CE3B72005CE9D5 /* MainViewModel.swift */; };
 		FF95F77426CE5003005CE9D5 /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF95F77326CE5003005CE9D5 /* WebService.swift */; };
 		FFA6620626E21069004F061E /* AttendanceResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA6620526E21069004F061E /* AttendanceResponse.swift */; };
@@ -32,8 +45,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		430FC2BB46F4655A02A69B1B /* Pods_HappyTime.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HappyTime.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		244277550CF455DEDF562DCE /* libPods-HappyTime.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HappyTime.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2B104F56279563250018C955 /* HappyTimeMac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HappyTimeMac.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2B104F58279563250018C955 /* HappyTimeMacApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HappyTimeMacApp.swift; sourceTree = "<group>"; };
+		2B104F5A279563250018C955 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		2B104F5C279563260018C955 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2B104F5F279563260018C955 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		2B104F61279563260018C955 /* HappyTimeMac.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HappyTimeMac.entitlements; sourceTree = "<group>"; };
+		2B104F67279569990018C955 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		2B104F69279574EB0018C955 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		2B104F6C279577B40018C955 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		9627B7EAA14843BA1593BBFC /* Pods-HappyTimeMac.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HappyTimeMac.release.xcconfig"; path = "Target Support Files/Pods-HappyTimeMac/Pods-HappyTimeMac.release.xcconfig"; sourceTree = "<group>"; };
+		C8D8D0EC6AAFCC28D458566F /* libPods-HappyTimeMac.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HappyTimeMac.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C99518441F02D049608D9FBF /* Pods-HappyTime.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HappyTime.debug.xcconfig"; path = "Target Support Files/Pods-HappyTime/Pods-HappyTime.debug.xcconfig"; sourceTree = "<group>"; };
+		DDE65A5AC90580F63E70475A /* Pods-HappyTimeMac.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HappyTimeMac.debug.xcconfig"; path = "Target Support Files/Pods-HappyTimeMac/Pods-HappyTimeMac.debug.xcconfig"; sourceTree = "<group>"; };
 		F8823F04EBA048D2E1E12D82 /* Pods-HappyTime.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HappyTime.release.xcconfig"; path = "Target Support Files/Pods-HappyTime/Pods-HappyTime.release.xcconfig"; sourceTree = "<group>"; };
 		FF95F77026CE3791005CE9D5 /* HappyTimeRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HappyTimeRelease.entitlements; sourceTree = "<group>"; };
 		FF95F77126CE3B72005CE9D5 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
@@ -62,22 +87,79 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		2B104F53279563250018C955 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DE90124AD05748EECEAE708F /* libPods-HappyTimeMac.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FFD9E75026CDEF3200362C24 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4924A0AEDC177B55FFE47F26 /* Pods_HappyTime.framework in Frameworks */,
+				9BA8E926DE32C89B84C3BDA5 /* libPods-HappyTime.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2B104F57279563250018C955 /* HappyTimeMac */ = {
+			isa = PBXGroup;
+			children = (
+				2B104F6E27957F1D0018C955 /* View */,
+				2B104F6B279577A20018C955 /* Models */,
+				2B104F66279569900018C955 /* Resource */,
+				2B104F58279563250018C955 /* HappyTimeMacApp.swift */,
+				2B104F5A279563250018C955 /* MainView.swift */,
+				2B104F69279574EB0018C955 /* MainViewModel.swift */,
+				2B104F5C279563260018C955 /* Assets.xcassets */,
+				2B104F61279563260018C955 /* HappyTimeMac.entitlements */,
+				2B104F5E279563260018C955 /* Preview Content */,
+			);
+			path = HappyTimeMac;
+			sourceTree = "<group>";
+		};
+		2B104F5E279563260018C955 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				2B104F5F279563260018C955 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		2B104F66279569900018C955 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				2B104F67279569990018C955 /* GoogleService-Info.plist */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		2B104F6B279577A20018C955 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				2B104F6C279577B40018C955 /* User.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		2B104F6E27957F1D0018C955 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		5C01B481582B0193B65561A9 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
 				C99518441F02D049608D9FBF /* Pods-HappyTime.debug.xcconfig */,
 				F8823F04EBA048D2E1E12D82 /* Pods-HappyTime.release.xcconfig */,
+				DDE65A5AC90580F63E70475A /* Pods-HappyTimeMac.debug.xcconfig */,
+				9627B7EAA14843BA1593BBFC /* Pods-HappyTimeMac.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -85,7 +167,8 @@
 		D834EB6695D4534533451367 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				430FC2BB46F4655A02A69B1B /* Pods_HappyTime.framework */,
+				244277550CF455DEDF562DCE /* libPods-HappyTime.a */,
+				C8D8D0EC6AAFCC28D458566F /* libPods-HappyTimeMac.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -146,6 +229,7 @@
 			isa = PBXGroup;
 			children = (
 				FFD9E75526CDEF3200362C24 /* HappyTime */,
+				2B104F57279563250018C955 /* HappyTimeMac */,
 				FFD9E75426CDEF3200362C24 /* Products */,
 				5C01B481582B0193B65561A9 /* Pods */,
 				D834EB6695D4534533451367 /* Frameworks */,
@@ -156,6 +240,7 @@
 			isa = PBXGroup;
 			children = (
 				FFD9E75326CDEF3200362C24 /* HappyTime.app */,
+				2B104F56279563250018C955 /* HappyTimeMac.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -197,6 +282,25 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		2B104F55279563250018C955 /* HappyTimeMac */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2B104F64279563260018C955 /* Build configuration list for PBXNativeTarget "HappyTimeMac" */;
+			buildPhases = (
+				369C288BDB139B89B65AAEF2 /* [CP] Check Pods Manifest.lock */,
+				2B104F52279563250018C955 /* Sources */,
+				2B104F53279563250018C955 /* Frameworks */,
+				2B104F54279563250018C955 /* Resources */,
+				C331F29F8A3FF2F26C15D22B /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HappyTimeMac;
+			productName = HappyTimeMac;
+			productReference = 2B104F56279563250018C955 /* HappyTimeMac.app */;
+			productType = "com.apple.product-type.application";
+		};
 		FFD9E75226CDEF3200362C24 /* HappyTime */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = FFD9E76226CDEF3300362C24 /* Build configuration list for PBXNativeTarget "HappyTime" */;
@@ -205,7 +309,7 @@
 				FFD9E74F26CDEF3200362C24 /* Sources */,
 				FFD9E75026CDEF3200362C24 /* Frameworks */,
 				FFD9E75126CDEF3200362C24 /* Resources */,
-				E636DBAEE71286F4721937D4 /* [CP] Embed Pods Frameworks */,
+				D27B7195858FE0E3BDF146AD /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -222,9 +326,12 @@
 		FFD9E74B26CDEF3200362C24 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1250;
+				LastSwiftUpdateCheck = 1310;
 				LastUpgradeCheck = 1250;
 				TargetAttributes = {
+					2B104F55279563250018C955 = {
+						CreatedOnToolsVersion = 13.1;
+					};
 					FFD9E75226CDEF3200362C24 = {
 						CreatedOnToolsVersion = 12.5.1;
 					};
@@ -244,11 +351,22 @@
 			projectRoot = "";
 			targets = (
 				FFD9E75226CDEF3200362C24 /* HappyTime */,
+				2B104F55279563250018C955 /* HappyTimeMac */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		2B104F54279563250018C955 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2B104F60279563260018C955 /* Preview Assets.xcassets in Resources */,
+				2B104F5D279563260018C955 /* Assets.xcassets in Resources */,
+				2B104F68279569990018C955 /* GoogleService-Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FFD9E75126CDEF3200362C24 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -262,6 +380,28 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		369C288BDB139B89B65AAEF2 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-HappyTimeMac-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		6130814BA06C3221099D03FF /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -284,26 +424,59 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		E636DBAEE71286F4721937D4 /* [CP] Embed Pods Frameworks */ = {
+		C331F29F8A3FF2F26C15D22B /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-HappyTime/Pods-HappyTime-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-HappyTimeMac/Pods-HappyTimeMac-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			name = "[CP] Embed Pods Frameworks";
+			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-HappyTime/Pods-HappyTime-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-HappyTimeMac/Pods-HappyTimeMac-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HappyTime/Pods-HappyTime-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HappyTimeMac/Pods-HappyTimeMac-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D27B7195858FE0E3BDF146AD /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HappyTime/Pods-HappyTime-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HappyTime/Pods-HappyTime-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HappyTime/Pods-HappyTime-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		2B104F52279563250018C955 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2B104F76279582AA0018C955 /* Extension.swift in Sources */,
+				2B104F72279581650018C955 /* WebService.swift in Sources */,
+				2B104F75279582430018C955 /* AttendanceResponse.swift in Sources */,
+				2B104F74279582130018C955 /* ClockResponse.swift in Sources */,
+				2B104F6D279577B40018C955 /* User.swift in Sources */,
+				2B104F7127957FC60018C955 /* TextFieldView.swift in Sources */,
+				2B104F5B279563250018C955 /* MainView.swift in Sources */,
+				2B104F59279563250018C955 /* HappyTimeMacApp.swift in Sources */,
+				2B104F6A279574EB0018C955 /* MainViewModel.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FFD9E74F26CDEF3200362C24 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -332,6 +505,64 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		2B104F62279563260018C955 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = DDE65A5AC90580F63E70475A /* Pods-HappyTimeMac.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_ENTITLEMENTS = HappyTimeMac/HappyTimeMac.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"HappyTimeMac/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.patty.HappyTimeMac;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		2B104F63279563260018C955 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9627B7EAA14843BA1593BBFC /* Pods-HappyTimeMac.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_ENTITLEMENTS = HappyTimeMac/HappyTimeMac.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"HappyTimeMac/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.patty.HappyTimeMac;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 		FFD9E76026CDEF3300362C24 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -502,6 +733,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		2B104F64279563260018C955 /* Build configuration list for PBXNativeTarget "HappyTimeMac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2B104F62279563260018C955 /* Debug */,
+				2B104F63279563260018C955 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		FFD9E74E26CDEF3200362C24 /* Build configuration list for PBXProject "HappyTime" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

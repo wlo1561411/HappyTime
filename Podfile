@@ -1,13 +1,15 @@
 # Uncomment the next line to define a global platform for your project
 # platform :ios, '9.0'
 
+def shared_pods
+  pod 'SwiftSoup'
+  pod 'Firebase/Firestore'
+end
+
 target 'HappyTime' do
-  # Comment the next line if you don't want to use dynamic frameworks
-  use_frameworks!
+  shared_pods
+end
 
-  # Pods for HappyTime
-pod 'SwiftSoup'
-
-
-
+target 'HappyTimeMac' do
+  shared_pods
 end

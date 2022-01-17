@@ -1,0 +1,6 @@
+module Pods_HappyTimeMac {
+  umbrella header "Pods-HappyTimeMac-umbrella.h"
+
+  export *
+  module * { export * }
+}
