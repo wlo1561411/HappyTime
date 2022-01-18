@@ -10,111 +10,40 @@ import SwiftUI
 struct MainView: View {
     
     enum ListType {
-        case main
-        case add
-        case clock
+        case member
         case log
     }
     
     @ObservedObject fileprivate var viewModel = MainViewModel()
     
-    @State var listType: ListType = .main
+    @State var listType: ListType = .member
     
     var body: some View {
         
-        NavigationView {
-            VStack(spacing: 10) {
-                Button("Main") {
-                    listType = .main
-                }
-                Button("Add") {
-                    listType = .add
-                }
-                Button("Clock") {
-                    listType = .clock
-                }
-                Button("Log") {
-                    listType = .log
-                }
-            }
-            
-            
-            switch listType {
-            case .main:
-                List (viewModel.list) { item in
-                    Text(item.name)
-                }
-            case .add:
-                VStack(spacing: 15) {
-                    TextFieldView(
-                        inputText: $viewModel.name,
-                        title: "name",
-                        placeHolder: "Enter name",
-                        isSecure: false
-                    )
-                    
-                    TextFieldView(
-                        inputText: $viewModel.id,
-                        title: "id",
-                        placeHolder: "Enter id",
-                        isSecure: false
-                    )
-                    
-                    TextFieldView(
-                        inputText: $viewModel.password,
-                        title: "Password",
-                        placeHolder: "Enter password",
-                        isSecure: false
-                    )
-                    
-                    Button("Add") {
-                        viewModel.testClock(id: viewModel.id, name: viewModel.name, password: viewModel.password)
-                    }
-                    
-                }
-            case .clock:
-                VStack(spacing: 15) {
-                    TextFieldView(
-                        inputText: $viewModel.name,
-                        title: "name",
-                        placeHolder: "Enter name",
-                        isSecure: false
-                    )
-                    
-                    TextFieldView(
-                        inputText: $viewModel.id,
-                        title: "id",
-                        placeHolder: "Enter id",
-                        isSecure: false
-                    )
-                    
-                    TextFieldView(
-                        inputText: $viewModel.password,
-                        title: "Password",
-                        placeHolder: "Enter password",
-                        isSecure: false
-                    )
-                    
-                    Button("Login") {
-                        viewModel.login()
-                    }
-                    
-                    Button("Clock") {
-                        viewModel.clock(.Out)
-                    }
-                    
-                    Button("test log") {
-                        viewModel.log.append("test")
-                    }
-                }
-            case .log:
-                
+//        NavigationView {
+//            VStack(spacing: 10) {
+//                Button("Member") {
+//                    listType = .member
+//                }
+//                Button("Log") {
+//                    listType = .log
+//                }
+//            }
+//
+//            switch listType {
+//            case .member:
+//
+//                    List (viewModel.userList) {
+//                        Text($0.name)
+//                    }
+//            case .log:
+
                 List (viewModel.log, id: \.self) { item in
                     Text(item)
                 }
-            }
-            
-        }.frame(minWidth: 360, minHeight: 360)
+//            }
+
+//        }.frame(minWidth: 360, minHeight: 360)
     }
     
     init() {

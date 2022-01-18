@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 class AppDelegate: NSObject, UIApplicationDelegate {
     
@@ -15,6 +16,8 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         AppManager.shared.requestNotificationAuthrorization()
         UNUserNotificationCenter.current().delegate = self
 
+        FirebaseApp.configure()
+        
         return true
     }
 }

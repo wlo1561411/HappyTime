@@ -15,112 +15,101 @@ class MainViewModel: ObservableObject {
     typealias WebError = WebService.WebServiceError
     typealias ApiType = WebService.ApiType
     
-    @Published var list = [User]()
+    @Published var userList = [User]()
     
     @Published var log = [String]()
     
-    @Published var name: String = ""
-    @Published var id: String = ""
-    @Published var password: String = ""
-    
     private var cancellables = Set<AnyCancellable>()
-    
     private var token: String?
     
-    let db = Firestore.firestore()
+    private let clockQueue = DispatchQueue(label: "clock")
+    
+    let firestore = Firestore.firestore()
     
     init() {
-        bindData()
+        bindClock()
     }
     
+
     
-    func testClock(id: String, name: String, password: String) {
+    func bindClock() {
         
-        let db = Firestore.firestore()
-        
-        db.collection("clocks").addDocument(data: ["id": id, "clock": "In"]) { error in
-            
-            if error == nil {
-                print("success")
+        firestore.collection("clocks").addSnapshotListener { allSnapshot, error in
+            if let allSnapshot = allSnapshot, !allSnapshot.metadata.isFromCache {
+                
+                let dataArray = allSnapshot.documents.map {
+                    $0.data()
+                }
+                
+                guard let json = try? JSONSerialization.data(withJSONObject: dataArray),
+                      let clockArray = try? JSONDecoder().decode([Clock].self, from: json) else { return }
+                
+                let clockQueueArray = clockArray.filter({ !$0.expired && !$0.queue })
+                
+                clockQueueArray.forEach {
+                    self.log.append("\($0.name) \($0.clock)")
+                    self.progessClock(name: $0.name)
+                }
+                
             }
-            else {
+        }
+    }
+    
+    func progessClock(name: String) {
+        
+        clockQueue.sync {
+            
+            if let user = userList.first(where: { $0.name == name }) {
+                
+                login(name: user.name, id: user.id, password: user.password)
                 
             }
             
         }
         
+        
     }
+
     
     func addData(id: String, name: String, password: String) {
         
-        db.collection("users").addDocument(data: ["id": id, "name": name, "password": password]) { error in
-            
-            if error == nil {
+        firestore
+            .collection("users")
+            .addDocument(data: ["id": id, "name": name, "password": password]) { error in
                 self.getData()
             }
-            else {
-                
-            }
-            
-        }
-        
     }
     
-    func bindData() {
-        
-        db.collection("clocks").addSnapshotListener { snapshot, error in
-            
-            if error == nil {
-                
-                if let snapshot = snapshot {
-                    
-                    snapshot.documents.forEach { data in
-                        if !data.metadata.isFromCache {
-                            self.log.append("\(data["id"] as? String ?? "")\(data["clock"] as? String ?? "")")
-                        }
-                    }
-                   
-                   dump( snapshot.documents.map { data -> Clock? in
-                        
-                        guard !data.metadata.isFromCache else { return nil }
-                        
-                        return Clock(id: data["id"] as? String ?? "", clock: ClockType(rawValue: data["clock"] as? String ?? "") ?? .In)
-                    })
-                    
-                    
-                }
-                
-            }
-            
-        }
-        
-    }
     
     func getData() {
         
-        db.collection("users").getDocuments { snapshot, error in
-            
-            if error == nil {
-                   
-                if let snapshot = snapshot {
-                    dump(snapshot)
-                    DispatchQueue.main.async {
-                        self.list = snapshot.documents.map { data in
-                            return User(id: data["id"] as? String ?? "",
-                                        name: data["name"] as? String ?? "",
-                                        password: data["password"] as? String ?? "")
-                        }
+        firestore
+            .collection("users")
+            .getDocuments { allSnapshot, error in
+                
+                if let allSnapshot = allSnapshot {
+                    
+                    let dataArray = allSnapshot.documents.map {
+                        $0.data()
                     }
+                    
+                    guard let json = try? JSONSerialization.data(withJSONObject: dataArray),
+                          let userArray = try? JSONDecoder().decode([User].self, from: json) else { return }
+                    
+                    self.userList = userArray
                 }
-                
             }
-            else {
-                
-                
-            }
-        }
         
     }
+    
+}
+
+
+// MARK: - Action
+
+extension MainViewModel {
+    
+    
     
 }
 
@@ -128,35 +117,33 @@ class MainViewModel: ObservableObject {
 
 extension MainViewModel {
     
-    func login() {
+    func login(name: String, id: String, password: String) {
         
         WebService.shared.removeAllCookies()
         
-        let login = WebService
+        WebService
             .shared
             .login(code: "YIZHAO", account: id, password: password)
-            .receive(on: DispatchQueue.main)
-            .handleEvents(receiveSubscription: { [weak self] _ in
-                self?.log.append("Loging...")
-            }, receiveOutput: { [weak self] token in
-                guard let self = self else { return }
+        //            .receive(on: DispatchQueue.global())
+            .handleEvents(receiveSubscription: { _ in
+                self.log.append("Loging...")
+            }, receiveOutput: { token in
                 self.token = token
-            }, receiveCompletion: { [weak self] completion in
+            }, receiveCompletion: { completion in
                 switch completion {
                 case .finished:
-                    self?.log.append("\(self?.name ?? "") login")
+                    self.log.append("\(name) login")
                 case .failure(let error):
-                    self?.log.append("Login failure, \(error.localizedDescription)")
+                    self.log.append("Login failure, \(error.localizedDescription)")
                 }
             })
-            .eraseToAnyPublisher()
+            
         
-        getAttendance(upsteam: login)
     }
     
     func clock(_ type: ClockType) {
 
-        let clock = WebService
+        let _ = WebService
             .shared
             .ipClock(type, token: token ?? "")
             .receive(on: DispatchQueue.main)
@@ -169,27 +156,8 @@ extension MainViewModel {
             })
             .eraseToAnyPublisher()
         
-        getAttendance(upsteam: clock)
     }
     
-    func getAttendance<T>(upsteam: AnyPublisher<T, WebError>) {
-        
-        let getAttendance = WebService
-            .shared
-            .getAttendance()
-            .receive(on: DispatchQueue.main)
-            .handleEvents(receiveOutput: { [weak self] attendance in
-
-            }, receiveCompletion: { [weak self] completion in
-
-            })
-            .eraseToAnyPublisher()
-        
-        upsteam
-            .flatMap { _ in getAttendance }
-            .sink(receiveCompletion: { _ in }
-                  ,receiveValue: { _ in })
-            .store(in: &cancellables)
-    }
+ 
 }
 

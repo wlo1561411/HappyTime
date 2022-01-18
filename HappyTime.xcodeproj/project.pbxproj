@@ -20,6 +20,9 @@
 		2B104F75279582430018C955 /* AttendanceResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA6620526E21069004F061E /* AttendanceResponse.swift */; };
 		2B104F76279582AA0018C955 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBB956526D48E8C0071ABD1 /* Extension.swift */; };
 		2BD2F2F72795D113006FA94E /* Clock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD2F2F62795D113006FA94E /* Clock.swift */; };
+		2BFCE20A2796A68300BA5505 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2BFCE2092796A68300BA5505 /* GoogleService-Info.plist */; };
+		2BFCE20E2796A7CB00BA5505 /* IPMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BFCE20D2796A77200BA5505 /* IPMainView.swift */; };
+		2BFCE20F2796A81900BA5505 /* IPMainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BFCE20C2796A77200BA5505 /* IPMainViewModel.swift */; };
 		9BA8E926DE32C89B84C3BDA5 /* libPods-HappyTime.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 244277550CF455DEDF562DCE /* libPods-HappyTime.a */; };
 		DE90124AD05748EECEAE708F /* libPods-HappyTimeMac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C8D8D0EC6AAFCC28D458566F /* libPods-HappyTimeMac.a */; };
 		FF95F77226CE3B72005CE9D5 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF95F77126CE3B72005CE9D5 /* MainViewModel.swift */; };
@@ -57,6 +60,9 @@
 		2B104F69279574EB0018C955 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		2B104F6C279577B40018C955 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		2BD2F2F62795D113006FA94E /* Clock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Clock.swift; sourceTree = "<group>"; };
+		2BFCE2092796A68300BA5505 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		2BFCE20C2796A77200BA5505 /* IPMainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPMainViewModel.swift; sourceTree = "<group>"; };
+		2BFCE20D2796A77200BA5505 /* IPMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPMainView.swift; sourceTree = "<group>"; };
 		9627B7EAA14843BA1593BBFC /* Pods-HappyTimeMac.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HappyTimeMac.release.xcconfig"; path = "Target Support Files/Pods-HappyTimeMac/Pods-HappyTimeMac.release.xcconfig"; sourceTree = "<group>"; };
 		C8D8D0EC6AAFCC28D458566F /* libPods-HappyTimeMac.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HappyTimeMac.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C99518441F02D049608D9FBF /* Pods-HappyTime.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HappyTime.debug.xcconfig"; path = "Target Support Files/Pods-HappyTime/Pods-HappyTime.debug.xcconfig"; sourceTree = "<group>"; };
@@ -148,6 +154,23 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		2BFCE2082796A5C000BA5505 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				2BFCE2092796A68300BA5505 /* GoogleService-Info.plist */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		2BFCE20B2796A76100BA5505 /* IP Main */ = {
+			isa = PBXGroup;
+			children = (
+				2BFCE20D2796A77200BA5505 /* IPMainView.swift */,
+				2BFCE20C2796A77200BA5505 /* IPMainViewModel.swift */,
+			);
+			path = "IP Main";
+			sourceTree = "<group>";
+		};
 		5C01B481582B0193B65561A9 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -171,6 +194,7 @@
 		FFBB956726D49E960071ABD1 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				2BFCE20B2796A76100BA5505 /* IP Main */,
 				FFD4D711277C35AB009AF0A8 /* Attendance Web */,
 				FFBB956826D49EA30071ABD1 /* Main */,
 				FFD9E76726CDF3FF00362C24 /* ButtonView.swift */,
@@ -243,6 +267,7 @@
 		FFD9E75526CDEF3200362C24 /* HappyTime */ = {
 			isa = PBXGroup;
 			children = (
+				2BFCE2082796A5C000BA5505 /* Resource */,
 				FFD4D714277C706C009AF0A8 /* NotificationIcon.png */,
 				FF95F77026CE3791005CE9D5 /* HappyTimeRelease.entitlements */,
 				FFD9E75626CDEF3200362C24 /* HappyTimeApp.swift */,
@@ -369,6 +394,7 @@
 				FFD9E75E26CDEF3300362C24 /* Preview Assets.xcassets in Resources */,
 				FFD4D715277C706C009AF0A8 /* NotificationIcon.png in Resources */,
 				FFD9E75B26CDEF3300362C24 /* Assets.xcassets in Resources */,
+				2BFCE20A2796A68300BA5505 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -482,6 +508,8 @@
 				FFA6620626E21069004F061E /* AttendanceResponse.swift in Sources */,
 				FFBF77FF26E7471300E8F653 /* ArcsView.swift in Sources */,
 				FFD9E75726CDEF3200362C24 /* HappyTimeApp.swift in Sources */,
+				2BFCE20E2796A7CB00BA5505 /* IPMainView.swift in Sources */,
+				2BFCE20F2796A81900BA5505 /* IPMainViewModel.swift in Sources */,
 				FFBF780126E74C7300E8F653 /* BarsView.swift in Sources */,
 				FF95F77426CE5003005CE9D5 /* WebService.swift in Sources */,
 				FFD4D713277C36A9009AF0A8 /* AttendanceWebView.swift in Sources */,
@@ -681,10 +709,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "\"HappyTime/Preview Content\"";
-				DEVELOPMENT_TEAM = NPGZC3NCFH;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = HappyTime/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -693,8 +722,9 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 2.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.finn.HappyTime;
+				PRODUCT_BUNDLE_IDENTIFIER = com.patty.PattyTime;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -707,10 +737,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = HappyTime/HappyTimeRelease.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "\"HappyTime/Preview Content\"";
-				DEVELOPMENT_TEAM = NPGZC3NCFH;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = HappyTime/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -719,8 +750,9 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 2.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.finn.HappyTime;
+				PRODUCT_BUNDLE_IDENTIFIER = com.patty.PattyTime;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

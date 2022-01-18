@@ -7,9 +7,9 @@
 
 import Foundation
 
-struct Clock: Identifiable {
-    
-    var id: String
-    var clock: ClockType
-    
+struct Clock: Codable {
+    var name: String
+    var clock: String
+    var expired: Bool
+    var queue: Bool
 }
