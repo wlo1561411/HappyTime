@@ -121,10 +121,9 @@ extension MainViewModel {
         
         WebService.shared.removeAllCookies()
         
-        WebService
+      let login =  WebService
             .shared
             .login(code: "YIZHAO", account: id, password: password)
-        //            .receive(on: DispatchQueue.global())
             .handleEvents(receiveSubscription: { _ in
                 self.log.append("Loging...")
             }, receiveOutput: { token in
@@ -137,7 +136,8 @@ extension MainViewModel {
                     self.log.append("Login failure, \(error.localizedDescription)")
                 }
             })
-            
+            .sink(receiveCompletion: { _ in }, receiveValue: { _ in })
+            .store(in: &cancellables)
         
     }
     
