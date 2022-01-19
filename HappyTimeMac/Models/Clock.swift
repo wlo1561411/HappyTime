@@ -8,6 +8,7 @@
 import Foundation
 
 struct Clock: Codable {
+    var documentID: String
     var name: String
     var clock: String
     var expired: Bool

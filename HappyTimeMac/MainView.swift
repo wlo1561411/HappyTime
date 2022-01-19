@@ -46,9 +46,6 @@ struct MainView: View {
 //        }.frame(minWidth: 360, minHeight: 360)
     }
     
-    init() {
-        viewModel.getData()
-    }
 }
 
 struct ContentView_Previews: PreviewProvider {
