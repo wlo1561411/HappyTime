@@ -12,5 +12,8 @@ struct User: Identifiable, Codable {
     var id: String
     var name: String
     var password: String
-    
+
+    static func empty() -> User {
+        .init(id: "", name: "", password: "")
+    }
 }

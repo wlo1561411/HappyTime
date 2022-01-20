@@ -8,9 +8,12 @@
 import Foundation
 
 struct Clock: Codable {
-    var documentID: String
+    var documentID: String?
     var name: String
     var clock: String
-    var expired: Bool
-    var queue: Bool
+    var status: Int
+    
+    static func empty() -> Clock {
+        .init(documentID: "", name: "", clock: "", status: 0)
+    }
 }

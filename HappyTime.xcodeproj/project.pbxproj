@@ -23,6 +23,7 @@
 		2BFCE20A2796A68300BA5505 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2BFCE2092796A68300BA5505 /* GoogleService-Info.plist */; };
 		2BFCE20E2796A7CB00BA5505 /* IPMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BFCE20D2796A77200BA5505 /* IPMainView.swift */; };
 		2BFCE20F2796A81900BA5505 /* IPMainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BFCE20C2796A77200BA5505 /* IPMainViewModel.swift */; };
+		2BFCE21027995BB700BA5505 /* Clock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD2F2F62795D113006FA94E /* Clock.swift */; };
 		9BA8E926DE32C89B84C3BDA5 /* libPods-HappyTime.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 244277550CF455DEDF562DCE /* libPods-HappyTime.a */; };
 		DE90124AD05748EECEAE708F /* libPods-HappyTimeMac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C8D8D0EC6AAFCC28D458566F /* libPods-HappyTimeMac.a */; };
 		FF95F77226CE3B72005CE9D5 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF95F77126CE3B72005CE9D5 /* MainViewModel.swift */; };
@@ -506,6 +507,7 @@
 				FFD9E76A26CDF4B800362C24 /* TextFieldView.swift in Sources */,
 				FFD4D710277C31D6009AF0A8 /* WebView.swift in Sources */,
 				FFA6620626E21069004F061E /* AttendanceResponse.swift in Sources */,
+				2BFCE21027995BB700BA5505 /* Clock.swift in Sources */,
 				FFBF77FF26E7471300E8F653 /* ArcsView.swift in Sources */,
 				FFD9E75726CDEF3200362C24 /* HappyTimeApp.swift in Sources */,
 				2BFCE20E2796A7CB00BA5505 /* IPMainView.swift in Sources */,

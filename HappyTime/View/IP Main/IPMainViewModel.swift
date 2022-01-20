@@ -24,13 +24,14 @@ class IPMainViewModel: ObservableObject {
     }
     
     @Published var isAvailable = false
-    
     @Published var isPopAlert = false
     @Published var isLoading = false
     
     var alertType: AlertType = .remind(type: .In)
     
-    private let db = Firestore.firestore()
+    private let firestore = Firestore.firestore()
+    
+    var listener: ListenerRegistration?
 }
 
 // MARK: - Alert Type
@@ -63,12 +64,77 @@ private extension IPMainViewModel {
     
     func clock(_ type: ClockType) {
    
-        db.collection("clocks").addDocument(data: ["name": name, "clock": type.rawValue, "queue": false, "expired": false]) { error in
-            
+        isLoading = true
+         
+        firestore
+            .collection("clocks")
+            .addDocument(data: ["name": name,
+                                "clock": type.rawValue,
+                                "status": ClockSttus.none.rawValue]) { error in
+            guard error == nil else {
+                self.alertType = .response(api: .login, error: .requestFail(error: error!), message: "阿伯 出事了")
+                self.isLoading = false
+                self.isPopAlert = true
+                return
+            }
         }
-        
+        .getDocument { snapshot, error in
+            
+            guard let snapshot = snapshot, error == nil else {
+                self.alertType = .response(api: .login, error: .requestFail(error: error!), message: "阿伯 出事了")
+                self.isLoading = false
+                self.isPopAlert = true
+                return
+            }
+            
+            self.bindClock(type, id: snapshot.documentID)
+        }
     }
     
+    func bindClock(_ type: ClockType, id: String) {
+        
+        listener = firestore.collection("clocks").document(id).addSnapshotListener { snapshot, error in
+
+            guard let snapshot = snapshot,
+                  snapshot.documentID == id,
+                  let json = snapshot.data(),
+                  let data = try? JSONSerialization.data(withJSONObject: json),
+                  let clock = try? JSONDecoder().decode(Clock.self, from: data),
+                  let status = ClockSttus.init(rawValue: clock.status) else {
+                return
+            }
+            
+            switch status {
+            case .success:
+                self.alertType = .response(api: .clock(type: type), error: nil, message: nil)
+                self.isLoading = false
+                self.isPopAlert = true
+                self.deleteClock(id: id)
+            case .fail:
+                self.alertType = .response(api: .clock(type: type), error: .httpResponseError, message: nil)
+                self.isLoading = false
+                self.isPopAlert = true
+                self.deleteClock(id: id)
+            case .userNotFind:
+                self.alertType = .response(api: .clock(type: type), error: .httpResponseError, message: "找不到使用者")
+                self.isLoading = false
+                self.isPopAlert = true
+                self.deleteClock(id: id)
+            default:
+                break
+            }
+        }
+    }
+    
+    private func deleteClock(id: String) {
+        firestore
+            .collection("clocks")
+            .document(id)
+            .delete { error in
+                self.listener?.remove()
+            }
+    }
+
 }
 
 // MARK: - Action
@@ -76,7 +142,6 @@ private extension IPMainViewModel {
 extension IPMainViewModel {
     
     func clockAction(_ type: ClockType) {
-        
         clock(type)
     }
     
@@ -106,6 +171,4 @@ extension IPMainViewModel {
     func isCompleteInput() -> Bool {
         return !name.isEmpty
     }
-    
-
 }

@@ -13,76 +13,78 @@ import Firebase
 class MainViewModel: ObservableObject {
     
     typealias WebError = WebService.WebServiceError
-    typealias ApiType = WebService.ApiType
     
     @Published var userList = [User]()
     @Published var log = [String]()
-    
+
     private var cancellables = Set<AnyCancellable>()
-    private var token: String?
-    
+
+    private var clockQueueArray = [Clock]()
+    private let group = DispatchGroup()
     private let clockQueue = DispatchQueue(label: "clock")
     
-    private let actions = CurrentValueSubject<[AnyPublisher<String, WebError>], Never>([])
-    
-    private let group = DispatchGroup()
-    
+    private let firestore = Firestore.firestore()
     private var isLogining = false
-    
-    let firestore = Firestore.firestore()
+
+    private var token: String?
     
     init() {
         getUser()
         bindClock()
         clockCircle()
-        actions
-//            .flatMap(maxPublishers: .max(1), { $0 })
-            .sink { publishers in
-                Publishers.Sequence(sequence: publishers)
-                    .flatMap(maxPublishers: .max(1), { $0 })
-                    .sink { _ in
-                        
-                    } receiveValue: { [unowned self] token in
-                        self.token = token
-                    }
-                    .store(in: &self.cancellables)
-        }
-            .store(in: &cancellables)
     }
-  
 }
 
 // MARK: - controller
 
 extension MainViewModel {
     
-    func clockCircle() {
-        
-        while true {
-            
-            guard !isLogining else { return }
-            
-            isLogining = true
-
-            
-            
-            
+    private func clockCircle() {
+        clockQueue.async {
+            while true {
+                guard !self.isLogining,
+                      self.clockQueueArray.count > 0,
+                      let clock = self.clockQueueArray.first else {
+                         continue
+                      }
+                
+                self.isLogining = true
+                
+                self.group.enter()
+                self.clockProgress(clock: clock) {
+                    self.group.leave()
+                }
+                
+                self.group.notify(queue: .global()) {
+                    self.clockQueueArray.remove(at: 0)
+                    self.isLogining = false
+                }
+            }
         }
-        
     }
     
-    
-    func clockProgress(name: String) {
-
+    private func clockProgress(clock: Clock, handle: (() -> Void)?) {
         
+        updateClock(id: clock.documentID ?? "", value: ["status": ClockSttus.queue.rawValue])
         
-        
-        
-        
-        if let user = userList.first(where: { $0.name == name }) {
-            actions.value += [self.loginPublisher(user: user)]
-//            login(name: user.name, id: user.id, password: user.password)
+        guard let user = userList.first(where: { $0.name == clock.name }) else {
+            updateClock(id: clock.documentID ?? "", value: ["status": ClockSttus.userNotFind.rawValue])
+            handle?()
+            return
         }
+        
+        login(user: user) { loginStatus in
+            guard loginStatus == .success else {
+                self.updateClock(id: clock.documentID ?? "", value: ["status": loginStatus.rawValue])
+                handle?()
+                return
+            }
+            self.clock(user: user, type: ClockType.init(rawValue: clock.clock) ?? .In) { clockStatus in
+                self.updateClock(id: clock.documentID ?? "", value: ["status": clockStatus.rawValue])
+                handle?()
+            }
+        }
+        
     }
 }
 
@@ -91,8 +93,7 @@ extension MainViewModel {
 
 extension MainViewModel {
     
-    func bindClock() {
-        
+   private func bindClock() {
         firestore.collection("clocks").addSnapshotListener { allSnapshot, error in
             guard let allSnapshot = allSnapshot, !allSnapshot.metadata.isFromCache else { return }
             
@@ -105,21 +106,21 @@ extension MainViewModel {
             guard let json = try? JSONSerialization.data(withJSONObject: dataArray),
                   let clockArray = try? JSONDecoder().decode([Clock].self, from: json) else { return }
             
-            let clockQueueArray = clockArray.filter({ !$0.expired && !$0.queue })
+            let clockQueueArray = clockArray.filter({ $0.status == ClockSttus.none.rawValue })
             
-            clockQueueArray.forEach {
-                self.log.append("\($0.name) \($0.clock) \(Date())")
-                self.updateClock(id: $0.documentID)
-                self.clockProgress(name: $0.name)
+            clockQueueArray.forEach { clock in
+                if !self.clockQueueArray.contains(where: { $0.documentID == clock.documentID }) {
+                    self.clockQueueArray.append(clock)
+                }
             }
         }
     }
     
-    private func updateClock(id: String) {
+    private func updateClock(id: String, value: [String: Any]) {
         firestore
             .collection("clocks")
             .document(id)
-            .updateData(["queue":true])
+            .updateData(value)
     }
     
     private func deleteClock(id: String) {
@@ -152,15 +153,15 @@ extension MainViewModel {
                 self.userList = userArray
             }
     }
-    
 }
+
 
 // MARK: - Combine API
 
 extension MainViewModel {
     
-    func login(user: User) {
-        
+    func login(user: User, handle: ((ClockSttus) -> Void)?) {
+        token = ""
         WebService.shared.removeAllCookies()
         
         WebService
@@ -168,68 +169,55 @@ extension MainViewModel {
             .login(code: "YIZHAO", account: user.id, password: user.password)
             .receive(on: DispatchQueue.main)
             .handleEvents(receiveSubscription: { [weak self] _ in
-                self?.log.append("Loging...")
+                self?.updateLog("\(user.name) logging in \(Date())")
             }, receiveOutput: { [weak self] token in
                 self?.token = token
             }, receiveCompletion: { [weak self] completion in
                 switch completion {
                 case .finished:
-                    self?.log.append("\(user.name) login")
+                    self?.updateLog("\(user.name) logged \(Date())")
+                    handle?(ClockSttus.success)
                 case .failure(let error):
-                    self?.log.append("Login failure, \(error.localizedDescription)")
+                    self?.updateLog("\(user.name) Login failure, \(error.localizedDescription) \(Date())")
+                    handle?(ClockSttus.fail)
                 }
             })
             .sink(receiveCompletion: { _ in }, receiveValue: { _ in })
             .store(in: &cancellables)
     }
     
-    func loginPublisher(user: User) -> AnyPublisher<String, WebError> {
-        
-        WebService.shared.removeAllCookies()
-        
-        return WebService
-            .shared
-            .login(code: "YIZHAO", account: user.id, password: user.password)
-            .receive(on: DispatchQueue.main)
-            .handleEvents(receiveSubscription: { [weak self] _ in
-                self?.log.append("Loging...")
-            }, receiveOutput: { [weak self] token in
-                self?.token = token
-            }, receiveCompletion: { [weak self] completion in
-                switch completion {
-                case .finished:
-                    self?.log.append("\(user.name) login")
-                case .failure(let error):
-                    self?.log.append("Login failure, \(error.localizedDescription)")
-                }
-            })
-            .eraseToAnyPublisher()
-    }
-    
-    func clock(_ type: ClockType) {
-        
-       WebService
+    func clock(user: User, type: ClockType, handle: ((ClockSttus) -> Void)?) {
+        WebService
             .shared
             .ipClock(type, token: token ?? "")
             .receive(on: DispatchQueue.main)
             .handleEvents(receiveSubscription: { [weak self] error in
-                self?.log.append("clocking")
+                self?.updateLog("\(user.name) clocking \(Date())")
             }, receiveOutput: { _ in
                 
             }, receiveCompletion: { [weak self] completion in
                 switch completion {
                 case .finished:
-                    self?.log.append("\(type.chinese)")
+                    self?.updateLog("\(user.name) \(type.rawValue) success \(Date())")
+                    handle?(ClockSttus.success)
                 case .failure(let error):
-                    self?.log.append("Login failure, \(error.localizedDescription)")
+                    self?.updateLog("clock failure, \(error.localizedDescription) \(Date())")
+                    handle?(ClockSttus.fail)
                 }
+                
             })
             .sink(receiveCompletion: { _ in }, receiveValue: { _ in })
             .store(in: &cancellables)
-        
     }
-    
- 
- 
 }
 
+// MARK: - Log
+
+extension MainViewModel {
+    
+    private func updateLog(_ log: String) {
+        DispatchQueue.main.async { [weak self] in
+            self?.log.append(log)
+        }
+    }
+}

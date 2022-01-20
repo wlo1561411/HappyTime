@@ -30,6 +30,14 @@ enum ClockType: String {
     }
 }
 
+enum ClockSttus: Int {
+    case none
+    case queue
+    case success
+    case fail
+    case userNotFind
+}
+
 /**
  {
      "status": "success",
