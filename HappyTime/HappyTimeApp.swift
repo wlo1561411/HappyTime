@@ -15,7 +15,7 @@ struct HappyTimeApp: App {
     
     var body: some Scene {
         WindowGroup {
-            IPMainView()
+            MainView()
                 .accentColor(Color(UIColor(named: "AccentColor") ?? .darkGray))
         }
         .onChange(of: scenePhase) { newScenePhase in

@@ -10,6 +10,8 @@ import UIKit
 class AppManager {
     
     static let shared = AppManager()
+    
+    @Published var isReceivedNotification: Bool = false
 }
 
 // MARK: - Notification

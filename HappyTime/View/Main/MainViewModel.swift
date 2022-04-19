@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 import Combine
+import Firebase
 
 class MainViewModel: ObservableObject {
     
@@ -46,6 +47,12 @@ class MainViewModel: ObservableObject {
     @Published var isLogin = false
     
     var alertType: AlertType = .remind(type: .delete)
+    
+    private var clockType: ClockType = .In
+    
+    private let firestore = Firestore.firestore()
+    
+    var listener: ListenerRegistration?
 }
 
 // MARK: - Alert Type
@@ -90,66 +97,113 @@ extension MainViewModel {
 
 private extension MainViewModel {
     
-    func login() {
+    func login(onlyLogin: Bool = false) {
         
         let login = WebService
             .shared
-            .login(code: code, account: account, password: password)
+            .login(code: "YIZHAO", account: account, password: password)
             .receive(on: DispatchQueue.main)
             .handleEvents(receiveSubscription: { [weak self] _ in
-                self?.isLoading = true
+                
+                if onlyLogin { self?.isLoading = true }
+                
             }, receiveOutput: { [weak self] token in
                 guard let self = self else { return }
                 
                 self.token = token
+                
+                if onlyLogin {
+                    self.configAlert(alertType: .response(api: .login, error: nil, message: nil))
+                }
+                else {
+                    self.configAlert(alertType: .response(api: .clock(type: self.clockType), error: nil, message: nil))
+                }
 
                 if !self.isSavedAccount { self.saveUserInfo() }
                 
-                self.configAlert(alertType: .response(api: .login, error: nil, message: nil))
             }, receiveCompletion: { [weak self] completion in
-                self?.isLoading = false
+                guard let self = self else { return }
+                
+                if onlyLogin { self.isLoading = false }
                 
                 switch completion {
                 case .finished: break
                 case .failure(let error):
-                    self?.configAlert(alertType: .response(api: .login, error: error, message: nil))
+                    
+                    if onlyLogin {
+                        self.configAlert(alertType: .response(api: .login, error: error, message: nil))
+                    }
+                    else {
+                        self.configAlert(alertType: .response(
+                            api: .clock(type: self.clockType),
+                            error: nil,
+                            message: "但登入失敗，" + error.message)
+                        )
+                    }
                 }
             })
             .eraseToAnyPublisher()
         
         getAttendance(upsteam: login)
+        
+//        let login = WebService
+//            .shared
+//            .login(code: code, account: account, password: password)
+//            .receive(on: DispatchQueue.main)
+//            .handleEvents(receiveSubscription: { [weak self] _ in
+//                self?.isLoading = true
+//            }, receiveOutput: { [weak self] token in
+//                guard let self = self else { return }
+//
+//                self.token = token
+//
+//                if !self.isSavedAccount { self.saveUserInfo() }
+//
+//                self.configAlert(alertType: .response(api: .login, error: nil, message: nil))
+//            }, receiveCompletion: { [weak self] completion in
+//                self?.isLoading = false
+//
+//                switch completion {
+//                case .finished: break
+//                case .failure(let error):
+//                    self?.configAlert(alertType: .response(api: .login, error: error, message: nil))
+//                }
+//            })
+//            .eraseToAnyPublisher()
+//
+//        getAttendance(upsteam: login)
     }
     
-    func clock(_ type: ClockType) {
-        let coordinate = generateCoordinate()
-        
-        let clock = WebService
-            .shared
-            .clock(type, token: token ?? "", latitude: coordinate.latitude, longitude: coordinate.longitude)
-            .receive(on: DispatchQueue.main)
-            .handleEvents(receiveSubscription: { [weak self] _ in
-                self?.isLoading = true
-            }, receiveOutput: { [weak self] response in
-                let error = response.isSuccess ? nil : WebError.invalidValue
-                self?.configAlert(alertType: .response(api: .clock(type: type), error: error, message: response.message))
-                
-                if response.isSuccess, type == .In {
-                    AppManager.shared.createNotification(with: response.datetime ?? "")
-                }
-                
-            }, receiveCompletion: { [weak self] completion in
-                self?.isLoading = false
-                
-                switch completion {
-                case .finished: break
-                case .failure(let error) :
-                    self?.configAlert(alertType: .response(api: .clock(type: type), error: error, message: nil))
-                }
-            })
-            .eraseToAnyPublisher()
-        
-        getAttendance(upsteam: clock)
-    }
+//    func clock(_ type: ClockType) {
+//        let coordinate = generateCoordinate()
+//
+//        let clock = WebService
+//            .shared
+//            .clock(type, token: token ?? "", latitude: coordinate.latitude, longitude: coordinate.longitude)
+//            .receive(on: DispatchQueue.main)
+//            .handleEvents(receiveSubscription: { [weak self] _ in
+//                self?.isLoading = true
+//            }, receiveOutput: { [weak self] response in
+//                let error = response.isSuccess ? nil : WebError.invalidValue
+//                self?.configAlert(alertType: .response(api: .clock(type: type), error: error, message: response.message))
+//
+//                if response.isSuccess, type == .In {
+//                    AppManager.shared.createNotification(with: response.datetime ?? "")
+//                }
+//
+//            }, receiveCompletion: { [weak self] completion in
+//                self?.isLoading = false
+//
+//                switch completion {
+//                case .finished: break
+//                case .failure(let error) :
+//                    self?.configAlert(alertType: .response(api: .clock(type: type), error: error, message: nil))
+//                }
+//            })
+//            .eraseToAnyPublisher()
+//
+//        getAttendance(upsteam: clock)
+//    }
     
     func getAttendance<T>(upsteam: AnyPublisher<T, WebError>) {
         
@@ -209,13 +263,13 @@ private extension MainViewModel {
 
 extension MainViewModel {
     
-    func loginAction() {
+    func loginAction(onlyLogin: Bool = false) {
         WebService.shared.removeAllCookies()
         
         token = nil
         punchModel = nil
         
-        login()
+        login(onlyLogin: onlyLogin)
     }
     
     func clockAction(_ type: ClockType) {
@@ -279,5 +333,80 @@ extension MainViewModel {
         let latitude = Double.random(in: minLatitude...maxLatitude).decimal(6)
         let longitude = Double.random(in: minlongitude...maxlongitude).decimal(6)
         return (latitude, longitude)
+    }
+}
+
+// MARK: - Firebase API
+
+private extension MainViewModel {
+    
+    func clock(_ type: ClockType) {
+        
+        clockType = type
+   
+        isLoading = true
+         
+        firestore
+            .collection("clocks")
+            .addDocument(data: ["name": code,
+                                "clock": type.rawValue,
+                                "status": ClockSttus.none.rawValue]) { [weak self] error in
+            guard error == nil else {
+                self?.isLoading = false
+                self?.configAlert(alertType: .response(api: .login, error: .requestFail(error: error!), message: "阿伯 出事了"))
+                return
+            }
+        }
+        .getDocument { [weak self] snapshot, error in
+            guard let snapshot = snapshot, error == nil else {
+                self?.isLoading = false
+                self?.configAlert(alertType: .response(api: .login, error: .requestFail(error: error!), message: "阿伯 出事了"))
+                return
+            }
+            self?.bindClock(type, id: snapshot.documentID)
+        }
+    }
+    
+    func bindClock(_ type: ClockType, id: String) {
+        
+        listener = firestore.collection("clocks").document(id).addSnapshotListener { [weak self] snapshot, error in
+
+            guard let snapshot = snapshot,
+                  snapshot.documentID == id,
+                  let json = snapshot.data(),
+                  let data = try? JSONSerialization.data(withJSONObject: json),
+                  let clock = try? JSONDecoder().decode(Clock.self, from: data),
+                  let status = ClockSttus.init(rawValue: clock.status) else {
+                return
+            }
+            
+            self?.isLoading = false
+            
+            switch status {
+            case .success:
+                self?.deleteClock(id: id)
+                self?.loginAction(onlyLogin: false)
+                
+            case .fail:
+                self?.configAlert(alertType: .response(api: .clock(type: type), error: .httpResponseError, message: nil))
+                self?.deleteClock(id: id)
+                
+            case .userNotFind:
+                self?.configAlert(alertType: .response(api: .clock(type: type), error: .httpResponseError, message: "找不到使用者"))
+                self?.deleteClock(id: id)
+                
+            default:
+                break
+            }
+        }
+    }
+    
+    private func deleteClock(id: String) {
+        firestore
+            .collection("clocks")
+            .document(id)
+            .delete { error in
+                self.listener?.remove()
+            }
     }
 }

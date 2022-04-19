@@ -18,9 +18,9 @@ struct MainView: View {
                     VStack(spacing: 15) {
                         TextFieldView(
                             inputText: $viewModel.code,
-                            title: "Code",
-                            placeHolder: "Enter code",
-                            isSecure: true
+                            title: "Name",
+                            placeHolder: "Enter Name",
+                            isSecure: false
                         )
                         
                         TextFieldView(
@@ -39,7 +39,7 @@ struct MainView: View {
                     }
                     
                     ButtonView(title: "Login") {
-                        viewModel.loginAction()
+                        viewModel.loginAction(onlyLogin: true)
                         endTextEditing()
                     }
                     
@@ -67,6 +67,9 @@ struct MainView: View {
                 .padding(.top, 30)
             }
             .padding(.horizontal, 10)
+            .onTapGesture {
+                endTextEditing()
+            }
             .navigationBarTitle("Happy Time", displayMode: .large)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -84,17 +87,23 @@ struct MainView: View {
         .navigationViewStyle(StackNavigationViewStyle())
         .overlay(viewModel.isLoading ? LoadingView() : nil)
         .onAppear {
-            viewModel.queryUserInfo() 
+            viewModel.queryUserInfo()
         }
-        .onTapGesture {
-            endTextEditing()
+        .onReceive(AppManager.shared.$isReceivedNotification) { isReceived in
+            if isReceived {
+                viewModel.prepareForClock(.Out)
+            }
         }
         .alert(isPresented: $viewModel.isPopAlert) {
-            buildAlert()
+            buildAlert {
+                viewModel.remindAction()
+            }
         }
     }
     
-    func buildAlert() -> Alert {
+    
+    func buildAlert(action: (() -> Void)?) -> Alert {
+        
         let elements = viewModel.alertType.elements
         
         switch viewModel.alertType {
@@ -103,16 +112,16 @@ struct MainView: View {
                 title: Text(elements.title),
                 message: elements.message == nil ? nil : Text(elements.message ?? ""),
                 primaryButton:
-                    .default(
-                        Text("OK"),
-                        action: {
-                            viewModel.remindAction()
-                        }
-                    ),
+                        .default(
+                            Text("OK"),
+                            action: {
+                                action?()
+                            }
+                        ),
                 secondaryButton:
-                    .cancel(
-                        Text("Cancel")
-                    )
+                        .cancel(
+                            Text("Cancel")
+                        )
             )
         case .response:
             return Alert(
