@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 import Combine
 import Firebase
+import WidgetKit
 
 class MainViewModel: ObservableObject {
     
@@ -110,6 +111,8 @@ private extension MainViewModel {
             }, receiveOutput: { [weak self] token in
                 guard let self = self else { return }
                 
+                WidgetCenter.shared.reloadAllTimelines()
+                
                 self.token = token
                 
                 if onlyLogin {
@@ -145,65 +148,7 @@ private extension MainViewModel {
             .eraseToAnyPublisher()
         
         getAttendance(upsteam: login)
-        
-//        let login = WebService
-//            .shared
-//            .login(code: code, account: account, password: password)
-//            .receive(on: DispatchQueue.main)
-//            .handleEvents(receiveSubscription: { [weak self] _ in
-//                self?.isLoading = true
-//            }, receiveOutput: { [weak self] token in
-//                guard let self = self else { return }
-//
-//                self.token = token
-//
-//                if !self.isSavedAccount { self.saveUserInfo() }
-//
-//                self.configAlert(alertType: .response(api: .login, error: nil, message: nil))
-//            }, receiveCompletion: { [weak self] completion in
-//                self?.isLoading = false
-//
-//                switch completion {
-//                case .finished: break
-//                case .failure(let error):
-//                    self?.configAlert(alertType: .response(api: .login, error: error, message: nil))
-//                }
-//            })
-//            .eraseToAnyPublisher()
-//
-//        getAttendance(upsteam: login)
     }
-    
-//    func clock(_ type: ClockType) {
-//        let coordinate = generateCoordinate()
-//
-//        let clock = WebService
-//            .shared
-//            .clock(type, token: token ?? "", latitude: coordinate.latitude, longitude: coordinate.longitude)
-//            .receive(on: DispatchQueue.main)
-//            .handleEvents(receiveSubscription: { [weak self] _ in
-//                self?.isLoading = true
-//            }, receiveOutput: { [weak self] response in
-//                let error = response.isSuccess ? nil : WebError.invalidValue
-//                self?.configAlert(alertType: .response(api: .clock(type: type), error: error, message: response.message))
-//
-//                if response.isSuccess, type == .In {
-//                    AppManager.shared.createNotification(with: response.datetime ?? "")
-//                }
-//
-//            }, receiveCompletion: { [weak self] completion in
-//                self?.isLoading = false
-//
-//                switch completion {
-//                case .finished: break
-//                case .failure(let error) :
-//                    self?.configAlert(alertType: .response(api: .clock(type: type), error: error, message: nil))
-//                }
-//            })
-//            .eraseToAnyPublisher()
-//
-//        getAttendance(upsteam: clock)
-//    }
     
     func getAttendance<T>(upsteam: AnyPublisher<T, WebError>) {
         

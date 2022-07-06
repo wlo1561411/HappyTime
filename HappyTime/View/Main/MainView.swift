@@ -99,6 +99,21 @@ struct MainView: View {
                 viewModel.remindAction()
             }
         }
+        .onOpenURL { url in
+            switch url {
+            case WidgetViewModel.Model.inURL:
+                viewModel.prepareForClock(.In)
+                
+            case WidgetViewModel.Model.logURL:
+                viewModel.loginAction(onlyLogin: true)
+                
+            case WidgetViewModel.Model.outURL:
+                viewModel.prepareForClock(.Out)
+                
+            default:
+                break
+            }
+        }
     }
     
     

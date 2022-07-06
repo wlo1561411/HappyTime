@@ -24,6 +24,13 @@
 		2BFCE20E2796A7CB00BA5505 /* IPMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BFCE20D2796A77200BA5505 /* IPMainView.swift */; };
 		2BFCE20F2796A81900BA5505 /* IPMainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BFCE20C2796A77200BA5505 /* IPMainViewModel.swift */; };
 		2BFCE21027995BB700BA5505 /* Clock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD2F2F62795D113006FA94E /* Clock.swift */; };
+		4307DD4228349A0C004074B5 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4307DD4128349A0C004074B5 /* WidgetKit.framework */; };
+		4307DD4428349A0C004074B5 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4307DD4328349A0C004074B5 /* SwiftUI.framework */; };
+		4307DD4728349A0C004074B5 /* WidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4307DD4628349A0C004074B5 /* WidgetView.swift */; };
+		4307DD4928349A0D004074B5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4307DD4828349A0D004074B5 /* Assets.xcassets */; };
+		4307DD4D28349A0D004074B5 /* WidgetViewExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 4307DD4028349A0C004074B5 /* WidgetViewExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		4307DD532834A46F004074B5 /* WidgetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4307DD522834A46F004074B5 /* WidgetViewModel.swift */; };
+		4307DD542834A52B004074B5 /* WidgetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4307DD522834A46F004074B5 /* WidgetViewModel.swift */; };
 		9BA8E926DE32C89B84C3BDA5 /* libPods-HappyTime.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 244277550CF455DEDF562DCE /* libPods-HappyTime.a */; };
 		DE90124AD05748EECEAE708F /* libPods-HappyTimeMac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C8D8D0EC6AAFCC28D458566F /* libPods-HappyTimeMac.a */; };
 		FF95F77226CE3B72005CE9D5 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF95F77126CE3B72005CE9D5 /* MainViewModel.swift */; };
@@ -49,6 +56,30 @@
 		FFFF0BFE26D4DF560043ECE0 /* ClockResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFFF0BFD26D4DF560043ECE0 /* ClockResponse.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		4307DD4B28349A0D004074B5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FFD9E74B26CDEF3200362C24 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4307DD3F28349A0C004074B5;
+			remoteInfo = WidgetViewExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		4307DD4E28349A0D004074B5 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				4307DD4D28349A0D004074B5 /* WidgetViewExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		244277550CF455DEDF562DCE /* libPods-HappyTime.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HappyTime.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B104F56279563250018C955 /* HappyTimeMac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HappyTimeMac.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -64,6 +95,13 @@
 		2BFCE2092796A68300BA5505 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2BFCE20C2796A77200BA5505 /* IPMainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPMainViewModel.swift; sourceTree = "<group>"; };
 		2BFCE20D2796A77200BA5505 /* IPMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPMainView.swift; sourceTree = "<group>"; };
+		4307DD4028349A0C004074B5 /* WidgetViewExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = WidgetViewExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		4307DD4128349A0C004074B5 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		4307DD4328349A0C004074B5 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		4307DD4628349A0C004074B5 /* WidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetView.swift; sourceTree = "<group>"; };
+		4307DD4828349A0D004074B5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4307DD4A28349A0D004074B5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4307DD522834A46F004074B5 /* WidgetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetViewModel.swift; sourceTree = "<group>"; };
 		9627B7EAA14843BA1593BBFC /* Pods-HappyTimeMac.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HappyTimeMac.release.xcconfig"; path = "Target Support Files/Pods-HappyTimeMac/Pods-HappyTimeMac.release.xcconfig"; sourceTree = "<group>"; };
 		C8D8D0EC6AAFCC28D458566F /* libPods-HappyTimeMac.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HappyTimeMac.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C99518441F02D049608D9FBF /* Pods-HappyTime.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HappyTime.debug.xcconfig"; path = "Target Support Files/Pods-HappyTime/Pods-HappyTime.debug.xcconfig"; sourceTree = "<group>"; };
@@ -101,6 +139,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				DE90124AD05748EECEAE708F /* libPods-HappyTimeMac.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4307DD3D28349A0C004074B5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4307DD4428349A0C004074B5 /* SwiftUI.framework in Frameworks */,
+				4307DD4228349A0C004074B5 /* WidgetKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -172,6 +219,17 @@
 			path = "IP Main";
 			sourceTree = "<group>";
 		};
+		4307DD4528349A0C004074B5 /* WidgetView */ = {
+			isa = PBXGroup;
+			children = (
+				4307DD4628349A0C004074B5 /* WidgetView.swift */,
+				4307DD522834A46F004074B5 /* WidgetViewModel.swift */,
+				4307DD4828349A0D004074B5 /* Assets.xcassets */,
+				4307DD4A28349A0D004074B5 /* Info.plist */,
+			);
+			path = WidgetView;
+			sourceTree = "<group>";
+		};
 		5C01B481582B0193B65561A9 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -188,6 +246,8 @@
 			children = (
 				244277550CF455DEDF562DCE /* libPods-HappyTime.a */,
 				C8D8D0EC6AAFCC28D458566F /* libPods-HappyTimeMac.a */,
+				4307DD4128349A0C004074B5 /* WidgetKit.framework */,
+				4307DD4328349A0C004074B5 /* SwiftUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -250,6 +310,7 @@
 			children = (
 				FFD9E75526CDEF3200362C24 /* HappyTime */,
 				2B104F57279563250018C955 /* HappyTimeMac */,
+				4307DD4528349A0C004074B5 /* WidgetView */,
 				FFD9E75426CDEF3200362C24 /* Products */,
 				5C01B481582B0193B65561A9 /* Pods */,
 				D834EB6695D4534533451367 /* Frameworks */,
@@ -261,6 +322,7 @@
 			children = (
 				FFD9E75326CDEF3200362C24 /* HappyTime.app */,
 				2B104F56279563250018C955 /* HappyTimeMac.app */,
+				4307DD4028349A0C004074B5 /* WidgetViewExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -322,6 +384,23 @@
 			productReference = 2B104F56279563250018C955 /* HappyTimeMac.app */;
 			productType = "com.apple.product-type.application";
 		};
+		4307DD3F28349A0C004074B5 /* WidgetViewExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4307DD5128349A0D004074B5 /* Build configuration list for PBXNativeTarget "WidgetViewExtension" */;
+			buildPhases = (
+				4307DD3C28349A0C004074B5 /* Sources */,
+				4307DD3D28349A0C004074B5 /* Frameworks */,
+				4307DD3E28349A0C004074B5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = WidgetViewExtension;
+			productName = WidgetViewExtension;
+			productReference = 4307DD4028349A0C004074B5 /* WidgetViewExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		FFD9E75226CDEF3200362C24 /* HappyTime */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = FFD9E76226CDEF3300362C24 /* Build configuration list for PBXNativeTarget "HappyTime" */;
@@ -331,10 +410,12 @@
 				FFD9E75026CDEF3200362C24 /* Frameworks */,
 				FFD9E75126CDEF3200362C24 /* Resources */,
 				D27B7195858FE0E3BDF146AD /* [CP] Copy Pods Resources */,
+				4307DD4E28349A0D004074B5 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				4307DD4C28349A0D004074B5 /* PBXTargetDependency */,
 			);
 			name = HappyTime;
 			productName = HappyTime;
@@ -347,11 +428,14 @@
 		FFD9E74B26CDEF3200362C24 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1310;
+				LastSwiftUpdateCheck = 1330;
 				LastUpgradeCheck = 1250;
 				TargetAttributes = {
 					2B104F55279563250018C955 = {
 						CreatedOnToolsVersion = 13.1;
+					};
+					4307DD3F28349A0C004074B5 = {
+						CreatedOnToolsVersion = 13.3.1;
 					};
 					FFD9E75226CDEF3200362C24 = {
 						CreatedOnToolsVersion = 12.5.1;
@@ -373,6 +457,7 @@
 			targets = (
 				FFD9E75226CDEF3200362C24 /* HappyTime */,
 				2B104F55279563250018C955 /* HappyTimeMac */,
+				4307DD3F28349A0C004074B5 /* WidgetViewExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -385,6 +470,14 @@
 				2B104F60279563260018C955 /* Preview Assets.xcassets in Resources */,
 				2B104F5D279563260018C955 /* Assets.xcassets in Resources */,
 				2B104F68279569990018C955 /* GoogleService-Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4307DD3E28349A0C004074B5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4307DD4928349A0D004074B5 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -500,6 +593,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4307DD3C28349A0C004074B5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4307DD4728349A0C004074B5 /* WidgetView.swift in Sources */,
+				4307DD542834A52B004074B5 /* WidgetViewModel.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FFD9E74F26CDEF3200362C24 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -517,6 +619,7 @@
 				FFD4D713277C36A9009AF0A8 /* AttendanceWebView.swift in Sources */,
 				FFBF77FD26E7433F00E8F653 /* LoadingView.swift in Sources */,
 				FFD9E76826CDF3FF00362C24 /* ButtonView.swift in Sources */,
+				4307DD532834A46F004074B5 /* WidgetViewModel.swift in Sources */,
 				FFD9E76626CDEF6100362C24 /* MainView.swift in Sources */,
 				FFAB1A45277D6B73007C5A5D /* AppDelegate.swift in Sources */,
 				FF95F77226CE3B72005CE9D5 /* MainViewModel.swift in Sources */,
@@ -529,6 +632,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		4307DD4C28349A0D004074B5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4307DD3F28349A0C004074B5 /* WidgetViewExtension */;
+			targetProxy = 4307DD4B28349A0D004074B5 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		2B104F62279563260018C955 /* Debug */ = {
@@ -586,6 +697,66 @@
 				SDKROOT = macosx;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		4307DD4F28349A0D004074B5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = FH2889L9Z8;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = WidgetView/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = WidgetView;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.patty.PattyTime.WidgetView;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		4307DD5028349A0D004074B5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = FH2889L9Z8;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = WidgetView/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = WidgetView;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.patty.PattyTime.WidgetView;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -709,11 +880,12 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C99518441F02D049608D9FBF /* Pods-HappyTime.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"HappyTime/Preview Content\"";
 				DEVELOPMENT_TEAM = FH2889L9Z8;
 				ENABLE_PREVIEWS = YES;
@@ -736,12 +908,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F8823F04EBA048D2E1E12D82 /* Pods-HappyTime.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = HappyTime/HappyTimeRelease.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"HappyTime/Preview Content\"";
 				DEVELOPMENT_TEAM = FH2889L9Z8;
 				ENABLE_PREVIEWS = YES;
@@ -768,6 +941,15 @@
 			buildConfigurations = (
 				2B104F62279563260018C955 /* Debug */,
 				2B104F63279563260018C955 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4307DD5128349A0D004074B5 /* Build configuration list for PBXNativeTarget "WidgetViewExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4307DD4F28349A0D004074B5 /* Debug */,
+				4307DD5028349A0D004074B5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
