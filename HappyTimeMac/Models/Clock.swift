@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Clock: Codable {
+struct Clock {
     var documentID: String?
     var name: String
     var clock: String
@@ -17,3 +17,5 @@ struct Clock: Codable {
         .init(documentID: "", name: "", clock: "", status: 0)
     }
 }
+
+extension Clock: Codable {}

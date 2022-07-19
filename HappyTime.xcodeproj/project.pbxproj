@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -31,8 +31,29 @@
 		4307DD4D28349A0D004074B5 /* WidgetViewExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 4307DD4028349A0C004074B5 /* WidgetViewExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		4307DD532834A46F004074B5 /* WidgetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4307DD522834A46F004074B5 /* WidgetViewModel.swift */; };
 		4307DD542834A52B004074B5 /* WidgetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4307DD522834A46F004074B5 /* WidgetViewModel.swift */; };
-		9BA8E926DE32C89B84C3BDA5 /* libPods-HappyTime.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 244277550CF455DEDF562DCE /* libPods-HappyTime.a */; };
-		DE90124AD05748EECEAE708F /* libPods-HappyTimeMac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C8D8D0EC6AAFCC28D458566F /* libPods-HappyTimeMac.a */; };
+		4321FA012886A593001D8241 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 4321FA002886A593001D8241 /* FirebaseDatabase */; };
+		4321FA032886A593001D8241 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 4321FA022886A593001D8241 /* FirebaseFirestore */; };
+		4330E811288655F90031B581 /* MainViewModel_Realtime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4330E810288655F90031B581 /* MainViewModel_Realtime.swift */; };
+		4330E82D288684D30031B581 /* ClockResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFFF0BFD26D4DF560043ECE0 /* ClockResponse.swift */; };
+		4330E82E288685420031B581 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2BFCE2092796A68300BA5505 /* GoogleService-Info.plist */; };
+		4330E830288691530031B581 /* Clock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD2F2F62795D113006FA94E /* Clock.swift */; };
+		43B60A5D2885513100502B99 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43B60A5C2885513100502B99 /* Assets.xcassets */; };
+		43B60A632885513100502B99 /* HappyTimeWatch WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 43B60A622885513100502B99 /* HappyTimeWatch WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		43B60A682885513100502B99 /* HappyTimeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B60A672885513100502B99 /* HappyTimeApp.swift */; };
+		43B60A6A2885513100502B99 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B60A692885513100502B99 /* ContentView.swift */; };
+		43B60A6C2885513100502B99 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B60A6B2885513100502B99 /* NotificationController.swift */; };
+		43B60A6E2885513100502B99 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B60A6D2885513100502B99 /* NotificationView.swift */; };
+		43B60A702885513100502B99 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B60A6F2885513100502B99 /* ComplicationController.swift */; };
+		43B60A722885513300502B99 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43B60A712885513300502B99 /* Assets.xcassets */; };
+		43B60A752885513300502B99 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43B60A742885513300502B99 /* Preview Assets.xcassets */; };
+		43B60A7A2885513300502B99 /* HappyTimeWatch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 43B60A5A2885513000502B99 /* HappyTimeWatch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		43B60A8E2885646E00502B99 /* WatchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B60A8D2885646E00502B99 /* WatchViewModel.swift */; };
+		43BBE5402886AE1500AAFC1A /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF95F77326CE5003005CE9D5 /* WebService.swift */; };
+		43BBE5432886AE5D00AAFC1A /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 43BBE5422886AE5D00AAFC1A /* SwiftSoup */; };
+		43BBE5442886AEDA00AAFC1A /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBB956526D48E8C0071ABD1 /* Extension.swift */; };
+		43BBE5452886AEE000AAFC1A /* AttendanceResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA6620526E21069004F061E /* AttendanceResponse.swift */; };
+		5FB7A327C6E7413AD6C743C1 /* Pods_HappyTimeMac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6D1D8899AB5652A6F7E135A /* Pods_HappyTimeMac.framework */; };
+		7DAAF53F0852C8CD9E37C692 /* Pods_HappyTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9582EAB0A33203748EC9CE13 /* Pods_HappyTime.framework */; };
 		FF95F77226CE3B72005CE9D5 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF95F77126CE3B72005CE9D5 /* MainViewModel.swift */; };
 		FF95F77426CE5003005CE9D5 /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF95F77326CE5003005CE9D5 /* WebService.swift */; };
 		FFA6620626E21069004F061E /* AttendanceResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA6620526E21069004F061E /* AttendanceResponse.swift */; };
@@ -64,6 +85,20 @@
 			remoteGlobalIDString = 4307DD3F28349A0C004074B5;
 			remoteInfo = WidgetViewExtension;
 		};
+		43B60A642885513100502B99 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FFD9E74B26CDEF3200362C24 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 43B60A612885513100502B99;
+			remoteInfo = "HappyTimeWatch WatchKit Extension";
+		};
+		43B60A782885513300502B99 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FFD9E74B26CDEF3200362C24 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 43B60A592885513000502B99;
+			remoteInfo = HappyTimeWatch;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -78,10 +113,31 @@
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		43B60A7B2885513300502B99 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				43B60A7A2885513300502B99 /* HappyTimeWatch.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		43B60A7E2885513300502B99 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				43B60A632885513100502B99 /* HappyTimeWatch WatchKit Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		244277550CF455DEDF562DCE /* libPods-HappyTime.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HappyTime.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B104F56279563250018C955 /* HappyTimeMac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HappyTimeMac.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B104F58279563250018C955 /* HappyTimeMacApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HappyTimeMacApp.swift; sourceTree = "<group>"; };
 		2B104F5A279563250018C955 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -102,8 +158,27 @@
 		4307DD4828349A0D004074B5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4307DD4A28349A0D004074B5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4307DD522834A46F004074B5 /* WidgetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetViewModel.swift; sourceTree = "<group>"; };
+		4330E810288655F90031B581 /* MainViewModel_Realtime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel_Realtime.swift; sourceTree = "<group>"; };
+		4330E8322886A1500031B581 /* FirebaseDatabase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseDatabase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4330E8362886A1750031B581 /* FirebaseFirestore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseFirestore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		43B60A5A2885513000502B99 /* HappyTimeWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HappyTimeWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		43B60A5C2885513100502B99 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		43B60A622885513100502B99 /* HappyTimeWatch WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "HappyTimeWatch WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		43B60A672885513100502B99 /* HappyTimeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HappyTimeApp.swift; sourceTree = "<group>"; };
+		43B60A692885513100502B99 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		43B60A6B2885513100502B99 /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
+		43B60A6D2885513100502B99 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
+		43B60A6F2885513100502B99 /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
+		43B60A712885513300502B99 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		43B60A742885513300502B99 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		43B60A762885513300502B99 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		43B60A772885513300502B99 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		43B60A8D2885646E00502B99 /* WatchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchViewModel.swift; sourceTree = "<group>"; };
+		43BBE5462886B1D700AAFC1A /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS8.5.sdk/System/Library/Frameworks/UserNotifications.framework; sourceTree = DEVELOPER_DIR; };
+		43BBE54C2886B27200AAFC1A /* UserNotificationsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotificationsUI.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS8.5.sdk/System/Library/Frameworks/UserNotificationsUI.framework; sourceTree = DEVELOPER_DIR; };
+		9582EAB0A33203748EC9CE13 /* Pods_HappyTime.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HappyTime.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9627B7EAA14843BA1593BBFC /* Pods-HappyTimeMac.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HappyTimeMac.release.xcconfig"; path = "Target Support Files/Pods-HappyTimeMac/Pods-HappyTimeMac.release.xcconfig"; sourceTree = "<group>"; };
-		C8D8D0EC6AAFCC28D458566F /* libPods-HappyTimeMac.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HappyTimeMac.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B6D1D8899AB5652A6F7E135A /* Pods_HappyTimeMac.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HappyTimeMac.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C99518441F02D049608D9FBF /* Pods-HappyTime.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HappyTime.debug.xcconfig"; path = "Target Support Files/Pods-HappyTime/Pods-HappyTime.debug.xcconfig"; sourceTree = "<group>"; };
 		DDE65A5AC90580F63E70475A /* Pods-HappyTimeMac.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HappyTimeMac.debug.xcconfig"; path = "Target Support Files/Pods-HappyTimeMac/Pods-HappyTimeMac.debug.xcconfig"; sourceTree = "<group>"; };
 		F8823F04EBA048D2E1E12D82 /* Pods-HappyTime.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HappyTime.release.xcconfig"; path = "Target Support Files/Pods-HappyTime/Pods-HappyTime.release.xcconfig"; sourceTree = "<group>"; };
@@ -138,7 +213,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DE90124AD05748EECEAE708F /* libPods-HappyTimeMac.a in Frameworks */,
+				5FB7A327C6E7413AD6C743C1 /* Pods_HappyTimeMac.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -151,11 +226,28 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		43B60A5F2885513100502B99 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4321FA012886A593001D8241 /* FirebaseDatabase in Frameworks */,
+				4321FA032886A593001D8241 /* FirebaseFirestore in Frameworks */,
+				43BBE5432886AE5D00AAFC1A /* SwiftSoup in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		90C5BF6B3FA6283C150A8D9C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FFD9E75026CDEF3200362C24 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9BA8E926DE32C89B84C3BDA5 /* libPods-HappyTime.a in Frameworks */,
+				7DAAF53F0852C8CD9E37C692 /* Pods_HappyTime.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -170,6 +262,7 @@
 				2B104F58279563250018C955 /* HappyTimeMacApp.swift */,
 				2B104F5A279563250018C955 /* MainView.swift */,
 				2B104F69279574EB0018C955 /* MainViewModel.swift */,
+				4330E810288655F90031B581 /* MainViewModel_Realtime.swift */,
 				2B104F5C279563260018C955 /* Assets.xcassets */,
 				2B104F61279563260018C955 /* HappyTimeMac.entitlements */,
 				2B104F5E279563260018C955 /* Preview Content */,
@@ -230,6 +323,39 @@
 			path = WidgetView;
 			sourceTree = "<group>";
 		};
+		43B60A5B2885513000502B99 /* HappyTimeWatch */ = {
+			isa = PBXGroup;
+			children = (
+				43B60A5C2885513100502B99 /* Assets.xcassets */,
+			);
+			path = HappyTimeWatch;
+			sourceTree = "<group>";
+		};
+		43B60A662885513100502B99 /* HappyTimeWatch WatchKit Extension */ = {
+			isa = PBXGroup;
+			children = (
+				43B60A672885513100502B99 /* HappyTimeApp.swift */,
+				43B60A692885513100502B99 /* ContentView.swift */,
+				43B60A8D2885646E00502B99 /* WatchViewModel.swift */,
+				43B60A6B2885513100502B99 /* NotificationController.swift */,
+				43B60A6D2885513100502B99 /* NotificationView.swift */,
+				43B60A6F2885513100502B99 /* ComplicationController.swift */,
+				43B60A712885513300502B99 /* Assets.xcassets */,
+				43B60A762885513300502B99 /* Info.plist */,
+				43B60A772885513300502B99 /* PushNotificationPayload.apns */,
+				43B60A732885513300502B99 /* Preview Content */,
+			);
+			path = "HappyTimeWatch WatchKit Extension";
+			sourceTree = "<group>";
+		};
+		43B60A732885513300502B99 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				43B60A742885513300502B99 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
 		5C01B481582B0193B65561A9 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -244,10 +370,14 @@
 		D834EB6695D4534533451367 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				244277550CF455DEDF562DCE /* libPods-HappyTime.a */,
-				C8D8D0EC6AAFCC28D458566F /* libPods-HappyTimeMac.a */,
+				43BBE54C2886B27200AAFC1A /* UserNotificationsUI.framework */,
+				43BBE5462886B1D700AAFC1A /* UserNotifications.framework */,
+				4330E8362886A1750031B581 /* FirebaseFirestore.framework */,
+				4330E8322886A1500031B581 /* FirebaseDatabase.framework */,
 				4307DD4128349A0C004074B5 /* WidgetKit.framework */,
 				4307DD4328349A0C004074B5 /* SwiftUI.framework */,
+				9582EAB0A33203748EC9CE13 /* Pods_HappyTime.framework */,
+				B6D1D8899AB5652A6F7E135A /* Pods_HappyTimeMac.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -308,9 +438,12 @@
 		FFD9E74A26CDEF3200362C24 = {
 			isa = PBXGroup;
 			children = (
+				2BFCE2082796A5C000BA5505 /* Resource */,
 				FFD9E75526CDEF3200362C24 /* HappyTime */,
 				2B104F57279563250018C955 /* HappyTimeMac */,
 				4307DD4528349A0C004074B5 /* WidgetView */,
+				43B60A5B2885513000502B99 /* HappyTimeWatch */,
+				43B60A662885513100502B99 /* HappyTimeWatch WatchKit Extension */,
 				FFD9E75426CDEF3200362C24 /* Products */,
 				5C01B481582B0193B65561A9 /* Pods */,
 				D834EB6695D4534533451367 /* Frameworks */,
@@ -323,6 +456,8 @@
 				FFD9E75326CDEF3200362C24 /* HappyTime.app */,
 				2B104F56279563250018C955 /* HappyTimeMac.app */,
 				4307DD4028349A0C004074B5 /* WidgetViewExtension.appex */,
+				43B60A5A2885513000502B99 /* HappyTimeWatch.app */,
+				43B60A622885513100502B99 /* HappyTimeWatch WatchKit Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -330,7 +465,6 @@
 		FFD9E75526CDEF3200362C24 /* HappyTime */ = {
 			isa = PBXGroup;
 			children = (
-				2BFCE2082796A5C000BA5505 /* Resource */,
 				FFD4D714277C706C009AF0A8 /* NotificationIcon.png */,
 				FF95F77026CE3791005CE9D5 /* HappyTimeRelease.entitlements */,
 				FFD9E75626CDEF3200362C24 /* HappyTimeApp.swift */,
@@ -373,7 +507,7 @@
 				2B104F52279563250018C955 /* Sources */,
 				2B104F53279563250018C955 /* Frameworks */,
 				2B104F54279563250018C955 /* Resources */,
-				C331F29F8A3FF2F26C15D22B /* [CP] Copy Pods Resources */,
+				C6A472C9F68B97CA419FB3B4 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -401,6 +535,46 @@
 			productReference = 4307DD4028349A0C004074B5 /* WidgetViewExtension.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
+		43B60A592885513000502B99 /* HappyTimeWatch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 43B60A822885513300502B99 /* Build configuration list for PBXNativeTarget "HappyTimeWatch" */;
+			buildPhases = (
+				43B60A582885513000502B99 /* Resources */,
+				43B60A7E2885513300502B99 /* Embed App Extensions */,
+				90C5BF6B3FA6283C150A8D9C /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				43B60A652885513100502B99 /* PBXTargetDependency */,
+			);
+			name = HappyTimeWatch;
+			productName = HappyTimeWatch;
+			productReference = 43B60A5A2885513000502B99 /* HappyTimeWatch.app */;
+			productType = "com.apple.product-type.application.watchapp2";
+		};
+		43B60A612885513100502B99 /* HappyTimeWatch WatchKit Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 43B60A812885513300502B99 /* Build configuration list for PBXNativeTarget "HappyTimeWatch WatchKit Extension" */;
+			buildPhases = (
+				43B60A5E2885513100502B99 /* Sources */,
+				43B60A5F2885513100502B99 /* Frameworks */,
+				43B60A602885513100502B99 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "HappyTimeWatch WatchKit Extension";
+			packageProductDependencies = (
+				4321FA002886A593001D8241 /* FirebaseDatabase */,
+				4321FA022886A593001D8241 /* FirebaseFirestore */,
+				43BBE5422886AE5D00AAFC1A /* SwiftSoup */,
+			);
+			productName = "HappyTimeWatch WatchKit Extension";
+			productReference = 43B60A622885513100502B99 /* HappyTimeWatch WatchKit Extension.appex */;
+			productType = "com.apple.product-type.watchkit2-extension";
+		};
 		FFD9E75226CDEF3200362C24 /* HappyTime */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = FFD9E76226CDEF3300362C24 /* Build configuration list for PBXNativeTarget "HappyTime" */;
@@ -409,13 +583,15 @@
 				FFD9E74F26CDEF3200362C24 /* Sources */,
 				FFD9E75026CDEF3200362C24 /* Frameworks */,
 				FFD9E75126CDEF3200362C24 /* Resources */,
-				D27B7195858FE0E3BDF146AD /* [CP] Copy Pods Resources */,
 				4307DD4E28349A0D004074B5 /* Embed App Extensions */,
+				43B60A7B2885513300502B99 /* Embed Watch Content */,
+				28E40FC4AA1B679BCE538638 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				4307DD4C28349A0D004074B5 /* PBXTargetDependency */,
+				43B60A792885513300502B99 /* PBXTargetDependency */,
 			);
 			name = HappyTime;
 			productName = HappyTime;
@@ -437,6 +613,12 @@
 					4307DD3F28349A0C004074B5 = {
 						CreatedOnToolsVersion = 13.3.1;
 					};
+					43B60A592885513000502B99 = {
+						CreatedOnToolsVersion = 13.3.1;
+					};
+					43B60A612885513100502B99 = {
+						CreatedOnToolsVersion = 13.3.1;
+					};
 					FFD9E75226CDEF3200362C24 = {
 						CreatedOnToolsVersion = 12.5.1;
 					};
@@ -451,6 +633,10 @@
 				Base,
 			);
 			mainGroup = FFD9E74A26CDEF3200362C24;
+			packageReferences = (
+				4321F9FF2886A593001D8241 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				43BBE5412886AE5D00AAFC1A /* XCRemoteSwiftPackageReference "SwiftSoup" */,
+			);
 			productRefGroup = FFD9E75426CDEF3200362C24 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -458,6 +644,8 @@
 				FFD9E75226CDEF3200362C24 /* HappyTime */,
 				2B104F55279563250018C955 /* HappyTimeMac */,
 				4307DD3F28349A0C004074B5 /* WidgetViewExtension */,
+				43B60A592885513000502B99 /* HappyTimeWatch */,
+				43B60A612885513100502B99 /* HappyTimeWatch WatchKit Extension */,
 			);
 		};
 /* End PBXProject section */
@@ -481,6 +669,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		43B60A582885513000502B99 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				43B60A5D2885513100502B99 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		43B60A602885513100502B99 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				43B60A752885513300502B99 /* Preview Assets.xcassets in Resources */,
+				43B60A722885513300502B99 /* Assets.xcassets in Resources */,
+				4330E82E288685420031B581 /* GoogleService-Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FFD9E75126CDEF3200362C24 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -495,6 +701,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		28E40FC4AA1B679BCE538638 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HappyTime/Pods-HappyTime-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HappyTime/Pods-HappyTime-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HappyTime/Pods-HappyTime-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		369C288BDB139B89B65AAEF2 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -539,38 +762,21 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C331F29F8A3FF2F26C15D22B /* [CP] Copy Pods Resources */ = {
+		C6A472C9F68B97CA419FB3B4 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-HappyTimeMac/Pods-HappyTimeMac-resources-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-HappyTimeMac/Pods-HappyTimeMac-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			name = "[CP] Copy Pods Resources";
+			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-HappyTimeMac/Pods-HappyTimeMac-resources-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-HappyTimeMac/Pods-HappyTimeMac-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HappyTimeMac/Pods-HappyTimeMac-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		D27B7195858FE0E3BDF146AD /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-HappyTime/Pods-HappyTime-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-HappyTime/Pods-HappyTime-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HappyTime/Pods-HappyTime-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HappyTimeMac/Pods-HappyTimeMac-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -586,6 +792,7 @@
 				2B104F74279582130018C955 /* ClockResponse.swift in Sources */,
 				2BD2F2F72795D113006FA94E /* Clock.swift in Sources */,
 				2B104F6D279577B40018C955 /* User.swift in Sources */,
+				4330E811288655F90031B581 /* MainViewModel_Realtime.swift in Sources */,
 				2B104F7127957FC60018C955 /* TextFieldView.swift in Sources */,
 				2B104F5B279563250018C955 /* MainView.swift in Sources */,
 				2B104F59279563250018C955 /* HappyTimeMacApp.swift in Sources */,
@@ -599,6 +806,24 @@
 			files = (
 				4307DD4728349A0C004074B5 /* WidgetView.swift in Sources */,
 				4307DD542834A52B004074B5 /* WidgetViewModel.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		43B60A5E2885513100502B99 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				43BBE5402886AE1500AAFC1A /* WebService.swift in Sources */,
+				43B60A6C2885513100502B99 /* NotificationController.swift in Sources */,
+				4330E82D288684D30031B581 /* ClockResponse.swift in Sources */,
+				43BBE5452886AEE000AAFC1A /* AttendanceResponse.swift in Sources */,
+				4330E830288691530031B581 /* Clock.swift in Sources */,
+				43B60A6A2885513100502B99 /* ContentView.swift in Sources */,
+				43BBE5442886AEDA00AAFC1A /* Extension.swift in Sources */,
+				43B60A8E2885646E00502B99 /* WatchViewModel.swift in Sources */,
+				43B60A702885513100502B99 /* ComplicationController.swift in Sources */,
+				43B60A682885513100502B99 /* HappyTimeApp.swift in Sources */,
+				43B60A6E2885513100502B99 /* NotificationView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -638,6 +863,16 @@
 			isa = PBXTargetDependency;
 			target = 4307DD3F28349A0C004074B5 /* WidgetViewExtension */;
 			targetProxy = 4307DD4B28349A0D004074B5 /* PBXContainerItemProxy */;
+		};
+		43B60A652885513100502B99 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 43B60A612885513100502B99 /* HappyTimeWatch WatchKit Extension */;
+			targetProxy = 43B60A642885513100502B99 /* PBXContainerItemProxy */;
+		};
+		43B60A792885513300502B99 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 43B60A592885513000502B99 /* HappyTimeWatch */;
+			targetProxy = 43B60A782885513300502B99 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -757,6 +992,126 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		43B60A7C2885513300502B99 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = FH2889L9Z8;
+				GENERATE_INFOPLIST_FILE = YES;
+				IBSC_MODULE = HappyTimeWatch_WatchKit_Extension;
+				INFOPLIST_KEY_CFBundleDisplayName = HappyTimeWatch;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.patty.PattyTime;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.patty.PattyTime.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 8.5;
+			};
+			name = Debug;
+		};
+		43B60A7D2885513300502B99 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = FH2889L9Z8;
+				GENERATE_INFOPLIST_FILE = YES;
+				IBSC_MODULE = HappyTimeWatch_WatchKit_Extension;
+				INFOPLIST_KEY_CFBundleDisplayName = HappyTimeWatch;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.patty.PattyTime;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.patty.PattyTime.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 8.5;
+			};
+			name = Release;
+		};
+		43B60A7F2885513300502B99 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"HappyTimeWatch WatchKit Extension/Preview Content\"";
+				DEVELOPMENT_TEAM = FH2889L9Z8;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "HappyTimeWatch WatchKit Extension/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "HappyTimeWatch WatchKit Extension";
+				INFOPLIST_KEY_CLKComplicationPrincipalClass = "$(PRODUCT_MODULE_NAME).ComplicationController";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.patty.PattyTime.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 8.5;
+			};
+			name = Debug;
+		};
+		43B60A802885513300502B99 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"HappyTimeWatch WatchKit Extension/Preview Content\"";
+				DEVELOPMENT_TEAM = FH2889L9Z8;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "HappyTimeWatch WatchKit Extension/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "HappyTimeWatch WatchKit Extension";
+				INFOPLIST_KEY_CLKComplicationPrincipalClass = "$(PRODUCT_MODULE_NAME).ComplicationController";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.patty.PattyTime.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 8.5;
 			};
 			name = Release;
 		};
@@ -954,6 +1309,24 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		43B60A812885513300502B99 /* Build configuration list for PBXNativeTarget "HappyTimeWatch WatchKit Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				43B60A7F2885513300502B99 /* Debug */,
+				43B60A802885513300502B99 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		43B60A822885513300502B99 /* Build configuration list for PBXNativeTarget "HappyTimeWatch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				43B60A7C2885513300502B99 /* Debug */,
+				43B60A7D2885513300502B99 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		FFD9E74E26CDEF3200362C24 /* Build configuration list for PBXProject "HappyTime" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -973,6 +1346,43 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		4321F9FF2886A593001D8241 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.0.0;
+			};
+		};
+		43BBE5412886AE5D00AAFC1A /* XCRemoteSwiftPackageReference "SwiftSoup" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/scinfu/SwiftSoup.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		4321FA002886A593001D8241 /* FirebaseDatabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4321F9FF2886A593001D8241 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabase;
+		};
+		4321FA022886A593001D8241 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4321F9FF2886A593001D8241 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		43BBE5422886AE5D00AAFC1A /* SwiftSoup */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 43BBE5412886AE5D00AAFC1A /* XCRemoteSwiftPackageReference "SwiftSoup" */;
+			productName = SwiftSoup;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = FFD9E74B26CDEF3200362C24 /* Project object */;
 }

@@ -113,6 +113,7 @@ install_dsym() {
       rsync --delete -av "${RSYNC_PROTECT_TMP_FILES[@]}" --links --filter "- CVS/" --filter "- .svn/" --filter "- .git/" --filter "- .hg/" --filter "- Headers" --filter "- PrivateHeaders" --filter "- Modules" "${DERIVED_FILES_DIR}/${basename}.dSYM" "${DWARF_DSYM_FOLDER_PATH}"
     else
       # The dSYM was not stripped at all, in this case touch a fake folder so the input/output paths from Xcode do not reexecute this script because the file is missing.
+      mkdir -p "${DWARF_DSYM_FOLDER_PATH}"
       touch "${DWARF_DSYM_FOLDER_PATH}/${basename}.dSYM"
     fi
   fi
@@ -175,10 +176,34 @@ code_sign_if_enabled() {
 }
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
-  install_framework "${BUILT_PRODUCTS_DIR}/SwiftSoup/SwiftSoup.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/BoringSSL-GRPC-iOS/openssl_grpc.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/FirebaseCore-iOS/FirebaseCore.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/FirebaseCoreDiagnostics-iOS/FirebaseCoreDiagnostics.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/FirebaseFirestore-iOS/FirebaseFirestore.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/GoogleDataTransport-iOS/GoogleDataTransport.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/GoogleUtilities-iOS/GoogleUtilities.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/PromisesObjC-iOS/FBLPromises.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/SwiftSoup-iOS/SwiftSoup.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/abseil-iOS/absl.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/gRPC-C++-iOS/grpcpp.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/gRPC-Core-iOS/grpc.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/leveldb-library-iOS/leveldb.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/nanopb-iOS/nanopb.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
-  install_framework "${BUILT_PRODUCTS_DIR}/SwiftSoup/SwiftSoup.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/BoringSSL-GRPC-iOS/openssl_grpc.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/FirebaseCore-iOS/FirebaseCore.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/FirebaseCoreDiagnostics-iOS/FirebaseCoreDiagnostics.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/FirebaseFirestore-iOS/FirebaseFirestore.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/GoogleDataTransport-iOS/GoogleDataTransport.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/GoogleUtilities-iOS/GoogleUtilities.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/PromisesObjC-iOS/FBLPromises.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/SwiftSoup-iOS/SwiftSoup.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/abseil-iOS/absl.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/gRPC-C++-iOS/grpcpp.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/gRPC-Core-iOS/grpc.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/leveldb-library-iOS/leveldb.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/nanopb-iOS/nanopb.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then
   wait

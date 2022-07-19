@@ -1,6 +1,5 @@
-module SwiftSoup {
+framework module SwiftSoup {
   umbrella header "SwiftSoup-iOS-umbrella.h"
-  exclude header "SwiftSoup-macOS-umbrella.h"
 
   export *
   module * { export * }

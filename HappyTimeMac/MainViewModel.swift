@@ -151,6 +151,8 @@ extension MainViewModel {
                       let userArray = try? JSONDecoder().decode([User].self, from: json) else { return }
                 
                 self.userList = userArray
+                
+                dump(userArray)
             }
     }
 }
