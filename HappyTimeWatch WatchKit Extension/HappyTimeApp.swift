@@ -7,12 +7,22 @@
 
 import SwiftUI
 import Firebase
+import UserNotifications
 
 @main
 struct HappyTimeApp: App {
     
     init() {
       FirebaseApp.configure()
+        
+        UNUserNotificationCenter.current()
+            .requestAuthorization(options: [.sound, .alert]) { success, error in
+                if success {
+                    print("authorization granted")
+                } else if let error = error {
+                    print(error.localizedDescription)
+                }
+            }
     }
     
     @SceneBuilder var body: some Scene {
@@ -22,6 +32,6 @@ struct HappyTimeApp: App {
             }
         }
 
-        WKNotificationScene(controller: NotificationController.self, category: "myCategory")
+        WKNotificationScene(controller: NotificationController.self, category: "notification")
     }
 }

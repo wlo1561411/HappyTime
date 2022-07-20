@@ -10,8 +10,9 @@ import SwiftUI
 import Combine
 import Firebase
 import WidgetKit
+import WatchConnectivity
 
-class MainViewModel: ObservableObject {
+class MainViewModel: NSObject, ObservableObject {
     
     typealias WebError = WebService.WebServiceError
     typealias ApiType = WebService.ApiType
@@ -54,6 +55,13 @@ class MainViewModel: ObservableObject {
     private let firestore = Firestore.firestore()
     
     var listener: ListenerRegistration?
+    
+    var session: WCSession
+    
+    init(_ session: WCSession = .default) {
+        self.session = session
+        super.init()
+    }
 }
 
 // MARK: - Alert Type
@@ -100,13 +108,15 @@ private extension MainViewModel {
     
     func login(onlyLogin: Bool = false) {
         
+        let shouldShowLoading = UIApplication.shared.applicationState == .active
+        
         let login = WebService
             .shared
             .login(code: "YIZHAO", account: account, password: password)
             .receive(on: DispatchQueue.main)
             .handleEvents(receiveSubscription: { [weak self] _ in
                 
-                if onlyLogin { self?.isLoading = true }
+                if onlyLogin && shouldShowLoading { self?.isLoading = true }
                 
             }, receiveOutput: { [weak self] token in
                 guard let self = self else { return }
@@ -115,11 +125,13 @@ private extension MainViewModel {
                 
                 self.token = token
                 
-                if onlyLogin {
-                    self.configAlert(alertType: .response(api: .login, error: nil, message: nil))
-                }
-                else {
-                    self.configAlert(alertType: .response(api: .clock(type: self.clockType), error: nil, message: nil))
+                if shouldShowLoading {
+                    if onlyLogin {
+                        self.configAlert(alertType: .response(api: .login, error: nil, message: nil))
+                    }
+                    else {
+                        self.configAlert(alertType: .response(api: .clock(type: self.clockType), error: nil, message: nil))
+                    }
                 }
 
                 if !self.isSavedAccount { self.saveUserInfo() }
@@ -127,21 +139,22 @@ private extension MainViewModel {
             }, receiveCompletion: { [weak self] completion in
                 guard let self = self else { return }
                 
-                if onlyLogin { self.isLoading = false }
+                if onlyLogin && shouldShowLoading { self.isLoading = false }
                 
                 switch completion {
                 case .finished: break
                 case .failure(let error):
-                    
-                    if onlyLogin {
-                        self.configAlert(alertType: .response(api: .login, error: error, message: nil))
-                    }
-                    else {
-                        self.configAlert(alertType: .response(
-                            api: .clock(type: self.clockType),
-                            error: nil,
-                            message: "但登入失敗，" + error.message)
-                        )
+                    if shouldShowLoading {
+                        if onlyLogin {
+                            self.configAlert(alertType: .response(api: .login, error: error, message: nil))
+                        }
+                        else {
+                            self.configAlert(alertType: .response(
+                                api: .clock(type: self.clockType),
+                                error: nil,
+                                message: "但登入失敗，" + error.message)
+                            )
+                        }
                     }
                 }
             })
@@ -165,7 +178,8 @@ private extension MainViewModel {
                 }
             }, receiveCompletion: { [weak self] completion in
                 switch completion {
-                case .finished: break
+                case .finished:
+                    self?.sendMessage()
                 case .failure(_):
                     self?.punchModel = nil
                 }
@@ -212,13 +226,15 @@ extension MainViewModel {
         WebService.shared.removeAllCookies()
         
         token = nil
-        punchModel = nil
+        
+        DispatchQueue.main.async { [weak self] in
+            self?.punchModel = nil
+        }
         
         login(onlyLogin: onlyLogin)
     }
     
     func clockAction(_ type: ClockType) {
-        
         clock(type)
     }
     
@@ -251,6 +267,8 @@ extension MainViewModel {
             self.code = code
             self.account = account
             self.password = password
+            
+            setupWatchConnect()
         }
         else {
             isSavedAccount = false
@@ -353,5 +371,49 @@ private extension MainViewModel {
             .delete { error in
                 self.listener?.remove()
             }
+    }
+}
+
+// MARK: - Watch Connect
+
+extension MainViewModel: WCSessionDelegate {
+    func sessionDidBecomeInactive(_ session: WCSession) {}
+    func sessionDidDeactivate(_ session: WCSession) {}
+    
+    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+        sendMessage()
+    }
+    
+    func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
+        if let _ = message["notification"] {
+            loginAction(onlyLogin: true)
+        }
+    }
+    
+    private func sendMessage() {
+        
+        if session.isReachable {
+            
+            AppManager.shared.getNotification { [weak self] time in
+                self?.session.sendMessage(
+                    ["attendance": time],
+                    replyHandler: nil
+                )
+            }
+            
+            session.sendMessage(
+                ["code": code,
+                 "account": account,
+                 "password": password],
+                replyHandler: nil
+            )
+        }
+    }
+    
+    private func setupWatchConnect() {
+        if WCSession.isSupported() {
+            self.session.delegate = self
+            self.session.activate()
+        }
     }
 }

@@ -34,7 +34,7 @@ struct ContentView: View {
                     .padding()
             }
             
-            Text(viewModel.attendence)
+            Text(viewModel.attendance)
                 .font(.caption)
                 .fontWeight(.bold)
                 .padding()

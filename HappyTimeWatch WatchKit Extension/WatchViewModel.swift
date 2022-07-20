@@ -11,8 +11,10 @@ import FirebaseDatabase
 import SwiftUI
 import Combine
 import UserNotifications
+import WatchConnectivity
 
-class WatchViewModel: ObservableObject {
+
+class WatchViewModel: NSObject, ObservableObject {
     
     private let reference = Database.database().reference()
     private var handle: DatabaseHandle?
@@ -22,20 +24,43 @@ class WatchViewModel: ObservableObject {
     private let accountKey = "account_key"
     private let passwordKey = "password_key"
     
-    var code = ""
-    var account = ""
-    var password = ""
+    var code = UserDefaults.standard.code {
+        didSet {
+            UserDefaults.standard.code = code
+        }
+    }
+    var account = UserDefaults.standard.account {
+        didSet {
+            UserDefaults.standard.account = account
+        }
+    }
+    var password = UserDefaults.standard.password {
+        didSet {
+            UserDefaults.standard.password = password
+        }
+    }
+    
+    @Published var attendance: String = UserDefaults.standard.attendance {
+        didSet {
+            UserDefaults.standard.attendance = attendance
+        }
+    }
     
     private var token: String?
     
-    @Published var attendence: String = ""
-    
     var isLoading = false
     
-    init() {
-        queryUserInfo()
+    var session: WCSession
+    
+    init(_ session: WCSession = .default) {
+        self.session = session
+        super.init()
+        
+        setupWatchConnect()
     }
 }
+
+// MARK: - API
 
 extension WatchViewModel {
     
@@ -45,7 +70,8 @@ extension WatchViewModel {
         
         isLoading = true
         
-        reference.child("clocks")
+        reference
+            .child("clocks")
             .child(key)
             .setValue([
                 "documentID": key,
@@ -64,7 +90,7 @@ extension WatchViewModel {
             .child(id)
             .observe(.value, with: { [weak self] snapshot in
                 guard let self = self,
-                      let data = try? JSONSerialization.data(withJSONObject: snapshot.value),
+                      let data = try? JSONSerialization.data(withJSONObject: snapshot.value as Any),
                       let clock = try? JSONDecoder().decode(Clock.self, from: data),
                       clock.documentID == id,
                       let status = ClockSttus.init(rawValue: clock.status) else { return }
@@ -72,7 +98,7 @@ extension WatchViewModel {
                 switch status {
                 case .success:
                     self.deleteClock(id: id)
-                    self.login()
+                    self.sendMessage()
                     
                 case .fail, .userNotFind:
                     self.deleteClock(id: id)
@@ -84,150 +110,63 @@ extension WatchViewModel {
     }
     
     private func deleteClock(id: String) {
-        reference
-            .child("clocks")
-            .child(id)
-            .removeValue { [weak self] _, _ in
-                if let handle = self?.handle {
-                    self?.reference.removeObserver(withHandle: handle)
-                }
+        if let handle = handle {
+            reference.removeObserver(withHandle: handle)
+        }
+        
+        // FIXME: delete value ???
+//        reference
+//            .child("clocks")
+//            .child(id)
+//            .removeValue { [weak self] _, _ in
+//                if let handle = self?.handle {
+//                    self?.reference.removeObserver(withHandle: handle)
+//                }
+//            }
+    }
+}
+
+// MARK: - Watch Connect
+
+private extension WatchViewModel {
+    
+    func setupWatchConnect() {
+        if WCSession.isSupported() {
+            self.session.delegate = self
+            self.session.activate()
+        }
+    }
+    
+    func sendMessage() {
+        if session.isReachable {
+            session.sendMessage(
+                ["notification": "notification"],
+                replyHandler: nil
+            )
+        }
+    }
+}
+
+extension WatchViewModel: WCSessionDelegate {
+    
+    func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
+        
+        if let time = message["attendance"] as? String, !time.isEmpty {
+            DispatchQueue.main.async { [weak self] in
+                self?.attendance = time
             }
-    }
-}
-
-private extension WatchViewModel {
-    
-    func login() {
+        }
         
-        let login = WebService
-            .shared
-            .login(code: "YIZHAO", account: account, password: password)
-            .receive(on: DispatchQueue.main)
-            .handleEvents(receiveOutput: { [weak self] token in
-                guard let self = self else { return }
-                
-//                WidgetCenter.shared.reloadAllTimelines()
-                
-                self.token = token
-            })
-            .eraseToAnyPublisher()
-        
-        getAttendance(upsteam: login)
-    }
-    
-    func getAttendance<T>(upsteam: AnyPublisher<T, WebService.WebServiceError>) {
-        
-        let getAttendance = WebService
-            .shared
-            .getAttendance()
-            .receive(on: DispatchQueue.main)
-            .handleEvents(receiveOutput: { [weak self] attendance in
-                if let onPunch = attendance.punch?.onPunch?.first {
-                    self?.createNotification(with: onPunch.workTime)
-                }
-            })
-            .eraseToAnyPublisher()
-        
-        upsteam
-            .flatMap { _ in getAttendance }
-            .sink(receiveCompletion: { _ in }
-                  ,receiveValue: { _ in })
-            .store(in: &cancellables)
-    }
-}
-
-// MARK: - Keychain
-
-private extension WatchViewModel {
-    
-    func queryUserInfo() {
-        if let code = query(for: codeKey),
-           let account = query(for: accountKey),
-           let password = query(for: passwordKey) {
-            self.code = code
+        if let name = message["code"] as? String,
+           let account = message["account"] as? String,
+           let password = message["password"] as? String {
+            self.code = name
             self.account = account
             self.password = password
         }
     }
     
-    func query(for key: String) -> String? {
-        let query: [String: Any] =
-        [
-            kSecClass as String: kSecClassGenericPassword,
-            kSecAttrAccount as String: key,
-            kSecMatchLimit as String: kSecMatchLimitOne,
-            kSecReturnData as String: kCFBooleanTrue ?? false
-        ]
-        
-        var retrivedData: AnyObject? = nil
-        let _ = SecItemCopyMatching(query as CFDictionary, &retrivedData)
-        
-        guard let data = retrivedData as? Data else { return nil }
-        return String(data: data, encoding: String.Encoding.utf8)
-    }
-}
-
-// MARK: - Notification
-
-private extension WatchViewModel {
-    
-    func createNotification(with dateString: String) {
-        let group = DispatchGroup()
-        
-        var isExist = false
-        
-        group.enter()
-        UNUserNotificationCenter
-            .current()
-            .getPendingNotificationRequests { requests in
-                isExist = requests.first(where: { $0.content.body == dateString }) != nil
-                group.leave()
-            }
-        
-        group.notify(queue: .global()) { [weak self] in
-            guard !isExist else {
-                print("already Exist")
-                return
-            }
-            self?.addNotificationRequest(with: dateString)
-        }
-    }
-    
-    private func addNotificationRequest(with dateString: String) {
-        UNUserNotificationCenter
-            .current()
-            .getNotificationSettings { setting in
-                
-                guard setting.authorizationStatus == .authorized else { return }
-                
-                let format = DateFormatter()
-                format.dateFormat = "yyyy-MM-dd HH:mm:ss"
-                format.timeZone = TimeZone.current
-                
-                guard let date = format.date(from: dateString),
-                      let added = Calendar.current.date(byAdding: .init(timeZone: .current, hour: 9, minute: 1), to: date)
-                else { return }
-                
-                let content = UNMutableNotificationContent()
-                content.title = "下班了！"
-                content.subtitle = "請記得打卡～～～"
-                content.body = dateString
-                content.sound = .default
-                
-                guard let imageURL: URL = Bundle.main.url(forResource: "NotificationIcon", withExtension: "png"),
-                      let attachment = try? UNNotificationAttachment(identifier: "image", url: imageURL, options: nil)
-                else { return }
-                
-                content.attachments = [attachment]
-                
-                let components = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: added)
-                let trigger = UNCalendarNotificationTrigger(dateMatching: components, repeats: false)
-                let request = UNNotificationRequest(identifier: "notification", content: content, trigger: trigger)
-                
-                UNUserNotificationCenter.current().add(request) { [weak self] _ in
-                    print("add notification success")
-                    self?.attendence = dateString
-                }
-            }
+    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+        sendMessage()
     }
 }

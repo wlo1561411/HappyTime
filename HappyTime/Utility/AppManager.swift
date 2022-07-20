@@ -72,6 +72,7 @@ extension AppManager {
                 content.subtitle = "請記得打卡～～～"
                 content.body = dateString
                 content.sound = .default
+                content.categoryIdentifier = "notification"
                 
                 guard let imageURL: URL = Bundle.main.url(forResource: "NotificationIcon", withExtension: "png"),
                       let attachment = try? UNNotificationAttachment(identifier: "image", url: imageURL, options: nil)
@@ -86,6 +87,14 @@ extension AppManager {
                 UNUserNotificationCenter.current().add(request) { _ in
                     print("add notification success")
                 }
+            }
+    }
+    
+    func getNotification(completion: @escaping (String) -> Void) {
+        UNUserNotificationCenter
+            .current()
+            .getPendingNotificationRequests { notifications in
+                completion(notifications.first?.content.body ?? "")
             }
     }
 }
