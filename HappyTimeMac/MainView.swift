@@ -16,7 +16,7 @@ struct MainView: View {
     
     @ObservedObject fileprivate var viewModel = MainViewModel()
     
-    @ObservedObject fileprivate var viewModel_Realtime = MainViewModel_Realtime()
+//    @ObservedObject fileprivate var viewModel_Realtime = MainViewModel_Realtime()
     
     @State var listType: ListType = .member
     

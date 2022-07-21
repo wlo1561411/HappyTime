@@ -8,37 +8,46 @@
 import SwiftUI
 
 struct ContentView: View {
-    
+    @State var height: CGFloat?
     @ObservedObject fileprivate var viewModel = WatchViewModel()
     
     var body: some View {
-        VStack {
-            Text("")
-                .padding()
-            
-            Button {
-                viewModel.clock(.In)
-            } label: {
-                Text("IN")
-                    .font(.title3)
-                    .fontWeight(.bold)
-                    .padding()
-            }
+            ScrollView {
+                VStack(spacing: 12) {
+                    if viewModel.attendance.isEmpty {
+                        Text("")
+                    }
+                    else {
+                        Text("")
+                            .frame(maxHeight: 10)
+                    }
 
-            Button {
-                viewModel.clock(.Out)
-            } label: {
-                Text("OUT")
-                    .font(.title3)
-                    .fontWeight(.bold)
-                    .padding()
+                    Button {
+                        viewModel.sendMessage(.clockIn)
+                    } label: {
+                        Text("IN")
+                            .font(.title3)
+                            .fontWeight(.bold)
+                    }
+                    .frame(maxHeight: 50)
+
+                    Button {
+                        viewModel.sendMessage(.clockOut)
+                    } label: {
+                        Text("OUT")
+                            .font(.title3)
+                            .fontWeight(.bold)
+                    }
+                    .frame(maxHeight: 50)
+
+                    if !viewModel.attendance.isEmpty {
+                        Text(viewModel.attendance)
+                            .font(.caption)
+                            .fontWeight(.bold)
+                            .lineLimit(nil)
+                    }
+                }
             }
-            
-            Text(viewModel.attendance)
-                .font(.caption)
-                .fontWeight(.bold)
-                .padding()
-        }
     }
 }
 

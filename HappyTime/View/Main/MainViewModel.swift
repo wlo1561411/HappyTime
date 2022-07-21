@@ -32,7 +32,9 @@ class MainViewModel: NSObject, ObservableObject {
     
     private var token: String? {
         didSet {
-            isLogin = token != nil
+            DispatchQueue.main.async {
+                self.isLogin = self.token != nil
+            }
         }
     }
     
@@ -108,18 +110,21 @@ private extension MainViewModel {
     
     func login(onlyLogin: Bool = false) {
         
-        let shouldShowLoading = UIApplication.shared.applicationState == .active
-        
         let login = WebService
             .shared
             .login(code: "YIZHAO", account: account, password: password)
             .receive(on: DispatchQueue.main)
             .handleEvents(receiveSubscription: { [weak self] _ in
-                
-                if onlyLogin && shouldShowLoading { self?.isLoading = true }
+                DispatchQueue.main.async {
+                    let shouldShowLoading = UIApplication.shared.applicationState == .active
+                    
+                    if onlyLogin && shouldShowLoading { self?.isLoading = true }
+                }
                 
             }, receiveOutput: { [weak self] token in
                 guard let self = self else { return }
+                
+                let shouldShowLoading = UIApplication.shared.applicationState == .active
                 
                 WidgetCenter.shared.reloadAllTimelines()
                 
@@ -138,6 +143,8 @@ private extension MainViewModel {
                 
             }, receiveCompletion: { [weak self] completion in
                 guard let self = self else { return }
+                
+                let shouldShowLoading = UIApplication.shared.applicationState == .active
                 
                 if onlyLogin && shouldShowLoading { self.isLoading = false }
                 
@@ -173,13 +180,14 @@ private extension MainViewModel {
                 guard let punches = attendance.punch?.allPunches, punches.count > 0 else { return }
                 self?.punchModel = .init(title: "出勤紀錄", punches: punches)
                 
+                self?.sendMessage(.log, value: [punches.map { $0.workTime }])
+                
                 if let onPunch = attendance.punch?.onPunch?.first {
                     AppManager.shared.createNotification(with: onPunch.workTime)
                 }
             }, receiveCompletion: { [weak self] completion in
                 switch completion {
-                case .finished:
-                    self?.sendMessage()
+                case .finished: break
                 case .failure(_):
                     self?.punchModel = nil
                 }
@@ -381,39 +389,66 @@ extension MainViewModel: WCSessionDelegate {
     func sessionDidDeactivate(_ session: WCSession) {}
     
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
-        sendMessage()
+        sendMessage(.log)
     }
     
     func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
-        if let _ = message["notification"] {
-            loginAction(onlyLogin: true)
-        }
-    }
-    
-    private func sendMessage() {
+        let actions = message.keys.map { Action(rawValue: $0) }
         
-        if session.isReachable {
-            
-            AppManager.shared.getNotification { [weak self] time in
-                self?.session.sendMessage(
-                    ["attendance": time],
-                    replyHandler: nil
-                )
+        actions.forEach { action in
+            switch action {
+            case .log:
+                loginAction(onlyLogin: true)
+                
+            case .clockIn:
+                clockAction(.In)
+                
+            case .clockOut:
+                clockAction(.Out)
+                
+            default : break
             }
-            
-            session.sendMessage(
-                ["code": code,
-                 "account": account,
-                 "password": password],
-                replyHandler: nil
-            )
         }
     }
+}
+
+private extension MainViewModel {
     
-    private func setupWatchConnect() {
+    enum Action: String {
+        case log
+        case clockIn
+        case clockOut
+    }
+    
+    func setupWatchConnect() {
         if WCSession.isSupported() {
             self.session.delegate = self
             self.session.activate()
+        }
+    }
+    
+    func sendMessage(_ action: Action, value: Any? = nil) {
+        if session.isReachable {
+            switch action {
+            case .log:
+                if let value = value {
+                    session.sendMessage(
+                        [action.rawValue: value],
+                        replyHandler: nil
+                    )
+                }
+                else {
+                    AppManager
+                        .shared
+                        .getNotification { [weak self] time in
+                            self?.session.sendMessage(
+                                [action.rawValue: [time]],
+                                replyHandler: nil
+                            )
+                        }
+                }
+            default: break
+            }
         }
     }
 }

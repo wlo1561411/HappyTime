@@ -6,15 +6,12 @@
 //
 
 import SwiftUI
-import Firebase
 import UserNotifications
 
 @main
 struct HappyTimeApp: App {
     
     init() {
-      FirebaseApp.configure()
-        
         UNUserNotificationCenter.current()
             .requestAuthorization(options: [.sound, .alert]) { success, error in
                 if success {

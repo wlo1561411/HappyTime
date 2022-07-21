@@ -12,12 +12,12 @@ struct Provider: TimelineProvider {
     func placeholder(in context: Context) -> SimpleEntry {
         SimpleEntry(date: Date())
     }
-
+    
     func getSnapshot(in context: Context, completion: @escaping (SimpleEntry) -> ()) {
         let entry = SimpleEntry(date: Date())
         completion(entry)
     }
-
+    
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
         UNUserNotificationCenter
             .current()
@@ -48,42 +48,35 @@ struct WidgetViewEntryView : View {
     var entry: Provider.Entry
     
     @Environment(\.widgetFamily) var family
-
+    
     var body: some View {
         
         switch family {
             
         case .systemSmall:
             ZStack {
-                Color.black
-                Color("brown")
-                    .opacity(0.77)
                 Image("icon")
                     .resizable()
-                    .aspectRatio(contentMode: .fit)
+                    .aspectRatio(contentMode: .fill)
                     .opacity(0.6)
                     .blur(radius: 3)
                 Text("LOG")
                     .font(.title)
                     .fontWeight(.heavy)
-                    .shadow(color: .black, radius: 8, x: 2, y: -2)
                     .foregroundColor(.white)
                     .widgetURL(WidgetViewModel.Model.logURL)  // default deeplink
+                    .background(Color.secondary.opacity(0.67))
+                    .cornerRadius(5)
             }
             
         case .systemMedium:
             ZStack {
-                Color.black
-                Color("brown")
-                    .opacity(0.79)
-                HStack {
-                    Spacer()
-                    Image("icon")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .opacity(0.6)
-                        .blur(radius: 3)
-                }
+                
+                Image("icon")
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .opacity(0.6)
+                    .blur(radius: 3)
                 
                 VStack {
                     Text("")
@@ -96,14 +89,12 @@ struct WidgetViewEntryView : View {
                                 .font(.title)
                                 .fontWeight(.heavy)
                                 .foregroundColor(.white)
-                                .shadow(color: .black, radius: 8, x: 2, y: -2)
                         }
                         
                         Spacer()
                         Text("LOG")
                             .font(.title)
                             .fontWeight(.heavy)
-                            .shadow(color: .black, radius: 8, x: 2, y: -2)
                             .foregroundColor(.white)
                             .widgetURL(WidgetViewModel.Model.logURL)
                         
@@ -113,17 +104,18 @@ struct WidgetViewEntryView : View {
                                 .font(.title)
                                 .fontWeight(.heavy)
                                 .foregroundColor(.white)
-                                .shadow(color: .black, radius: 8, x: 5, y: -5)
                         }
                         Spacer()
                     }
                     .padding()
+                    .background(Color.secondary.opacity(0.67))
+                    .cornerRadius(5)
                     
                     Text(entry.startTime ?? "")
                         .font(.caption)
                         .fontWeight(.bold)
-                        .foregroundColor(.white)
-                        .shadow(color: .black, radius: 8, x: 2, y: -2)
+                        .foregroundColor(.black)
+                        .shadow(color: .white, radius: 8, x: 4, y: -4)
                         .padding()
                 }
             }
@@ -131,7 +123,7 @@ struct WidgetViewEntryView : View {
         default:
             ZStack {
                 Color.black
-                Color("brown")
+                Color("back")
                     .opacity(0.77)
                 Image("icon")
                     .resizable()
@@ -152,7 +144,7 @@ struct WidgetViewEntryView : View {
 @main
 struct WidgetView: Widget {
     let kind: String = "WidgetView"
-
+    
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind, provider: Provider()) { entry in
             WidgetViewEntryView(entry: entry)
