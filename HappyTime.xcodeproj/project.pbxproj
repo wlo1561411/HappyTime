@@ -31,6 +31,7 @@
 		4307DD4D28349A0D004074B5 /* WidgetViewExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 4307DD4028349A0C004074B5 /* WidgetViewExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		4307DD532834A46F004074B5 /* WidgetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4307DD522834A46F004074B5 /* WidgetViewModel.swift */; };
 		4307DD542834A52B004074B5 /* WidgetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4307DD522834A46F004074B5 /* WidgetViewModel.swift */; };
+		431948E729559F0300DA7F5E /* NotificationEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431948E629559F0300DA7F5E /* NotificationEditor.swift */; };
 		4330E811288655F90031B581 /* MainViewModel_Realtime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4330E810288655F90031B581 /* MainViewModel_Realtime.swift */; };
 		4330E82D288684D30031B581 /* ClockResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFFF0BFD26D4DF560043ECE0 /* ClockResponse.swift */; };
 		4330E830288691530031B581 /* Clock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD2F2F62795D113006FA94E /* Clock.swift */; };
@@ -47,6 +48,7 @@
 		43B60A8E2885646E00502B99 /* WatchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B60A8D2885646E00502B99 /* WatchViewModel.swift */; };
 		43BA03942887B29800EC7755 /* UserDefaults+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43BA03932887B29800EC7755 /* UserDefaults+.swift */; };
 		43BBE5442886AEDA00AAFC1A /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBB956526D48E8C0071ABD1 /* Extension.swift */; };
+		43F91C1B29558B990067D845 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F91C1A29558B990067D845 /* NotificationManager.swift */; };
 		5FB7A327C6E7413AD6C743C1 /* Pods_HappyTimeMac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6D1D8899AB5652A6F7E135A /* Pods_HappyTimeMac.framework */; };
 		7DAAF53F0852C8CD9E37C692 /* Pods_HappyTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9582EAB0A33203748EC9CE13 /* Pods_HappyTime.framework */; };
 		FF95F77226CE3B72005CE9D5 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF95F77126CE3B72005CE9D5 /* MainViewModel.swift */; };
@@ -153,6 +155,7 @@
 		4307DD4828349A0D004074B5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4307DD4A28349A0D004074B5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4307DD522834A46F004074B5 /* WidgetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetViewModel.swift; sourceTree = "<group>"; };
+		431948E629559F0300DA7F5E /* NotificationEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationEditor.swift; sourceTree = "<group>"; };
 		4330E810288655F90031B581 /* MainViewModel_Realtime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel_Realtime.swift; sourceTree = "<group>"; };
 		4330E8322886A1500031B581 /* FirebaseDatabase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseDatabase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4330E8362886A1750031B581 /* FirebaseFirestore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseFirestore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -172,6 +175,7 @@
 		43BA03932887B29800EC7755 /* UserDefaults+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+.swift"; sourceTree = "<group>"; };
 		43BBE5462886B1D700AAFC1A /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS8.5.sdk/System/Library/Frameworks/UserNotifications.framework; sourceTree = DEVELOPER_DIR; };
 		43BBE54C2886B27200AAFC1A /* UserNotificationsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotificationsUI.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS8.5.sdk/System/Library/Frameworks/UserNotificationsUI.framework; sourceTree = DEVELOPER_DIR; };
+		43F91C1A29558B990067D845 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		9582EAB0A33203748EC9CE13 /* Pods_HappyTime.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HappyTime.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9627B7EAA14843BA1593BBFC /* Pods-HappyTimeMac.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HappyTimeMac.release.xcconfig"; path = "Target Support Files/Pods-HappyTimeMac/Pods-HappyTimeMac.release.xcconfig"; sourceTree = "<group>"; };
 		B6D1D8899AB5652A6F7E135A /* Pods_HappyTimeMac.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HappyTimeMac.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -185,12 +189,12 @@
 		FFAB1A44277D6B73007C5A5D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FFB0DE0F27829CD3006A0029 /* AppManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppManager.swift; sourceTree = "<group>"; };
 		FFBB956526D48E8C0071ABD1 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
-		FFBF77FA26E73C8600E8F653 /* PunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PunchView.swift; sourceTree = "<group>"; };
-		FFBF77FC26E7433F00E8F653 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		FFBF77FA26E73C8600E8F653 /* PunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PunchView.swift; path = ../PunchView.swift; sourceTree = "<group>"; };
+		FFBF77FC26E7433F00E8F653 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoadingView.swift; path = ../LoadingView.swift; sourceTree = "<group>"; };
 		FFBF77FE26E7471300E8F653 /* ArcsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArcsView.swift; sourceTree = "<group>"; };
 		FFBF780026E74C7300E8F653 /* BarsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarsView.swift; sourceTree = "<group>"; };
 		FFBF780326E74F1C00E8F653 /* BlinkingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlinkingView.swift; sourceTree = "<group>"; };
-		FFD4D70F277C31D6009AF0A8 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
+		FFD4D70F277C31D6009AF0A8 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WebView.swift; path = ../WebView.swift; sourceTree = "<group>"; };
 		FFD4D712277C36A9009AF0A8 /* AttendanceWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendanceWebView.swift; sourceTree = "<group>"; };
 		FFD4D714277C706C009AF0A8 /* NotificationIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NotificationIcon.png; sourceTree = "<group>"; };
 		FFD9E75326CDEF3200362C24 /* HappyTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HappyTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -199,8 +203,8 @@
 		FFD9E75D26CDEF3300362C24 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		FFD9E75F26CDEF3300362C24 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FFD9E76526CDEF6100362C24 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
-		FFD9E76726CDF3FF00362C24 /* ButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
-		FFD9E76926CDF4B800362C24 /* TextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldView.swift; sourceTree = "<group>"; };
+		FFD9E76726CDF3FF00362C24 /* ButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ButtonView.swift; path = ../ButtonView.swift; sourceTree = "<group>"; };
+		FFD9E76926CDF4B800362C24 /* TextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TextFieldView.swift; path = ../TextFieldView.swift; sourceTree = "<group>"; };
 		FFFF0BFD26D4DF560043ECE0 /* ClockResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -349,6 +353,19 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		43BF90E8295588E500FE212C /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				FFD9E76726CDF3FF00362C24 /* ButtonView.swift */,
+				FFBF77FA26E73C8600E8F653 /* PunchView.swift */,
+				FFD9E76926CDF4B800362C24 /* TextFieldView.swift */,
+				FFBF77FC26E7433F00E8F653 /* LoadingView.swift */,
+				FFD4D70F277C31D6009AF0A8 /* WebView.swift */,
+				431948E629559F0300DA7F5E /* NotificationEditor.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		5C01B481582B0193B65561A9 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -381,11 +398,7 @@
 				2BFCE20B2796A76100BA5505 /* IP Main */,
 				FFD4D711277C35AB009AF0A8 /* Attendance Web */,
 				FFBB956826D49EA30071ABD1 /* Main */,
-				FFD9E76726CDF3FF00362C24 /* ButtonView.swift */,
-				FFBF77FA26E73C8600E8F653 /* PunchView.swift */,
-				FFD9E76926CDF4B800362C24 /* TextFieldView.swift */,
-				FFBF77FC26E7433F00E8F653 /* LoadingView.swift */,
-				FFD4D70F277C31D6009AF0A8 /* WebView.swift */,
+				43BF90E8295588E500FE212C /* Helpers */,
 				FFBF780226E74EEF00E8F653 /* Loading Animation */,
 			);
 			path = View;
@@ -406,6 +419,7 @@
 				FF95F77326CE5003005CE9D5 /* WebService.swift */,
 				FFBB956526D48E8C0071ABD1 /* Extension.swift */,
 				FFB0DE0F27829CD3006A0029 /* AppManager.swift */,
+				43F91C1A29558B990067D845 /* NotificationManager.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -827,6 +841,7 @@
 				2BFCE20E2796A7CB00BA5505 /* IPMainView.swift in Sources */,
 				2BFCE20F2796A81900BA5505 /* IPMainViewModel.swift in Sources */,
 				FFBF780126E74C7300E8F653 /* BarsView.swift in Sources */,
+				431948E729559F0300DA7F5E /* NotificationEditor.swift in Sources */,
 				FF95F77426CE5003005CE9D5 /* WebService.swift in Sources */,
 				FFD4D713277C36A9009AF0A8 /* AttendanceWebView.swift in Sources */,
 				FFBF77FD26E7433F00E8F653 /* LoadingView.swift in Sources */,
@@ -840,6 +855,7 @@
 				FFBB956626D48E8C0071ABD1 /* Extension.swift in Sources */,
 				FFBF780426E74F1C00E8F653 /* BlinkingView.swift in Sources */,
 				FFBF77FB26E73C8600E8F653 /* PunchView.swift in Sources */,
+				43F91C1B29558B990067D845 /* NotificationManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -997,7 +1013,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = FH2889L9Z8;
 				GENERATE_INFOPLIST_FILE = YES;
 				IBSC_MODULE = HappyTimeWatch_WatchKit_Extension;
@@ -1026,7 +1042,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = FH2889L9Z8;
 				GENERATE_INFOPLIST_FILE = YES;
 				IBSC_MODULE = HappyTimeWatch_WatchKit_Extension;
@@ -1061,7 +1077,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = "HappyTimeWatch WatchKit Extension";
 				INFOPLIST_KEY_CLKComplicationPrincipalClass = HappyTimeWatch_WatchKit_Extension.ComplicationController;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = NO;
+				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1095,7 +1111,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = "HappyTimeWatch WatchKit Extension";
 				INFOPLIST_KEY_CLKComplicationPrincipalClass = HappyTimeWatch_WatchKit_Extension.ComplicationController;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = NO;
+				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1239,7 +1255,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_ASSET_PATHS = "\"HappyTime/Preview Content\"";
 				DEVELOPMENT_TEAM = FH2889L9Z8;
 				ENABLE_PREVIEWS = YES;
@@ -1269,7 +1285,7 @@
 				CODE_SIGN_ENTITLEMENTS = HappyTime/HappyTimeRelease.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_ASSET_PATHS = "\"HappyTime/Preview Content\"";
 				DEVELOPMENT_TEAM = FH2889L9Z8;
 				ENABLE_PREVIEWS = YES;

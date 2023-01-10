@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MainView: View {
-    
+    @StateObject private var notificationManager = NotificationManager.shared
     @StateObject fileprivate var viewModel = MainViewModel()
     
     var body: some View {
@@ -81,6 +81,15 @@ struct MainView: View {
                     }
                     .opacity(viewModel.isLogin ? 1 : 0)
                 }
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button {
+                        notificationManager.isNeededChange.toggle()
+                    } label: {
+                        Image(systemName: "bell.and.waveform")
+                            .foregroundColor(.white)
+                    }
+                    .opacity(viewModel.isLogin ? 1 : 0)
+                }
             }
             .ignoresSafeArea(.container, edges: .bottom)
         }
@@ -89,11 +98,29 @@ struct MainView: View {
         .onAppear {
             viewModel.queryUserInfo()
         }
-        .onReceive(AppManager.shared.$isReceivedNotification) { isReceived in
+        .onReceive(NotificationManager.shared.$isReceivedNotification) { isReceived in
             if isReceived {
                 viewModel.prepareForClock(.Out)
             }
         }
+        .sheet(isPresented: $notificationManager.isNeededChange, content: {
+            if notificationManager.isNeededChange {
+                if #available(iOS 16.0, *) {
+                    NotificationEditor(
+                        isShowed: $notificationManager.isNeededChange,
+                        time: $notificationManager.notificationTime
+                    )
+                    .presentationDetents([.height(UIScreen.main.bounds.height * 0.23)])
+                    .presentationDragIndicator(.visible)
+                }
+                else {
+                    NotificationEditor(
+                        isShowed: $notificationManager.isNeededChange,
+                        time: $notificationManager.notificationTime
+                    )
+                }
+            }
+        })
         .alert(isPresented: $viewModel.isPopAlert) {
             buildAlert {
                 viewModel.remindAction()

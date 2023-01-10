@@ -13,7 +13,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         
         setupAppearance()
-        AppManager.shared.requestNotificationAuthrorization()
+        NotificationManager.shared.requestNotificationAuthrorization()
         UNUserNotificationCenter.current().delegate = self
 
         FirebaseApp.configure()
@@ -59,7 +59,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         
         switch response.actionIdentifier {
         default:
-            AppManager.shared.isReceivedNotification = true
+            NotificationManager.shared.isReceivedNotification = true
         }
         completionHandler()
     }

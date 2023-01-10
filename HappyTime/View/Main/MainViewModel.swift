@@ -183,7 +183,7 @@ private extension MainViewModel {
                 self?.sendMessage(.log, value: [punches.map { $0.workTime }])
                 
                 if let onPunch = attendance.punch?.onPunch?.first {
-                    AppManager.shared.createNotification(with: onPunch.workTime)
+                    NotificationManager.shared.createNotification(with: onPunch.workTime)
                 }
             }, receiveCompletion: { [weak self] completion in
                 switch completion {
@@ -438,7 +438,7 @@ private extension MainViewModel {
                     )
                 }
                 else {
-                    AppManager
+                    NotificationManager
                         .shared
                         .getNotification { [weak self] time in
                             self?.session.sendMessage(
