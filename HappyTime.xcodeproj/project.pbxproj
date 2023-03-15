@@ -48,6 +48,9 @@
 		43B60A8E2885646E00502B99 /* WatchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B60A8D2885646E00502B99 /* WatchViewModel.swift */; };
 		43BA03942887B29800EC7755 /* UserDefaults+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43BA03932887B29800EC7755 /* UserDefaults+.swift */; };
 		43BBE5442886AEDA00AAFC1A /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBB956526D48E8C0071ABD1 /* Extension.swift */; };
+		43F3AAB229C1704C005A7083 /* ManagerModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F3AAB129C1704C005A7083 /* ManagerModeView.swift */; };
+		43F3AAB429C17833005A7083 /* AddUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F3AAB329C17833005A7083 /* AddUserView.swift */; };
+		43F3AAB529C19A79005A7083 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B104F6C279577B40018C955 /* User.swift */; };
 		43F91C1B29558B990067D845 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F91C1A29558B990067D845 /* NotificationManager.swift */; };
 		5FB7A327C6E7413AD6C743C1 /* Pods_HappyTimeMac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6D1D8899AB5652A6F7E135A /* Pods_HappyTimeMac.framework */; };
 		7DAAF53F0852C8CD9E37C692 /* Pods_HappyTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9582EAB0A33203748EC9CE13 /* Pods_HappyTime.framework */; };
@@ -175,6 +178,8 @@
 		43BA03932887B29800EC7755 /* UserDefaults+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+.swift"; sourceTree = "<group>"; };
 		43BBE5462886B1D700AAFC1A /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS8.5.sdk/System/Library/Frameworks/UserNotifications.framework; sourceTree = DEVELOPER_DIR; };
 		43BBE54C2886B27200AAFC1A /* UserNotificationsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotificationsUI.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS8.5.sdk/System/Library/Frameworks/UserNotificationsUI.framework; sourceTree = DEVELOPER_DIR; };
+		43F3AAB129C1704C005A7083 /* ManagerModeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerModeView.swift; sourceTree = "<group>"; };
+		43F3AAB329C17833005A7083 /* AddUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddUserView.swift; sourceTree = "<group>"; };
 		43F91C1A29558B990067D845 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		9582EAB0A33203748EC9CE13 /* Pods_HappyTime.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HappyTime.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9627B7EAA14843BA1593BBFC /* Pods-HappyTimeMac.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HappyTimeMac.release.xcconfig"; path = "Target Support Files/Pods-HappyTimeMac/Pods-HappyTimeMac.release.xcconfig"; sourceTree = "<group>"; };
@@ -366,6 +371,15 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		43F3AAB029C17031005A7083 /* ManagerMode */ = {
+			isa = PBXGroup;
+			children = (
+				43F3AAB129C1704C005A7083 /* ManagerModeView.swift */,
+				43F3AAB329C17833005A7083 /* AddUserView.swift */,
+			);
+			path = ManagerMode;
+			sourceTree = "<group>";
+		};
 		5C01B481582B0193B65561A9 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -395,6 +409,7 @@
 		FFBB956726D49E960071ABD1 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				43F3AAB029C17031005A7083 /* ManagerMode */,
 				2BFCE20B2796A76100BA5505 /* IP Main */,
 				FFD4D711277C35AB009AF0A8 /* Attendance Web */,
 				FFBB956826D49EA30071ABD1 /* Main */,
@@ -833,8 +848,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				FFD9E76A26CDF4B800362C24 /* TextFieldView.swift in Sources */,
+				43F3AAB229C1704C005A7083 /* ManagerModeView.swift in Sources */,
 				FFD4D710277C31D6009AF0A8 /* WebView.swift in Sources */,
+				43F3AAB429C17833005A7083 /* AddUserView.swift in Sources */,
 				FFA6620626E21069004F061E /* AttendanceResponse.swift in Sources */,
+				43F3AAB529C19A79005A7083 /* User.swift in Sources */,
 				2BFCE21027995BB700BA5505 /* Clock.swift in Sources */,
 				FFBF77FF26E7471300E8F653 /* ArcsView.swift in Sources */,
 				FFD9E75726CDEF3200362C24 /* HappyTimeApp.swift in Sources */,
@@ -1013,7 +1031,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_TEAM = FH2889L9Z8;
 				GENERATE_INFOPLIST_FILE = YES;
 				IBSC_MODULE = HappyTimeWatch_WatchKit_Extension;
@@ -1042,7 +1060,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_TEAM = FH2889L9Z8;
 				GENERATE_INFOPLIST_FILE = YES;
 				IBSC_MODULE = HappyTimeWatch_WatchKit_Extension;
@@ -1255,12 +1273,12 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_ASSET_PATHS = "\"HappyTime/Preview Content\"";
 				DEVELOPMENT_TEAM = FH2889L9Z8;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = HappyTime/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1285,12 +1303,12 @@
 				CODE_SIGN_ENTITLEMENTS = HappyTime/HappyTimeRelease.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_ASSET_PATHS = "\"HappyTime/Preview Content\"";
 				DEVELOPMENT_TEAM = FH2889L9Z8;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = HappyTime/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -19,14 +19,14 @@ struct NotificationEditor: View {
                     isShowed.toggle()
                     NotificationManager.shared.addNotificationRequest(with: time)
                 } label: {
-                    Text("Done")
+                    Text("Save")
                         .foregroundColor(.white)
                         .fontWeight(.black)
                         .padding()
                 }
                 
                 DatePicker(selection: $time, displayedComponents: .hourAndMinute) {
-                    Text("Set Finish Time")
+                    Text("設定下班時間提醒")
                         .font(.headline)
                         .bold()
                         .padding(.leading)

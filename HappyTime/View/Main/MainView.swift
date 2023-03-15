@@ -19,7 +19,7 @@ struct MainView: View {
                         TextFieldView(
                             inputText: $viewModel.code,
                             title: "Name",
-                            placeHolder: "Enter Name",
+                            placeHolder: "Enter name",
                             isSecure: false
                         )
                         
@@ -77,6 +77,16 @@ struct MainView: View {
                         AttendanceWebView()
                     } label: {
                         Text("Web")
+                            .foregroundColor(.white)
+                    }
+                    .opacity(viewModel.isLogin ? 1 : 0)
+                }
+                
+                ToolbarItem(placement: .navigationBarLeading) {
+                    NavigationLink {
+                        ManagerModeView()
+                    } label: {
+                        Image(systemName: "person.badge.key.fill")
                             .foregroundColor(.white)
                     }
                     .opacity(viewModel.isLogin ? 1 : 0)

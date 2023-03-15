@@ -57,16 +57,14 @@ class NotificationManager: ObservableObject {
         else { return nil }
         if added > final {
             notificationTime = final
-            return nil
+            return final
         }
         notificationTime = added
         return added
     }
     
     func addNotificationRequest(with date: Date?) {
-        UNUserNotificationCenter
-            .current()
-            .removeAllPendingNotificationRequests()
+        removeNotification()
         
         UNUserNotificationCenter
             .current()
@@ -114,6 +112,12 @@ class NotificationManager: ObservableObject {
             .getPendingNotificationRequests { notifications in
                 completion(notifications.first?.content.body ?? "")
             }
+    }
+    
+    func removeNotification() {
+        UNUserNotificationCenter
+            .current()
+            .removeAllPendingNotificationRequests()
     }
 }
 

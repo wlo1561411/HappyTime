@@ -60,6 +60,8 @@ class MainViewModel: NSObject, ObservableObject {
     
     var session: WCSession
     
+    @Published var userResult: (user: [User], error: String?) = ([], nil)
+    
     init(_ session: WCSession = .default) {
         self.session = session
         super.init()
@@ -309,9 +311,36 @@ extension MainViewModel {
 
 // MARK: - Firebase API
 
-private extension MainViewModel {
+extension MainViewModel {
     
-    func clock(_ type: ClockType) {
+    func addUser(id: String, name: String, password: String) {
+        firestore
+            .collection("users")
+            .addDocument(data: ["id": id, "name": name, "password": password]) { error in
+                if let error = error {
+                    self.userResult = ([], error.localizedDescription)
+                    return
+                }
+                self.getUser()
+            }
+    }
+    
+    private func getUser() {
+        firestore
+            .collection("users")
+            .getDocuments { allSnapshot, error in
+                guard let allSnapshot = allSnapshot else { return }
+                let dataArray = allSnapshot.documents.map {
+                    $0.data()
+                }
+                
+                guard let json = try? JSONSerialization.data(withJSONObject: dataArray),
+                      let userArray = try? JSONDecoder().decode([User].self, from: json) else { return }
+                self.userResult = (userArray, nil)
+            }
+    }
+    
+    private func clock(_ type: ClockType) {
         
         clockType = type
    
@@ -338,7 +367,7 @@ private extension MainViewModel {
         }
     }
     
-    func bindClock(_ type: ClockType, id: String) {
+    private func bindClock(_ type: ClockType, id: String) {
         
         listener = firestore.collection("clocks").document(id).addSnapshotListener { [weak self] snapshot, error in
 
